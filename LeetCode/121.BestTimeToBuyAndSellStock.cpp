@@ -39,15 +39,19 @@ freopen("in1", "r", stdin);
 freopen("out1", "w", stdout);
 #endif
 fast_io;
-//-------------------------------  
-  //SUBHANALLAH//
+//-------------------------------	
+	//SUBHANALLAH//
 //-------------------------------
-  vector<int> arr{5,7,7,8,8,10};
+	vector<int> prices {7,1,5,3,6,4};
+	int lo = 1e9, hi = 0;
+	int ans = 0;
 
-  int lo = 0, hi = n-1;
-  while (hi >= lo) {
-    int mid = (lo+hi)/2;
-    if (arr[lo])
-  }
+	int n = prices.size();
+	for (int i = 0; i < n; i++) {
+		hi = prices[i];
+		ans = max(ans, hi-lo);
+		lo = min(lo, prices[i]);
+	}
 
+	cerr << ans << endl;
 }
