@@ -61,5 +61,6 @@ fast_io;
 			upto = i+nums[i];
 		}
 	}
-	cerr<< "false";
+	if (n==1) cerr << "true";
+	else cerr<< "false";
 }
