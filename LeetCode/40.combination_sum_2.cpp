@@ -32,6 +32,20 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
+set<vector<int>> st;
+
+void bt (vector<int> tmp, vector<int> &candidates, int target, int sum, int lo) {
+	if (sum == target) st.insert(tmp);
+	if (sum > target) return;
+
+	for (int i = lo; i < (int)candidates.size(); i++) {
+		int X = candidates[i];
+		tmp.push_back(X);
+		bt(tmp, candidates, target, sum+X, i+1);
+		tmp.pop_back();
+	}
+}
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -42,6 +56,16 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int x = 5;
-	cout << x << endl;
+	vector<int> candidates{10,1,2,7,6,1,5}; int n = candidates.size();
+	int target = 8;
+
+	sort(candidates.begin(), candidates.end());
+	rje()<<rji(candidates);
+
+	bt({}, candidates, target, 0, 0);
+
+	vector<vector<int>> out;
+	for (auto X: st) out.push_back(X);
+	st.clear();
+	return out;
 }
