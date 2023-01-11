@@ -58,10 +58,12 @@ fast_io;
 			ans = max(ans, hi-lo+1);
 		}
 		else {
-
+// if (hi==4) break;
 			while (lo < hi) {
 				if (mp[fruits[lo]] == lo) {
-					mp.erase(mp[fruits[lo]]);
+					if (hi==4) rje()<<rji(mp) <<' '<<lo<<' '<<fruits[lo];
+					mp.erase(fruits[lo]);
+					if (hi==4) rje()<<rji(mp) <<' '<<lo<<' '<<fruits[lo];
 					lo++; break;
 				}
 				lo++;
@@ -71,7 +73,12 @@ fast_io;
 			ans = max(ans, hi-lo+1);
 
 		}
+		rje()<<fruits[hi]<<' '<<hi-lo+1<<rji(mp);
 	}
-
 	cerr<< ans << endl;
+rje()<<rji(mp);
+
+mp.erase(3);
+rje()<<rji(mp);
+
 }
