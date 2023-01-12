@@ -48,8 +48,10 @@ fast_io;
 	vector<int> dp(n, -inf);
 
 	dp[0] = nums[0];
+	int ans = dp[0];
 	for (int i = 1; i < n; i++) {
-		dp[i] = max({dp[i], nums[i], dp[i-1]+nums[i]});
+		dp[i] = max(nums[i], dp[i-1]+nums[i]);
+		ans = max(ans, dp[i]);
 	}
 
 	rje()<<nums;
