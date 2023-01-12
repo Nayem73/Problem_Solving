@@ -42,10 +42,16 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int n = 3;
-	for (int i = 0; i < 5; i++) {
-		for (int j = 0; j < n; j++) {
-			
-		}
+	vector<int> nums{-2,1,-3,4,-1,2,1,-5,4};
+	int n = nums.size();
+	const int inf = 2e9;
+	vector<int> dp(n, -inf);
+
+	dp[0] = nums[0];
+	for (int i = 1; i < n; i++) {
+		dp[i] = max({dp[i], nums[i], dp[i-1]+nums[i]});
 	}
+
+	rje()<<nums;
+	rje()<<dp;
 }
