@@ -32,32 +32,6 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-
-void f() {
-	int n; cin >> n;
-	vector<vector<int>> v(n, vector<int> (n));
-	int lo = 1, hi = n*n;
-	bool flg = true;
-	vector<vector<int>> last_out(n, vector<int> (n));
-
-	for (int i = 0; i < n; i++) {
-		vector<int> tmp;
-		for (int j = 0; j < n; j++) {
-			if (flg) v[j][i] = lo, flg = false, tmp.push_back(lo), lo++;
-			else v[j][i] = hi, flg = true, tmp.push_back(hi), hi--;
-		}
-		if (i%2) reverse(tmp.begin(), tmp.end());
-		for (int y = 0; y < n; y++) last_out[y][i] = tmp[y];
-		rje()<<rji(tmp);
-	}
-
-	for (int i = 0; i < n; i++) {
-		// if (i%2) reverse(v[i].begin(), v[i].end());
-		for (int X: last_out[i]) cout << X << ' ';
-		cout << endl;
-	}
-}
-
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -68,7 +42,18 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int t; cin >> t; while (t--) {
-		f();
+	int n, m; cin >> n>>m;
+	vector<int> v_n(5), v_m(5);
+	for (int i = 1; i <= n; i++) v_n[i%5]++;
+	for (int i = 1; i <= m; i++) v_m[i%5]++;
+
+	// rje()<<rji(v);
+	long long ans = 0;
+	for (int i = 1; i <= 4; i++) {
+		ans+= v_n[i] * v_m[5-i];
 	}
+
+	ans+= v_n[0] * v_m[0];
+
+	cout << ans;
 }
