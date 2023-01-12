@@ -50,10 +50,10 @@ fast_io;
 	// rje()<<rji(v);
 	long long ans = 0;
 	for (int i = 1; i <= 4; i++) {
-		ans+= v_n[i] * v_m[5-i];
+		ans+= v_n[i] * (long long)v_m[5-i];
 	}
 
-	ans+= v_n[0] * v_m[0];
+	ans+= v_n[0] * (long long)v_m[0];
 
 	cout << ans;
 }
