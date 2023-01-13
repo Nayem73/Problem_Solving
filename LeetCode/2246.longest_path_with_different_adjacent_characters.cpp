@@ -31,27 +31,60 @@ sim dor(const c&) { ris; }
 #define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
-vector<int> adj[100007];
-vector<bool> vis(100007);
-string labels;
-vector<int> out(100007);
 
-vector<int> dfs(int cur) {
+const int NAX = 6;
+// const int NAX = 4;
+vector<int> adj[NAX];
+vector<bool> vis(NAX);
+vector<int> greedy(NAX, 1);
+string s = "abbcbe";
+// string s = "aabc";
+
+// void dfs(int cur, int par) { starting with a random leaf wuldn't work like test case 2, and
+																//starting with all leaves = tle
+// 	vis[cur] = true;
+	
+// 	if (s[cur] != s[par]) {
+// 		greedy[cur] = max(greedy[cur], greedy[par]+1);
+// 	}
+
+// 	for (int X: adj[cur]) {
+// 		if (vis[X]) continue;
+// 		dfs(X, cur);
+// 	}
+// }
+
+vector<int> separate;
+int dfs(int cur, int par) {
 	vis[cur] = true;
-	vector<int> ret(130);
+
+	int greedy_cur = 0;
+	if (s[cur] != s[par]) {
+		greedy_cur = 1;
+		if (cur == 0) cout << s[cur] << ' '<<s[par] << endl;
+	}
+
+	vector<int> tmp;
 	for (int X: adj[cur]) {
 		if (vis[X]) continue;
-		vector<int> got_chars = dfs(X);
-		for (int i = 97; i < 130; i++) ret[i] += got_chars[i];
-	}
-	ret[(int)labels[cur]]++;
-	out[cur] = ret[(int)labels[cur]];
+		int got = dfs(X, cur);
 
-	map<char,int> mp;
-	for (int i = 97; i < 130; i++) if (ret[i]) mp[(char)i] = ret[i];
-	rje()<<cur<<rji(mp);
-	return ret;
+		if (s[cur] == s[X]) separate.push_back(got);
+		else tmp.push_back(got);
+
+	}
+
+	sort(tmp.rbegin(), tmp.rend());
+	int got = 0; if (tmp.size()) got = tmp[0];
+
+	rje()<<cur<<rji(got+1);
+	if (cur == 0 && (int)tmp.size()>=2) {
+		got += tmp[1];
+	}
+	return got + 1;
+
 }
+
 
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
@@ -63,23 +96,14 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	// vector<vector<int>> edges{{0,1}, {0,2}, {1,4}, {1,5}, {2,3}, {2,6}};
-	// int n = 7; labels = "abaedcd";
-
-	// vector<vector<int>> edges{{0,1}, {1,2}, {0,3}};
-	// int n = 4; labels = "bbbb";
-
-
-	vector<vector<int>> edges{{0,1}, {0,2}, {1,3}, {0,4}};
-	int n = 5; labels = "aabab";
-
-	for (auto X: edges) {
-		adj[X[0]].push_back((X[1]));
-		adj[X[1]].push_back((X[0]));
+	int n; cin >> n;
+	for (int i = 0; i < n; i++) {
+		int u, v; cin >>u>>v;
+		adj[u].push_back(v);
+		adj[v].push_back(u);
 	}
 
-	vector<int> tmp = dfs(0);
-	out.resize(n);
-	rje()<<rji(out);
-
+	cerr << "ans => "<< dfs(0,0) << endl;
+	rje()<< rji(greedy);
 }
+// 1, 2, 1, 3, 1, 2]] 
