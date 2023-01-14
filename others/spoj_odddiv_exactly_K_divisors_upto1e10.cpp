@@ -46,7 +46,20 @@ void sieve(int n) {
 	}
 }
 
-bool prime_factorization(int n)
+vector<long long> odd_divs[NAX+1];
+void prime_factorization_returns_divcnt(long long n) {
+	long long num = n;
+	map<long long, long long> mp;
+	for (int X: store) {
+		if (X > sqrt(n)) break;
+		while (n%X == 0) n/=X, mp[X]++;
+	}
+	if (n>1) mp[n]++;
+	long long divcnt = 1;
+	for (auto X: mp) divcnt *= X.second+1;
+	odd_divs[divcnt].push_back(num);
+	// return divcnt;
+}
 
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
@@ -58,28 +71,33 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	sieve()
-	int t; cin >> t; while (t--) {
+	sieve(NAX);
+	for (long long i = 1; ; i++) {
+		long long num = i*i;
+		if (num > 1e10L) break;
+		prime_factorization_returns_divcnt(num);
+		// if (got%2) cout << num << " "<<got << endl;
+	}
 
+	long long cnt1 = 0, cnt2 = 0;
+	for (auto &X: odd_divs) {
+		sort(X.begin(), X.end());
+		cnt1++;
+		cnt2 += X.size();
+	}
+
+	rje()<<cnt1<<' '<<cnt2;
+
+	// rje()<<rji(odd_divs[2]);
+
+	int t; cin >> t; while (t--) {
+		long long k, lo, hi; cin >>k>>lo>>hi;
+		long long got = upper_bound(odd_divs[k].begin(), odd_divs[k].end(), hi) - 
+										lower_bound(odd_divs[k].begin(), odd_divs[k].end(), lo);
+
+		cout << got << endl;
 	}
 }
 
-4 = 1 2 3 6
-divs_of_n = factors_of_n(here i need that num 6)
-4 = 4 (needed 6)
+// 2^2 * 3^2
 
-2*3=
-
-2^2
-2
-
-3
-
-2^1 * 3^1
-
-16
-3 = 1,3
-9 = 1 3 9
-16 = 1 2 16
-
-[p^a+1] - 1 / p-1
