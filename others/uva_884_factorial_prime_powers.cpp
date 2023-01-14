@@ -31,9 +31,10 @@ sim dor(const c&) { ris; }
 #define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
-const long long NAX = 3e7 + 3; //sqrt(9e14)
+
+const int NAX = 1e3+3;
 vector<bool> primes(NAX+1);
-vector<long long> store;
+vector<int> store;
 
 void sieve(long long n) {
 	for (long long i = 2; i <= n; i++) {
@@ -45,19 +46,15 @@ void sieve(long long n) {
 	}
 }
 
-long long prime_factorization(long long n) {
-	vector<long long> v;
-	for (long long X: store) {
-		if ((long long)X > sqrt(n)) break;
-		if (n%X == 0) {
-			while (n%X == 0) n/=X;
-			v.push_back(X);
-		}
+vector<int> mp(1000007);
+void prime_power(int n) {
+	int num = n;
+	mp[num] += mp[num-1];
+	for (int X: store) {
+		if (X > sqrt(n)) break;
+		while (n%X == 0) n/=X, mp[num]++;
 	}
-	if (n > 1L) v.push_back(n);
-	sort (v.rbegin(), v.rend());
-	if ((long long)v.size() > 1) return v[0];
-	else return -1;
+	if (n>1) mp[num]++;
 }
 
 int main() {
@@ -71,10 +68,13 @@ fast_io;
 	//SUBHANALLAH//
 //-------------------------------
 	sieve(NAX);
-	cerr << store.size() << endl;
-	while (true) {
-		long long n; cin >> n;
-		if (!n) break;
-		cout << prime_factorization(n) << endl;
+	for (int i = 2; i <= 1000000; i++) {
+		prime_power(i);
+	}
+
+	// rje()<<rji(mp);
+	int n;
+	while (cin>>n) {
+		cout << mp[n] << endl;
 	}
 }
