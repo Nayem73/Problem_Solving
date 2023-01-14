@@ -32,35 +32,29 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-const int NAX = 1e5 + 2;
+const int NAX = 1e3+3;
 vector<bool> primes(NAX+1);
 vector<int> store;
 
-void sieve(int n) {
-	for (int i = 2; i <= n; i++) {
+void sieve(long long n) {
+	for (long long i = 2; i <= n; i++) {
 		if (primes[i]) continue;
-		for (int j = i+i; j <= n; j+=i) {
+		for (long long j = i+i; j <= n; j+=i) {
 			primes[j] = true;
 		}
 		store.push_back(i);
 	}
 }
 
-vector<long long> odd_divs[NAX+1];
-void prime_factorization_returns_divcnt(long long n) {
-	long long num = n;
-	// map<long long, long long> mp;
-	long long divcnt = 1;
+vector<int> mp(1000007);
+void prime_power(int n) {
+	int num = n;
+	mp[num] += mp[num-1];
 	for (int X: store) {
 		if (X > sqrt(n)) break;
-		long long cnt = 1;
-		while (n%X == 0) n/=X, cnt++;
-		divcnt *= cnt;
+		while (n%X == 0) n/=X, mp[num]++;
 	}
-	if (n>1) divcnt *= n+1;
-	// for (auto X: mp) divcnt *= X.second+1;
-	odd_divs[divcnt].push_back(num);
-	// return divcnt;
+	if (n>1) mp[num]++;
 }
 
 int main() {
@@ -74,32 +68,13 @@ fast_io;
 	//SUBHANALLAH//
 //-------------------------------
 	sieve(NAX);
-	for (long long i = 1; ; i++) {
-		long long num = i*i;
-		if (num > 1e10L) break;
-		prime_factorization_returns_divcnt(num);
-		// if (got%2) cout << num << " "<<got << endl;
+	for (int i = 2; i <= 1000000; i++) {
+		prime_power(i);
 	}
 
-	long long cnt1 = 0, cnt2 = 0;
-	for (auto &X: odd_divs) {
-		sort(X.begin(), X.end());
-		cnt1++;
-		cnt2 += X.size();
-	}
-
-	rje()<<cnt1<<' '<<cnt2;
-
-	// rje()<<rji(odd_divs[2]);
-
-	int t; cin >> t; while (t--) {
-		long long k, lo, hi; cin >>k>>lo>>hi;
-		long long got = upper_bound(odd_divs[k].begin(), odd_divs[k].end(), hi) - 
-										lower_bound(odd_divs[k].begin(), odd_divs[k].end(), lo);
-
-		cout << got << endl;
+	// rje()<<rji(mp);
+	int n;
+	while (cin>>n) {
+		cout << mp[n] << endl;
 	}
 }
-
-// 2^2 * 3^2
-

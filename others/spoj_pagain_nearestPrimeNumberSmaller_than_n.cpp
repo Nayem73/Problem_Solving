@@ -32,35 +32,26 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-const int NAX = 1e5 + 2;
+const int NAX = 1e5+3;
 vector<bool> primes(NAX+1);
 vector<int> store;
 
-void sieve(int n) {
-	for (int i = 2; i <= n; i++) {
+void sieve(long long n) {
+	for (long long i = 2; i <= n; i++) {
 		if (primes[i]) continue;
-		for (int j = i+i; j <= n; j+=i) {
+		for (long long j = i+i; j <= n; j+=i) {
 			primes[j] = true;
 		}
 		store.push_back(i);
 	}
 }
 
-vector<long long> odd_divs[NAX+1];
-void prime_factorization_returns_divcnt(long long n) {
-	long long num = n;
-	// map<long long, long long> mp;
-	long long divcnt = 1;
+bool chk_prime(long long n) {
 	for (int X: store) {
-		if (X > sqrt(n)) break;
-		long long cnt = 1;
-		while (n%X == 0) n/=X, cnt++;
-		divcnt *= cnt;
+		if ((long long)X > sqrt(n)) break;
+		if (n%X==0) return false;
 	}
-	if (n>1) divcnt *= n+1;
-	// for (auto X: mp) divcnt *= X.second+1;
-	odd_divs[divcnt].push_back(num);
-	// return divcnt;
+	return true;
 }
 
 int main() {
@@ -74,32 +65,10 @@ fast_io;
 	//SUBHANALLAH//
 //-------------------------------
 	sieve(NAX);
-	for (long long i = 1; ; i++) {
-		long long num = i*i;
-		if (num > 1e10L) break;
-		prime_factorization_returns_divcnt(num);
-		// if (got%2) cout << num << " "<<got << endl;
-	}
-
-	long long cnt1 = 0, cnt2 = 0;
-	for (auto &X: odd_divs) {
-		sort(X.begin(), X.end());
-		cnt1++;
-		cnt2 += X.size();
-	}
-
-	rje()<<cnt1<<' '<<cnt2;
-
-	// rje()<<rji(odd_divs[2]);
-
 	int t; cin >> t; while (t--) {
-		long long k, lo, hi; cin >>k>>lo>>hi;
-		long long got = upper_bound(odd_divs[k].begin(), odd_divs[k].end(), hi) - 
-										lower_bound(odd_divs[k].begin(), odd_divs[k].end(), lo);
-
-		cout << got << endl;
+		long long n; cin >> n;
+		while (--n) {
+			if (chk_prime(n)) {cout << n << endl; break;}
+		}
 	}
 }
-
-// 2^2 * 3^2
-

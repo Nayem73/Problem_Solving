@@ -31,34 +31,6 @@ sim dor(const c&) { ris; }
 #define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
-const long long NAX = 3e7 + 3; //sqrt(9e14)
-vector<bool> primes(NAX+1);
-vector<long long> store;
-
-void sieve(long long n) {
-	for (long long i = 2; i <= n; i++) {
-		if (primes[i]) continue;
-		for (long long j = i+i; j <= n; j+=i) {
-			primes[j] = true;
-		}
-		store.push_back(i);
-	}
-}
-
-long long prime_factorization(long long n) {
-	vector<long long> v;
-	for (long long X: store) {
-		if ((long long)X > sqrt(n)) break;
-		if (n%X == 0) {
-			while (n%X == 0) n/=X;
-			v.push_back(X);
-		}
-	}
-	if (n > 1L) v.push_back(n);
-	sort (v.rbegin(), v.rend());
-	if ((long long)v.size() > 1) return v[0];
-	else return -1;
-}
 
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
@@ -70,11 +42,21 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	sieve(NAX);
-	cerr << store.size() << endl;
-	while (true) {
-		long long n; cin >> n;
-		if (!n) break;
-		cout << prime_factorization(n) << endl;
+	int t; cin>>t; while(t--) {
+		long long n; cin>>n;
+		for (long long i = 0; ; i++) {
+			long long cur = i*i;
+			if (n-cur < 0) {
+				cout << "No\n"; break;
+			}
+			else {
+				long long tmp = n-cur;
+				rje()<<rji(cur)<<rji(tmp);
+				long long x = sqrt(tmp);
+				if ( x*x == tmp) {
+					cout << "Yes\n"; break;
+				}
+			}
+		}
 	}
 }

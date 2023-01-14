@@ -31,50 +31,26 @@ sim dor(const c&) { ris; }
 #define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
-const long long NAX = 3e7 + 3; //sqrt(9e14)
-vector<bool> primes(NAX+1);
-vector<long long> store;
 
-void sieve(long long n) {
-	for (long long i = 2; i <= n; i++) {
-		if (primes[i]) continue;
-		for (long long j = i+i; j <= n; j+=i) {
-			primes[j] = true;
-		}
-		store.push_back(i);
-	}
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+int rand(int a, int b) {
+	return a + rand() % (b-a+1);
 }
 
-long long prime_factorization(long long n) {
-	vector<long long> v;
-	for (long long X: store) {
-		if ((long long)X > sqrt(n)) break;
-		if (n%X == 0) {
-			while (n%X == 0) n/=X;
-			v.push_back(X);
-		}
-	}
-	if (n > 1L) v.push_back(n);
-	sort (v.rbegin(), v.rend());
-	if ((long long)v.size() > 1) return v[0];
-	else return -1;
-}
-
-int main() {
+int main(int argc, char* argv[]) {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
 freopen("in1", "r", stdin);
-freopen("out1", "w", stdout);
+// freopen("out1", "w", stdout);
 #endif
 fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	sieve(NAX);
-	cerr << store.size() << endl;
-	while (true) {
-		long long n; cin >> n;
-		if (!n) break;
-		cout << prime_factorization(n) << endl;
+	srand(atoi(argv[1]));
+	int t = 70;
+	cout << t << endl;
+	while (t--) {
+		cout << rand(1, 100) << endl;
 	}
 }

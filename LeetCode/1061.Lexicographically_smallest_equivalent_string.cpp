@@ -31,33 +31,16 @@ sim dor(const c&) { ris; }
 #define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
-const long long NAX = 3e7 + 3; //sqrt(9e14)
-vector<bool> primes(NAX+1);
-vector<long long> store;
+vector<bool> vis(130);
+char best = 'z';
 
-void sieve(long long n) {
-	for (long long i = 2; i <= n; i++) {
-		if (primes[i]) continue;
-		for (long long j = i+i; j <= n; j+=i) {
-			primes[j] = true;
-		}
-		store.push_back(i);
+void dfs(int cur, vector<char> s[]) {
+	vis[cur] = true;
+	best = min(best, (char)cur);
+	for (int X: s[cur]) {
+		if (vis[X]) continue;
+		dfs(X, s);
 	}
-}
-
-long long prime_factorization(long long n) {
-	vector<long long> v;
-	for (long long X: store) {
-		if ((long long)X > sqrt(n)) break;
-		if (n%X == 0) {
-			while (n%X == 0) n/=X;
-			v.push_back(X);
-		}
-	}
-	if (n > 1L) v.push_back(n);
-	sort (v.rbegin(), v.rend());
-	if ((long long)v.size() > 1) return v[0];
-	else return -1;
 }
 
 int main() {
@@ -70,11 +53,39 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	sieve(NAX);
-	cerr << store.size() << endl;
-	while (true) {
-		long long n; cin >> n;
-		if (!n) break;
-		cout << prime_factorization(n) << endl;
+	// string s1 = "parker", s2 = "morris";
+	// string baseStr = "parser";	
+	string s1 = "leetcode", s2 = "programs";
+	string baseStr = "sourcecode";
+
+	vector<char> s[130];
+	for (int i = 0; i < (int)s1.size(); i++) {
+		
+		s[ s1[i] ].push_back(s2[i]);
+		s[ s1[i] ].push_back(s1[i]);
+
+
+		s[ s2[i] ].push_back(s1[i]);
+		s[ s2[i] ].push_back(s2[i]);
 	}
+
+	for (int i = 97; i <= 122; i++) {
+		sort(s[i].begin(), s[i].end());
+		if (s[i].size()) rje()<<(char)i<<rji(s[i]);
+	}
+	
+	string out;
+	for (char X: baseStr) {
+		for (int i = 97; i <= 122; i++) vis[i] = 0;
+		if (s[X].empty()) out += X;
+		// else out += s[X][0];
+		else {
+			best = s[X][0];
+			dfs(s[X][0], s);
+			out += best;
+		}
+	}
+	cerr<< out << endl;
+
+	rje()<<rji(s['s']);
 }
