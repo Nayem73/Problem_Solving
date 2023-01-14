@@ -1,0 +1,70 @@
+{
+	// http://www.sublimetext.com/docs/3/color_schemes.html
+	"variables": {
+		// "green": "#FF0000",
+		"for_background": "rgb(0, 19, 0)",
+		"_orange": "rgb(255, 128, 0)",
+		"number_green": "rgb(202, 255, 149)",
+		"_purple": "rgb(189, 0, 189)",
+		"real_red": "rgb(253, 0, 0)",
+	},
+	"globals": {
+		// "foreground": "var(green)",
+		"background": "var(for_background)",
+		"brackets_foreground": "var(real_red)",
+		//"brackets": "var(real_red)",
+		"brackets_options": "underline",
+		"bracket_contents_options": "",
+
+	},
+	"rules": [
+		{
+			// "scope": "string",
+			// "foreground": "#00FF00",
+		},
+
+		{
+            "name": "Storage type",
+            "scope": "storage.type",
+            "foreground": "var(blue)",
+            "font_style": "normal"
+        },
+
+		{
+            "name": "Number",
+            "scope": "constant.numeric",
+            "foreground": "var(number_green)"
+        },
+
+        {
+            "name": "main_stuff",
+            "scope": "keyword.control",
+            "foreground": "var(_purple)"
+        },
+
+		{
+            "name": "operators",
+            "scope": "keyword.operator",
+            "foreground": "var(_orange)"
+        },
+
+        {
+            "name": "single_char",
+            "scope": "string.quoted.single",
+            "foreground": "var(red2)"
+        },
+
+        {
+            "name": "Storage",
+            "scope": "storage",
+            "foreground": "var(blue)"
+        },
+
+        {
+            "name": "Function call",
+            "scope": "variable.function, variable.annotation",
+            "foreground": "var(white3)"
+        },
+
+	],
+}

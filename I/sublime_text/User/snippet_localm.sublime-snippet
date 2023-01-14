@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+#ifdef LOCALM
+freopen("1in.txt", "r", stdin);
+freopen("1out.txt", "w", stdout);
+#endif
+//-------------------------------
+	//BISMILLAHIR-RAHMANIR-RAHIM//
+//-------------------------------
+	
+	
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>loc</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

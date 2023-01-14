@@ -1,0 +1,41 @@
+{ 
+    // "target": "terminus_exec",
+    // "cancel": "terminus_cancel_build",
+    "cmd": ["g++", "-std=c++14", "-DLOCALM", "-Wall", "$file", "-o", "$file_base_name"], 
+    "selector": "source.c++", 
+    "working_dir": "$file_path", 
+    // "shell_cmd": "g++ \"${file}\" -o \"${file_path}/${file_base_name}\"",
+    // "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+    // "working_dir": "${file_path}",
+    // "selector": "source.c++",
+
+    "variants": 
+    [ 
+        { 
+            "name": "RunSlow", 
+            "cmd": ["g++", "-std=c++14", "-DLOCALM", "-D_GLIBCXX_DEBUG", "-D_GLIBCXX_DEBUG_PEDANTIC", "-Wshadow", "-Wconversion", "-Wlogical-op", "-Wfloat-equal", "-Wduplicated-cond", "-ftrapv", "-Wall", "$file", "-o", "$file_base_name", "&&", "$file_path/$file_base_name"],
+            "shell": true
+        },
+        
+        { 
+            "name": "RunFast", 
+            "cmd": ["g++", "-std=c++14", "-DLOCALM", "-Wshadow", "-O2", "-Wall", "$file", "-o", "$file_base_name", "&&", "$file_path/$file_base_name"],
+            "shell": true
+        },
+
+        { 
+            "name": "Runcnsl", 
+            "cmd": ["g++", "-std=c++14", "-DLOCALM", "-Wshadow", "-O2", "-Wall", "$file", "-o", "$file_base_name.exe", "&&", "start", "cmd", "/k", "$file_path/$file_base_name"],
+            "shell": true
+        },
+
+        {
+            "name": "runlinux",
+            // "cmd": ["g++", "-Wall", "-o", "-std=c++17", "-Wshadow", "-fsanitize=address", "-fsanitize=undefined", "-g", "$file_base_name", "&&", "$file_path/$file_base_name"],
+            "cmd" : ["g++ -Wall -o special special.cpp -std=c++17 -Wshadow -fsanitize=address -fsanitize=undefined -g"],
+            "shell": true
+        }
+    ]
+}
+
+//g++ -Wall -o 1 1.cpp -std=c++17 -Wshadow -fsanitize=address -fsanitize=undefined -g

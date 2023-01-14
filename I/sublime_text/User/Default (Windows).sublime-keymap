@@ -1,0 +1,80 @@
+[
+	{ "keys": ["f1"], "command": "build", "args": {"variant": "RunFast"} },
+	{ "keys": ["f2"], "command": "build", "args": {"variant": "RunSlow"} },
+	{ "keys": ["f6"], "command": "build", "args": {"variant": "Runcnsl"} },
+	{ "keys": ["shift+f1"], "command": "build", "args": {"variant": ""} },
+	{ "keys": ["ctrl+shift+z"], "command": "exec", "args": {"kill": true} },
+	{ "keys": ["alt+z"], "command": "cancel_build" },
+	
+	{ "keys": ["ctrl+r"], "command": "show_panel", "args": {"panel": "replace", "reverse": false} },
+	{ "keys": ["ctrl+d"], "command": "duplicate_line" },
+
+	{ "keys": ["alt+`"], "command": "toggle_comment", "args": { "block": false } },
+	{ "keys": ["alt+q"], "command": "toggle_tabs" },
+
+	{ "keys": ["alt+1"], "command": "focus_group", "args": { "group": 0 } },
+	{ "keys": ["alt+2"], "command": "focus_group", "args": { "group": 1 } },
+	{ "keys": ["alt+3"], "command": "focus_group", "args": { "group": 2 } },
+
+	{ "keys": ["alt+u"], "command": "move", "args": {"by": "lines", "forward": false} },
+	{ "keys": ["alt+i"], "command": "move", "args": {"by": "lines", "forward": false} },
+	{ "keys": ["alt+,"], "command": "move", "args": {"by": "lines", "forward": true} },
+	{ "keys": ["alt+m"], "command": "move", "args": {"by": "lines", "forward": true} },
+	{ "keys": ["alt+j"], "command": "move", "args": {"by": "characters", "forward": false} },
+	{ "keys": ["alt+l"], "command": "move", "args": {"by": "characters", "forward": true} },
+	{ "keys": ["alt+."], "command": "move", "args": {"by": "characters", "forward": true} },
+	{ "keys": ["alt+;"], "command": "move_to", "args": {"to": "eol", "extend": false} },
+	{ "keys": ["alt+'"], "command": "move_to", "args": {"to": "eol", "extend": false} },
+	{ "keys": ["alt+a"], "command": "move_to", "args": {"to": "bol", "extend": false} },
+	{ "keys": ["alt+h"], "command": "move_to", "args": {"to": "bol", "extend": false} },
+
+	//{ "keys": ["alt+backspace"], "command": "delete_word", "args": { "forward": false } },
+	
+	{ "keys": ["shift+alt+u"], "command": "move", "args": {"by": "lines", "forward": false, "extend": true} },
+	{ "keys": ["shift+alt+,"], "command": "move", "args": {"by": "lines", "forward": true, "extend": true} },
+	{ "keys": ["shift+alt+j"], "command": "move", "args": {"by": "characters", "forward": false, "extend": true} },
+	{ "keys": ["shift+alt+l"], "command": "move", "args": {"by": "characters", "forward": true, "extend": true} },
+	{ "keys": ["shift+alt+;"], "command": "move_to", "args": {"to": "eol", "extend": true} },
+	{ "keys": ["shift+alt+'"], "command": "move_to", "args": {"to": "eol", "extend": true} },
+	{ "keys": ["shift+alt+a"], "command": "move_to", "args": {"to": "bol", "extend": true} },
+	{ "keys": ["shift+alt+h"], "command": "move_to", "args": {"to": "bol", "extend": true} },
+
+	{ "keys": ["ctrl+shift+u"], "command": "swap_line_up" },
+	{ "keys": ["alt+up"], "command": "swap_line_up" },
+	{ "keys": ["ctrl+shift+m"], "command": "swap_line_down" },
+	{ "keys": ["ctrl+shift+,"], "command": "swap_line_down" },
+	{ "keys": ["alt+down"], "command": "swap_line_down" },
+	{ "keys": ["shift+alt+k"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+
+
+	{
+	   "keys": ["f4"],
+	   "command": "toggle_terminus_panel",
+	   "args" : {
+            "cwd": "${file_path:${folder}}",
+        }
+	},
+	{
+		"keys": ["alt+f4"],
+		"command": "terminus_open",
+		"args" : {
+         	"cmd": ["bash","-i", "-l"],
+            "cwd": "${file_path:${folder}}",
+            "title": "cmd",
+            //"new_window": "Terminus"
+        }
+    },
+    {
+		"keys": ["shift+f4"],
+		"command": "terminus_open",
+		"args" : {
+         	"cmd": ["bash","-i", "-l"],
+            "cwd": "${file_path:${folder}}",
+            "title": "cmd_bash",
+            "panel_name": "Terminus"
+        }
+    },
+    { "keys": ["ctrl+shift+y"], "command": "open_recent_file", "args": {"index" : 0} },
+
+    { "keys": ["f5"], "command": "show_panel", "args": {"panel": "output.exec", "toggle": true} },
+]

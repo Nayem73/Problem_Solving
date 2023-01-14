@@ -1,0 +1,14 @@
+{
+	"caret_extra_bottom": 0,
+	"caret_extra_top": 0,
+	"caret_extra_width": 0,
+	"caret_style": "blink",
+	"color_scheme": "Monokai.sublime-color-scheme",
+	"font_size": 10,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"tab_size": 2,
+	"theme": "Default.sublime-theme"
+}

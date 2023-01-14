@@ -1,0 +1,29 @@
+<snippet>
+	<content><![CDATA[
+//BISMILLAHIR-RAHMANIR-RAHIM//
+#include <bits/stdc++.h>
+using namespace std;
+#ifdef LOCALM
+#include <C:/I/rje.hpp>
+#endif
+#define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
+#define endl '\n'
+
+int main() {
+//ALHAMDULILLAHI-RABBIL-ALAMIN//
+#ifdef LOCALM
+freopen("in1${1}", "r", stdin);
+freopen("out1", "w", stdout);
+#endif
+fast_io;
+//-------------------------------	
+	//SUBHANALLAH//
+//-------------------------------
+	
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>prev</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

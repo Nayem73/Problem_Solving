@@ -1,0 +1,26 @@
+{ 
+    "cmd": ["g++", "-std=c++14", "-DLOCALM", "-Wall", "$file", "-o", "$file_base_name"], 
+    "selector": "source.c++", 
+    "working_dir": "$file_path", 
+
+    "variants": 
+    [ 
+        { 
+            "name": "RunSlow", 
+            "cmd": ["g++", "-std=c++14", "-DLOCALM", "-D_GLIBCXX_DEBUG", "-D_GLIBCXX_DEBUG_PEDANTIC", "-Wshadow", "-Wconversion", "-Wlogical-op", "-Wfloat-equal", "-Wduplicated-cond", "-ftrapv", "-Wall", "$file", "-o", "$file_base_name", "&&", "$file_path/$file_base_name"],
+            "shell": true
+        },
+        
+        { 
+            "name": "RunFast", 
+            "cmd": ["g++", "-std=c++14", "-DLOCALM", "-Wshadow", "-O2", "-Wall", "$file", "-o", "$file_base_name", "&&", "$file_path/$file_base_name"],
+            "shell": true
+        },
+
+        { 
+            "name": "Runcnsl", 
+            "cmd": ["g++", "-std=c++14", "-DLOCALM", "-Wshadow", "-O2", "-Wall", "$file", "-o", "$file_base_name.exe", "&&", "start", "cmd", "/k", "$file_path/$file_base_name"],
+            "shell": true
+        }
+    ]
+}

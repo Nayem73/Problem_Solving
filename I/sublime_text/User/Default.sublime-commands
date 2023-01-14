@@ -1,0 +1,25 @@
+
+[
+    {
+         "caption": "Linux Bash (new Window)",
+         "command": "terminus_open",
+         "args"   : {
+            "cmd": ["bash","-i", "-l"],
+            "cwd": "${file_path:${folder}}",
+            "title": "Command Prompt"
+         }
+    },
+
+    {
+         "caption": "Linux Bash (panel)",
+         "command": "terminus_open",
+         "args"   : {
+            "cmd": ["bash","-i", "-l"],
+            "cwd": "${file_path:${folder}}",
+            "title": "Command Prompt",
+            "panel_name": "Terminus"
+         }
+    }
+
+  
+]

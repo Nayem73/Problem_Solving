@@ -1,0 +1,82 @@
+[
+    {
+        "caption": "File",
+        "mnemonic": "",
+        "id": "file",
+        "children":
+        [
+        ]
+    },
+    {
+        "caption": "Edit",
+        "mnemonic": "",
+        "id": "edit",
+        "children":
+        [
+        ]
+    },
+    {
+        "caption": "Selection",
+        "mnemonic": "",
+        "id": "selection",
+        "children":
+        [
+        ]
+    },
+    {
+        "caption": "Find",
+        "mnemonic": "",
+        "id": "find",
+        "children":
+        [
+        ]
+    },
+    {
+        "caption": "View",
+        "mnemonic": "",
+        "id": "view",
+        "children":
+        [
+        ]
+    },
+    {
+        "caption": "Goto",
+        "mnemonic": "",
+        "id": "goto",
+        "children":
+        [
+        ]
+    },
+    {
+        "caption": "Tools",
+        "mnemonic": "",
+        "id": "tools",
+        "children":
+        [
+        ]
+    },
+    {
+        "caption": "Project",
+        "mnemonic": "",
+        "id": "project",
+        "children":
+        [
+        ]
+    },
+    {
+        "caption": "Preferences",
+        "mnemonic": "",
+        "id": "preferences",
+        "children":
+        [
+        ]
+    },
+    {
+        "caption": "Help",
+        "mnemonic": "",
+        "id": "help",
+        "children":
+        [
+        ]
+    }
+] 
