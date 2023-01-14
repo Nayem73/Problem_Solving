@@ -49,14 +49,16 @@ void sieve(int n) {
 vector<long long> odd_divs[NAX+1];
 void prime_factorization_returns_divcnt(long long n) {
 	long long num = n;
-	map<long long, long long> mp;
+	// map<long long, long long> mp;
+	long long divcnt = 1;
 	for (int X: store) {
 		if (X > sqrt(n)) break;
-		while (n%X == 0) n/=X, mp[X]++;
+		long long cnt = 1;
+		while (n%X == 0) n/=X, cnt++;
+		divcnt *= cnt;
 	}
-	if (n>1) mp[n]++;
-	long long divcnt = 1;
-	for (auto X: mp) divcnt *= X.second+1;
+	if (n>1) divcnt *= n+1;
+	// for (auto X: mp) divcnt *= X.second+1;
 	odd_divs[divcnt].push_back(num);
 	// return divcnt;
 }
