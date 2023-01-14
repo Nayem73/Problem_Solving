@@ -36,8 +36,8 @@ const int NAX = 6;
 // const int NAX = 4;
 vector<int> adj[NAX];
 vector<bool> vis(NAX);
-vector<int> greedy(NAX, 1);
-string s = "abbcbe";
+// string s = "abbcbe";
+string s = "abacbe";
 // string s = "aabc";
 
 // void dfs(int cur, int par) { starting with a random leaf wuldn't work like test case 2, and
@@ -96,14 +96,17 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int n; cin >> n;
-	for (int i = 0; i < n; i++) {
-		int u, v; cin >>u>>v;
-		adj[u].push_back(v);
-		adj[v].push_back(u);
+	// int n; cin >> n;
+	vector<int> parent = {-1,0,0,1,1,2}; int n = parent.size();
+	for (int i = 1; i < n; i++) {
+		// int u, v; cin >>u>>v;
+		// adj[u].push_back(v);
+		// adj[v].push_back(u);
+		int u = parent[i], v = i;
+    adj[u].push_back(v);
+    adj[v].push_back(u);
 	}
 
 	cerr << "ans => "<< dfs(0,0) << endl;
-	rje()<< rji(greedy);
 }
 // 1, 2, 1, 3, 1, 2]] 
