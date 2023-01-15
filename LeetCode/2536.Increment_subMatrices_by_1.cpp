@@ -32,42 +32,6 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-struct query {
-    int start, end;
-};
-
-void incrementByD(int arr[], struct query q_arr[],
-                  int n, int m, int d)
-{
-    int sum[n];
-    memset(sum, 0, sizeof(sum));
- 
-    // for each (start, end) index pair perform the
-    // following operations on 'sum[]'
-    for (int i = 0; i < m; i++) {
- 
-        // increment the value at index 'start' by
-        // the given value 'd' in 'sum[]'
-        sum[q_arr[i].start] += d;
- 
-        // if the index '(end+1)' exists then decrement
-        // the value at index '(end+1)' by the given
-        // value 'd' in 'sum[]'
-        if ((q_arr[i].end + 1) < n)
-            sum[q_arr[i].end + 1] -= d;
-    }
- 
-    // Now, perform the following operations:
-    // accumulate values in the 'sum[]' array and
-    // then add them to the corresponding indexes
-    // in 'arr[]'
-    arr[0] += sum[0];
-    for (int i = 1; i < n; i++) {
-        sum[i] += sum[i - 1];
-        arr[i] += sum[i];
-    }
-}
-
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -88,36 +52,36 @@ vector<vector<int>> mat(n, vector<int> (n));
 	for (auto &x: queries) {
 		int s1 = x[0], s2 = x[2];
 		int t1 = x[1], t2 = x[3];
-		// mat[s1][t1]++;
-		// mat[s1]
-		row[s1]++;
-		if (t1+1 < n) row[t1+1]--;
-		
-
-		int yz = x[1];
-		for (int i = x[0]; i <= x[2]; i++) {
-			// mat[i][yz++]++;
-			for (int j = x[1]; j <= x[3]; j++) {
-				mat[i][j]++;
-			}
-			// rje()<<rji(i);
+		for (int i = s1; i <= s2; i++) {
+			mat[i][t1]++;
+			if (t2+1 < n) mat[i][t2+1]--;
 		}
-
-		incrementByD(x, queries)
-
-
+		for (auto x: mat) {
+			rje()<<x;
+		}
+			cerr<<endl;
 	}
 
-	// for (auto x: mat) {
-	// 	rje()<<X;
-	// }
+	for (auto x: mat) {
+		rje()<<x;
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 1; j < n; j++) {
+			mat[i][j] += mat[i][j-1];
+		}
+	}
+
+	for (auto x: mat) {
+		rje()<<x;
+	}
 }
 
-1 ... 5 r
-0 ... 3 r
-2 ... 6 r
+// 1 ... 5 r
+// 0 ... 3 r
+// 2 ... 6 r
 
 
-1 ... 5 c
+// 1 ... 5 c
 
-0 ... 3 c
+// 0 ... 3 c
