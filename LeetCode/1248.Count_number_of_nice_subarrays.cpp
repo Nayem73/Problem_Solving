@@ -42,46 +42,23 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	// vector<int> nums = {1,15,6,3};
-int n = 3; vector<vector<int>> queries{
-	{1,1,2,2},
-	{0,0,1,1}
-};
-
-vector<vector<int>> mat(n, vector<int> (n));
-	for (auto &x: queries) {
-		int s1 = x[0], s2 = x[2];
-		int t1 = x[1], t2 = x[3];
-		for (int i = s1; i <= s2; i++) {
-			mat[i][t1]++;
-			if (t2+1 < n) mat[i][t2+1]--;
+	vector<int> nums{2,2,2,1,2,2,1,2,2,2}; int k = 2; int n = nums.size();
+	int lo = 0;
+	int odd = 0, ans = 0;
+	for (int hi = 0; hi < n; hi++) {
+		if (nums[hi] %2) odd++;
+		if (odd > k) {
+			while (odd > k) {
+				if (nums[lo]%2) {
+					odd--;
+					lo++;
+				}
+			}
 		}
-		// for (auto x: mat) {
-		// 	rje()<<x;
-		// }
-		// 	cerr<<endl;
+
+		if (odd == k) ans++;
+
 	}
 
-	// for (auto x: mat) {
-	// 	rje()<<x;
-	// }
-
-	for (int i = 0; i < n; i++) {
-		for (int j = 1; j < n; j++) {
-			mat[i][j] += mat[i][j-1];
-		}
-	}
-
-	// for (auto x: mat) {
-	// 	rje()<<x;
-	// }
+	cerr << ans << endl;
 }
-
-// 1 ... 5 r
-// 0 ... 3 r
-// 2 ... 6 r
-
-
-// 1 ... 5 c
-
-// 0 ... 3 c
