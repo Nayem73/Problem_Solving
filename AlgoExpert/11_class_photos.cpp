@@ -42,10 +42,12 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
+	//sort both of them, thats it?
 	vector<int> red{5,8,1,3,4};
 	vector<int> blue{6,9,2,4,5};
 	sort(red.begin(), red.end());
 	sort(blue.begin(), blue.end());
+
 
 	rje()<<red;
 	rje()<<blue;
