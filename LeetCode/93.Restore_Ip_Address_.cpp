@@ -32,6 +32,21 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
+bool chk(vector<string> &s1, int s_size) {
+	int n = s1.size();
+	int cur_size = 0;
+	for (int i = 1; i < n; i++) {
+		cur_size += s1[i].size();
+		if (s1[i].size() > 1 && s1[i][0] == '0') return false;
+		stringstream ss(s1[i]);
+		long long num;
+		while (ss >> num)
+		if (num > 255 || num < 0) return false;
+	}
+	if (cur_size != s_size) return false;
+	return true;
+}
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -42,36 +57,39 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<int> nums{-5,-2,5,6,-2,-7,0,2,8};
-	int n = nums.size();
-	vector<int> dp(n*2);
-	dp[0] = nums[0];
+	// string s = "25525511135";
+	string s = "1231231231234";
 
-	int lo = 0;
-	for (int i = 1; i < n; i++) {
-		if (nums[i] + dp[i-1] > nums[i]) dp[i] = nums[i] + dp[i-1];
-		else dp[i] = nums[i], lo = i;
-		rje()<<rji(lo)<<" "<<nums[i]<<": "<<rji(dp);
-	}
-	int ans = nums[0];
-	for (int i = 0; i < n; i++) ans = max(ans, dp[i]);
-
-	rje()<< "---------------\n";
+	int n = s.size();
+	vector<string> out;
 	for (int i = 0; i < n; i++) {
-		int j = n+i;
-		if (i == lo) {
-			if (lo+1 == n) break;
-			dp[j-1] -= nums[lo];
-			lo++;
+			vector<string> s1(5);
+			s1[1] = s.substr(0, i+1);
+		for (int j = i+1; j < n; j++) {
+				s1[2] = s.substr(i+1, j-i);
+				// cerr<<j<<" "<<s2; return 0;
+			for (int k = j+1; k < n; k++) {
+					s1[3] = s.substr(j+1, k-j);
+				for (int l = k+1; l < n; l++) {
+						s1[4] = s.substr(k+1, l-k);
+						// rje()<<rji(s1[1])<<rji(s1[2])<<rji(s1[3])<<rji(s1[4]);
+
+						if (chk(s1, n)) {
+							int indx = 0;
+							string tmp;
+							for (int ii = 1; ii < 5; ii++) {
+								string X = s1[ii];
+								tmp += X;
+								tmp += ".";
+							}
+							tmp.pop_back();
+							out.push_back(tmp);
+							rje()<<rji(out);
+						}
+
+				}
+			}
 		}
-		// if (nums[i] + dp[j-1] > nums[i]) 
-			dp[j] = nums[i] + dp[j-1];
-		// else {}
-		rje()<<nums[i]<<": "<<rji(dp);
 	}
-	for (int i = 0; i < n*2; i++) ans = max(ans, dp[i]);
-	int biggest_element = nums[0];
-	for (int i = 0; i < n; i++) biggest_element = max(biggest_element, nums[i]);
-	// if (biggest_element < 0) 
 
 }
