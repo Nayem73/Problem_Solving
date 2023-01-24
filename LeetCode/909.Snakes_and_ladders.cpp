@@ -57,12 +57,21 @@ fast_io;
 	// 	{-1,1,1}
 	// };
 
+	// vector<vector<int>> board{
+	// 	{-1,-1,2,21,-1},
+	// 	{16,-1,24,-1,4},
+	// 	{2,3,-1,-1,-1},
+	// 	{-1,11,23,18,-1},
+	// 	{-1,-1,-1,23,-1}
+	// };
+
 	vector<vector<int>> board{
-		{-1,-1,2,21,-1},
-		{16,-1,24,-1,4},
-		{2,3,-1,-1,-1},
-		{-1,11,23,18,-1},
-		{-1,-1,-1,23,-1}
+		{-1,-1,30,14,15,-1},
+		{23,9,-1,-1,-1,9},
+		{12,5,7,24,-1,30},
+		{10,-1,-1,-1,25,17},
+		{32,-1,28,-1,-1,32},
+		{-1,-1,23,-1,13,19}
 	};
 
 
@@ -96,13 +105,14 @@ fast_io;
 	// 	}
 	// }
 
-	vector<int> sp(n*n+1), ps(n*n+1);
+	vector<int> sp[n*n+1];
+	vector<int> ps(n*n+1);
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			if (board[i][j] != -1) {
-				sp[board[i][j]] = v[i][j];
+				sp[board[i][j]].push_back(v[i][j]);
 				ps[v[i][j]] = board[i][j];
-				rje()<<rji(board[i][j]) rji(sp[board[i][j]]);
+				// rje()<<rji(board[i][j]) rji(sp[board[i][j]]);
 			}
 		}
 	}
@@ -112,11 +122,19 @@ fast_io;
 	// out[n*n] = inf-1;
 	for (int i = 1; i <= n*n; i++) {
 		if (i != 1 && !out[i]) continue;
-		if (ps[i] && !sp[i]) continue;
+		if (ps[i] && sp[i].empty()) continue;
 		for (int j = i+1; j <= i+6; j++) {
 			if (j > n*n) break;
+			// if (j==32) {
+			// 	cerr << "went in 32 from "<< i <<endl;
+			// 	rje()<<rji(sp[j]);
+			// }
 			out[j] = min(out[j], out[i] + 1);
-			if (sp[j]) out[j] = min(out[j], out[sp[j]]);
+			if (!sp[j].empty()) {
+				for (auto X: sp[j]) {
+					out[j] = min(out[j], out[X]);
+				}
+			}
 		}
 	}
 
