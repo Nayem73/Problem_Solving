@@ -112,7 +112,7 @@ fast_io;
 	// out[n*n] = inf-1;
 	for (int i = 1; i <= n*n; i++) {
 		if (i != 1 && !out[i]) continue;
-		if (ps[i]) continue;
+		if (ps[i] && !sp[i]) continue;
 		for (int j = i+1; j <= i+6; j++) {
 			if (j > n*n) break;
 			out[j] = min(out[j], out[i] + 1);
