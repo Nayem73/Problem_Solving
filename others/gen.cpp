@@ -49,16 +49,11 @@ fast_io;
 //-------------------------------
 	srand(atoi(argv[1]));
 	int t = 70;
-<<<<<<< HEAD
 	cout << t << endl;
-	while (t--) {
-		cout << rand(1, 100) << endl;
-	}
-=======
-	// cout << t << endl;
+	string s = "-0123456789"
+	
 	while (t--) {
 		cout << rand(1, 100000000) << endl;
 	}
-	cout << 0 << endl;
->>>>>>> 6159d138e4bad3b906a1aecac8971d2dbd5011ae
+
 }

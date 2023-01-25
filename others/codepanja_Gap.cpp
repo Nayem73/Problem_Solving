@@ -42,18 +42,25 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int t; cin >> t;
-	// getchar();
+	int t; cin >> t; t++;
 	for (int tt = 0; tt < t; tt++) {
 		string s;
 		getline(cin, s);
-		if (!tt) continue;
-		rje()<<rji(s);
+		if (tt==0) continue;
 
-		int cnt = 0, num;
-		stringstream ss(s);
-		while (ss >> num) cnt++;
-		// rje()<<rji(cnt);
-		cout << cnt << endl;
+		int wc = 0;
+		bool state = false;
+		for (int i = 0; i < (int)s.size(); i++) {
+			if (s[i] == ' ' || s[i] == '\n' || s[i] == '\t') {
+				state = false;
+			}
+			else if (!state) {
+				wc++;
+				state = true;
+			}
+		}
+
+		cout << wc << endl;
+
 	}
 }

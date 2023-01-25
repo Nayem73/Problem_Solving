@@ -1,27 +1,36 @@
 //BISMILLAHIR-RAHMANIR-RAHIM//
 #include <bits/stdc++.h>
 using namespace std;
+#define sim template < class c
+#define ris return * this
+#define dor > rje & operator <<
+#define eni(x) sim > typename \
+  enable_if<sizeof dud<c>(0) x 1, rje&>::type operator<<(c i) {
+sim > struct rge { c b, e; };
+sim > rge<c> range(c i, c j) { return rge<c>{i, j}; }
+sim > auto dud(c* x) -> decltype(cerr << *x, 0);
+sim > char dud(...);
+struct rje {
 #ifdef LOCALM
-#include <C:/I/rje.hpp>
+~rje() { cerr << endl; }
+eni(!=) cerr << boolalpha << i; ris; }
+eni(==) ris << range(begin(i), end(i)); }
+sim, class b dor(pair < b, c > d) {
+  ris << "(" << d.first << ", " << d.second << ")";
+}
+sim dor(rge<c> d) {
+  *this << "[";
+  for (auto it = d.b; it != d.e; ++it)
+    *this << ", " + 2 * (it == d.b) << *it;
+  ris << "]";
+}
+#else
+sim dor(const c&) { ris; }
 #endif
+};
+#define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
-<<<<<<< HEAD
-=======
-const int nax = 1e7;
-vector<bool> primes(nax+3);
-vector<int> s;
-
-void sieve(int n) {
-	for (int i = 2; i <= n; i++) {
-		if (primes[i]) continue;
-		s.push_back(i);
-		for (int j = i+i; j <= n; j+=i) {
-			primes[j] = true;
-		}
-	}
-}
->>>>>>> 6159d138e4bad3b906a1aecac8971d2dbd5011ae
 
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
@@ -31,40 +40,27 @@ freopen("out1", "w", stdout);
 #endif
 fast_io;
 //-------------------------------	
-		//SUBHANALLAH//
+	//SUBHANALLAH//
 //-------------------------------
-<<<<<<< HEAD
-	int t; cin >> t; while (t--) {
-		long long n; cin >> n;
-		bool flg = true;
-		for (long long i = 0; i <= 1e6; i++) {
-			long long x = i*i;
-			long long y = n - x;
-			if (x > n) {flg = false; break;}
-			
-			long long sqy = sqrt(y);
-			if (sqy *sqy == y) break;
-		}
-		if (flg) cout << "Yes\n";
-		else cout << "No\n";
-=======
-	sieve(nax);
-	while (true) {
-		long long n; cin >> n;
-		if (n == 0) break;
-		if (n < 0) n *= -1;
+	int t; cin >> t; t++;
+	for (int tt = 0; tt < t; tt++) {
+		string s;
+		getline(cin, s);
+		if (tt==0) continue;
 
-		long long tmp = n, ans = 0, cnt = 0;
-		for (int x : s) {
-			if (x > tmp) break;
-			if (tmp%x == 0) {
-				ans = x; cnt++;
-				while (tmp%x == 0) tmp /= x;
+		int wc = 0;
+		bool state = false;
+		for (int i = 0; i < (int)s.size(); i++) {
+			if (s[i] == ' ' || s[i] == '\n' || s[i] == '\t') {
+				state = false;
+			}
+			else if (!state) {
+				wc++;
+				state = true;
 			}
 		}
-		if (tmp > 1) {cnt++; ans = tmp;}
-		if (cnt < 2 || n <= 3) ans = -1;
-		cout << ans << endl;
->>>>>>> 6159d138e4bad3b906a1aecac8971d2dbd5011ae
+
+		cout << wc << endl;
+
 	}
 }
