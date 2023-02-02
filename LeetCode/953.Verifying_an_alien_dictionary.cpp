@@ -31,6 +31,7 @@ sim dor(const c&) { ris; }
 #define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
+#define return cerr<<
 
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
@@ -42,54 +43,33 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	// string str1 = "abcdabcd", str2 = "abcdabcdabcd";
-	int n = str1.size();
-	vector<string> got1, got2;
-	for (int len = 1; len <= n; len++) {
-		string s = str1.substr(0, len);
-		bool flg = true;
-		for (int j = len; j < n; j+=len) {
-			string tmp = str1.substr(j, len);
-			if (tmp != s) {
-				flg = false; break;
-			}
-		}
-		if (flg) got1.push_back(s);
+	// if (words.size() == 1) return true;
+	vector<string> words{
+		"hello",
+		"leetcode"
+	};
+	string order = "hlabcdefgijkmnopqrstuvwxyz";
+	vector<int> Order(130);
+	for (int i = 0; i < (int)order.size(); i++) {
+		Order[order[i]] = i;
 	}
 
-	n = str2.size();
-	for (int len = 1; len <= n; len++) {
-		string s = str2.substr(0, len);
-		bool flg = true;
-		for (int j = len; j < n; j+=len) {
-			string tmp = str2.substr(j, len);
-			if (tmp != s) {
-				flg = false; break;
+	for (int i = 1; i < (int)words.size(); i++) {
+		string s = words[i-1];
+		string t = words[i];
+		int n = s.size(), m = t.size();
+		bool flg = false;
+		for (int j = 0; j < min(n, m); j++) {
+			if (s[j]==t[j]) continue;
+			if (Order[s[j]] > Order[t[j]]) {return false; rje()<<rji(j);}
+			else {
+				flg = true; break;
 			}
+
 		}
-		if (flg) got2.push_back(s);
+		if (flg) continue;
+		if (n > m) return false;
 	}
 
-	rje()<<rji(got1);
-	rje()<<rji(got2);
-
-	vector<string> ans;
-	for (string x: got1) {
-		for (string y : got2) {
-			if (x==y) {
-				ans.push_back(x);
-				break;
-			}
-		}
-	}
-
-	sort(ans.begin(), ans.end(), [&](string x, string y){
-		return x.size() > y.size();
-	});
-
-	string ret;
-	if (!ans.empty()) ret = ans[0];
-	cerr<<ret<<endl;
-	rje()<<rji(ans);
-
+	return true;
 }
