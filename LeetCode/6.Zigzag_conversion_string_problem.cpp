@@ -32,15 +32,6 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-void pr(vector<vector<int>> &grid, int numRows) {
-	for (int i = 0; i < numRows; i++) {
-		for (int j = 0; j < 10; j++) {
-			cerr << (char)grid[i][j];
-		}
-		cerr <<endl;
-	}
-}
-
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -51,55 +42,19 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string s = "Apalindromeisawordphr"; int numRows = 3;
-	int col = 1003;
-	vector<vector<int>> grid(numRows, vector<int> (col));
-	// pr(grid, numRows);
-	// return 0;
+	string s = "PAYPALISHIRING"; 
+	int numRows = 1; 
+	vector<string> rows(numRows);
 
-	bool flg = true;
-	int cnt = 0;
-	int j = 0, k = 0;
-	rje()<<rji(s);
-	int odd = -1;
-	while (true) {
-		++odd;
-		if (odd%2) {
-			k = j;
-			for (int i = numRows-2; i >= 1; i--) {
-				grid[i][k++] = s[cnt++];
-				rje()<<i << ' '<<k-1<<rji(cnt-1)<<rji(s[cnt-1]) rji((char)grid[i][k-1]);
-				if (cnt == (int)s.size()) {
-					flg = false; break;
-				}
-			}
-			// pr(grid, numRows);
-			// return 0;
-			if (!flg) break;
-			continue;
-		}
+	int j = 0, d = 1;
 
-		j = k;
-		for (int i = 0; i < numRows; i++) {
-			rje()<<rji("---- ")<<i << ' '<<j << rji(cnt) rji((char)s[cnt]);
-			grid[i][j] = s[cnt++];
-			if (cnt == (int)s.size()) {
-					flg = false; break;
-				} 
-		}
-		j++;
-		if (!flg) break;
+	for (int i = 0; i < (int)s.size(); i++) {
+		rows[j] += s[i];
+		//vorat kortesi every row but jaytesi column(j) wise.
+		if (j == numRows-1) d = -1;
+		if (j == 0) d = 1;
+		j += d;
 	}
 
-	// rje()<<rji(grid[0]);
-	string out;
-	for (int i = 0; i < numRows; i++) {
-		for (int j = 0; j < col; j++) {
-			if (grid[i][j] == 0) cerr << ' ';
-			else cerr << (char)grid[i][j], out+=grid[i][j];
-		}
-		cerr <<endl;
-	}
-
-	rje()<<rji(out);
+	rje()<<rji(rows);
 }
