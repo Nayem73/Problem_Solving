@@ -51,8 +51,8 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string s = "PAYPALISHIRING"; int numRows = 3;
-	int col = 10;
+	string s = "Apalindromeisawordphr"; int numRows = 3;
+	int col = 1003;
 	vector<vector<int>> grid(numRows, vector<int> (col));
 	// pr(grid, numRows);
 	// return 0;
@@ -81,7 +81,7 @@ fast_io;
 
 		j = k;
 		for (int i = 0; i < numRows; i++) {
-			rje()<<rji("---- ")<<i << ' '<<j << rji(cnt);
+			rje()<<rji("---- ")<<i << ' '<<j << rji(cnt) rji((char)s[cnt]);
 			grid[i][j] = s[cnt++];
 			if (cnt == (int)s.size()) {
 					flg = false; break;
@@ -94,7 +94,7 @@ fast_io;
 	// rje()<<rji(grid[0]);
 	string out;
 	for (int i = 0; i < numRows; i++) {
-		for (int j = 0; j < 10; j++) {
+		for (int j = 0; j < col; j++) {
 			if (grid[i][j] == 0) cerr << ' ';
 			else cerr << (char)grid[i][j], out+=grid[i][j];
 		}
