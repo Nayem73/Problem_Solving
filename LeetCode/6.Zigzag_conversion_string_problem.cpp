@@ -32,6 +32,15 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
+void pr(vector<vector<int>> &grid, int numRows) {
+	for (int i = 0; i < numRows; i++) {
+		for (int j = 0; j < 10; j++) {
+			cerr << (char)grid[i][j];
+		}
+		cerr <<endl;
+	}
+}
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -42,24 +51,29 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string s = "PAYPALISHIRING"; int numRows = 4;
+	string s = "PAYPALISHIRING"; int numRows = 3;
 	int col = 10;
 	vector<vector<int>> grid(numRows, vector<int> (col));
+	// pr(grid, numRows);
+	// return 0;
 
 	bool flg = true;
 	int cnt = 0;
 	int j = 0, k = 0;
 	rje()<<rji(s);
+	int odd = -1;
 	while (true) {
-		if (j%2) {
+		++odd;
+		if (odd%2) {
 			k = j;
-			for (int i = numRows-2; i >= 0; i--) {
+			for (int i = numRows-2; i >= 1; i--) {
 				grid[i][k++] = s[cnt++];
 				rje()<<i << ' '<<k-1<<rji(cnt-1)<<rji(s[cnt-1]) rji((char)grid[i][k-1]);
 				if (cnt == (int)s.size()) {
 					flg = false; break;
 				}
 			}
+			// pr(grid, numRows);
 			// return 0;
 			if (!flg) break;
 			continue;
@@ -78,10 +92,14 @@ fast_io;
 	}
 
 	// rje()<<rji(grid[0]);
+	string out;
 	for (int i = 0; i < numRows; i++) {
 		for (int j = 0; j < 10; j++) {
-			cerr << grid[i][j];
+			if (grid[i][j] == 0) cerr << ' ';
+			else cerr << (char)grid[i][j], out+=grid[i][j];
 		}
-		cout <<endl;
+		cerr <<endl;
 	}
+
+	rje()<<rji(out);
 }
