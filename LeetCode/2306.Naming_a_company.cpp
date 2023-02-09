@@ -43,8 +43,10 @@ fast_io;
 	//SUBHANALLAH//
 //-------------------------------
 	vector<string> ideas{
-		// "coffee","donuts","time","toffee"
-		"coffee","donuts","time","toffee", "lack", "back"
+		"coffee","donuts","time","toffee"
+		// "coffee","donuts","time","toffee", "lack", "back"
+		// "aaa","baa","caa","bbb","cbb","dbb"
+
 	};
 
 	int n = ideas.size();
@@ -76,11 +78,13 @@ fast_io;
 		
 			for (auto X: fChar[i]) {
 				auto it = lower_bound(fChar[j].begin(), fChar[j].end(), X);
-				if (it != fChar[j].end()) cnt++;
+				if (it != fChar[j].end() && *it == X) cnt++;
 			}
-			long long lo = fChar[i].size();
-			long long hi = fChar[j].size() - cnt;
-			ans += lo * hi * 2;
+			long long lo = (int)fChar[i].size() - cnt;
+			long long hi = (int)fChar[j].size() - cnt;
+			if (hi < 0) hi = 0;
+			ans += lo * hi * 2LL;
+			rje()<<rji(fChar[i]) rji(fChar[j]) rji(lo) rji(hi) rji(ans) rji(cnt);
 		}
 	}
 
