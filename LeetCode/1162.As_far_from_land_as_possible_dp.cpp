@@ -31,26 +31,6 @@ sim dor(const c&) { ris; }
 #define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
-vector<int> dirx{0,0,1,-1};
-vector<int> diry{1,-1,0,0};
-int got = 2e9;
-vector<vector<bool>> vis(103, vector<bool> (103));
-int lowest_ = 0;
-int rev_lowest_ = 1;
-
-void dist(vector<vector<int>> &grid, int n, int x, int y, int orgx, int orgy) {
-	for (int i = 0; i < 4; i++) {
-		int tox = dirx[i] + x;
-		int toy = diry[i] + y;
-		if (tox < 0 || tox >= n || toy < 0 || toy >= n) continue;
-		if (vis[tox][toy]) continue;
-
-		// dist[tox][toy] = min(dist[tox][toy], dist[x][y] + abs(x-tox)+abs(y-toy));
-		if (grid[tox][toy] == rev_lowest_) got = min(got, abs(orgx-tox)+abs(orgy-toy));
-		vis[tox][toy] = true;
-		dist(grid, n, tox, toy, orgx, orgy);
-	}
-}
 
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
@@ -62,39 +42,37 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
+
 	vector<vector<int>> grid{
-		// {1,0,0},
-		// {0,0,0},
-		// {0,0,0}
-		{1,0,1},
+		{1,0,0},
 		{0,0,0},
-		{1,0,1}
+		{0,0,0}
+		// {1,0,1},
+		// {0,0,0},
+		// {1,0,1}
 	};
 
 	int n = grid.size();
-	int cnt0 = 0, cnt1 = 0;
+	const int inf = 2e9;
+	vector<vector<int>> dp(n, vector<int> (n, inf));
+
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
-			if (grid[i][j] == 1) cnt1++;
-			else cnt0++;
-		}
-	}
-	if (cnt0 < cnt1) lowest_ = 0, rev_lowest_ = 1;
-	else lowest_ = 1, rev_lowest_ = 0;
-
-
-	int ans = -1;
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
-			if (grid[i][j] == lowest_) {
-				for (int x = 0; x < 103; x++) for (int y = 0; y < 103; y++) vis[x][y] = 0;
-				got = 2e9;
-
-				dist(grid, n, i, j, i, j);
-				ans = max(ans, got);
+			if (grid[i][j] == 1) dp[i][j] = 0;
+			else {
+				dp[i][j] = min({dp[i][j], (i?dp[i-1][j] + 1:inf), (j?dp[i][j-1] + 1:inf)});
 			}
 		}
 	}
 
-	rje()<<rji(lowest_)rji(rev_lowest_) rji(ans);
+	int ans = -1;
+	for (int i = n-1; i >= 0; i--) {
+		for (int j = n-1; j >= 0; j--) {
+			dp[i][j] = min({dp[i][j], (i+1<n?dp[i+1][j]+1:inf), (j+1<n?dp[i][j+1]+1:inf)});
+			ans = max(ans, dp[i][j]);
+		}
+	}
+
+	ans = ans == inf || ans == 0? -1: ans;
+	cerr << ans << endl;
 }
