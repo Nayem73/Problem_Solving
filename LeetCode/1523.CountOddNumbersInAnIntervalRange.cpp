@@ -32,7 +32,6 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-vector<int> adj[100003]; vector<bool> vis(100003); long long ans = 0; int dfs(int cur, int seats) {int nodes = 1; for (auto X: adj[cur]) {if (vis[X]) continue; vis[X] = true; nodes += dfs(X, seats); } rje()<<rji(cur) rji(nodes); if (cur != 0) {ans += ceil(1.0*nodes/seats); } return nodes; }
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -43,17 +42,8 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<vector<int>> roads {
-		{3,1}, {3,2}, {1,0}, {0,4}, {0,5}, {4,6}
-		// {0,1}, {1,3}, {3,2}
-	};
-	int seats = 2;
-	for (auto X: roads) {
-		adj[X[0]].push_back(X[1]);
-		adj[X[1]].push_back(X[0]);
-	}
-
-	vis[0] = true;
-	dfs(0, seats);
-	cerr << ans << endl;
+	int low = 7, high = 12;
+	if (low%2) low--;
+  if (high%2) high++;
+  cerr << (high-low)/2 << endl;
 }

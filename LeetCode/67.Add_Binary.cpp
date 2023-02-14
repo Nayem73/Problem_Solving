@@ -32,7 +32,6 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-vector<int> adj[100003]; vector<bool> vis(100003); long long ans = 0; int dfs(int cur, int seats) {int nodes = 1; for (auto X: adj[cur]) {if (vis[X]) continue; vis[X] = true; nodes += dfs(X, seats); } rje()<<rji(cur) rji(nodes); if (cur != 0) {ans += ceil(1.0*nodes/seats); } return nodes; }
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -43,17 +42,25 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<vector<int>> roads {
-		{3,1}, {3,2}, {1,0}, {0,4}, {0,5}, {4,6}
-		// {0,1}, {1,3}, {3,2}
-	};
-	int seats = 2;
-	for (auto X: roads) {
-		adj[X[0]].push_back(X[1]);
-		adj[X[1]].push_back(X[0]);
-	}
+	string a = "11", b = "1";
+	int n = a.size(), m = b.size();
+	int carry = 0;
+	string ans;
 
-	vis[0] = true;
-	dfs(0, seats);
-	cerr << ans << endl;
+	while (true) {
+		n--; m--;
+		if (n < 0 && m < 0) break;
+		int sum = (n>=0?a[n]-'0':0) + (m>=0?b[m]-'0':0) + carry;
+		// rje()<<rji(sum);
+		if (sum >= 2) carry = 1;
+		else carry = 0;
+
+		if (sum == 2) ans += '0';
+		if (sum == 3) ans += '1';
+		if (sum == 1) ans += '1';
+		if (sum == 0) ans += '0';
+	}
+	if (carry) ans += '1';
+	reverse(ans.begin(), ans.end());
+	rje()<<rji(ans);
 }
