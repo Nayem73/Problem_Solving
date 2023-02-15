@@ -42,25 +42,30 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string a = "11", b = "1";
-	int n = a.size(), m = b.size();
-	int carry = 0;
-	string ans;
+	vector<int> num {2,1,5};
+	int k = 806;
+	vector<int> num2;
+	while (k) {
+		num2.push_back(k%10);
+		k/=10;
+	}
+	reverse(num2.begin(), num2.end());
 
+	int n = num.size(), m = num2.size();
+	int carry = 0;
+
+	vector<int> ans;
 	while (true) {
 		n--; m--;
 		if (n < 0 && m < 0) break;
-		int sum = (n>=0?a[n]-'0':0) + (m>=0?b[m]-'0':0) + carry;
-		// rje()<<rji(sum);
-		if (sum >= 2) carry = 1;
+		int sum = (n>=0?num[n]:0) + (m>=0?num2[m]:0) + carry;
+		ans.push_back(sum%10);
+		sum /= 10;
+		if (sum) carry = sum;
 		else carry = 0;
-
-		if (sum == 2) ans += '0';
-		if (sum == 3) ans += '1';
-		if (sum == 1) ans += '1';
-		if (sum == 0) ans += '0';
 	}
-	if (carry) ans += '1';
+	if (carry) ans.push_back(carry);
+
 	reverse(ans.begin(), ans.end());
 	rje()<<rji(ans);
 }
