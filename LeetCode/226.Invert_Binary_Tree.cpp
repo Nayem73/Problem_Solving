@@ -33,8 +33,9 @@ public:
         cout << cur->val<< endl;
        // /*cur->right = */ invertTree(cur->left);
         ///*cur->right = */ invertTree(cur->left);
+        TreeNode* tmpRight = cur->right;
         cur->right = invertTree(cur->left);
-        cur->left = invertTree(cur->right);
+        cur->left = invertTree(tmpRight);
         return cur;
         
     }
