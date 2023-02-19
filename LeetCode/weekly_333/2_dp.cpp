@@ -43,13 +43,15 @@ fast_io;
 	//SUBHANALLAH//
 //-------------------------------
 	int n = 82;
+	n = 54;
+	n = 57410;
 	vector<int> p2;
 	for (int i = 0; i <= 17; i++) {
 		p2.push_back(pow(2, i));
 	}
 	rje()<<rji(p2);
 
-	const int nax = 131072 + 7;
+	int nax = 131072 + 7;
 	// const int nax = 66;
 	const int inf = 2e9;
 	vector<int> dp(nax, inf);
@@ -64,10 +66,14 @@ fast_io;
 	}
 
 	int ans = inf;
+	auto it = upper_bound(p2.begin(), p2.end(), n);
+	auto it2 = upper_bound(p2.begin(), p2.end(), *it);
+    if (it2 != p2.end()) nax = *it2+1;
+    else nax = *it+1;
 	for (int i = n; i < nax; i++) {
 		if (dp[i] == inf) continue;
 		rje()<<rji(i)rji(dp[i]);
-		auto it = lower_bound(p2.begin(), p2.end(), i);
+		it = lower_bound(p2.begin(), p2.end(), i);
 		if (*it == i) ans = min(ans, dp[i]+1);
 	}
 
