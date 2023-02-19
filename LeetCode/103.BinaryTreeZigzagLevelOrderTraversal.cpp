@@ -10,45 +10,33 @@
  * };
  */
 class Solution {
-    map<int,int> mp;
-    vector<int> store;
-    void zigzagTraverse(TreeNode* root, int lvl) {
+    vector<int> lvl[2003];
+    void traverse(TreeNode* root, int curlvl) {
         if (!root) return;
-        mp[lvl]++;
         cout << root->val << ' ';
-        store.push_back(root->val);
-        zigzagTraverse(root->left, lvl+1);
-        zigzagTraverse(root->right, lvl+1);
+        lvl[curlvl].push_back(root->val);
+        traverse(root->left, curlvl+1);
+        traverse(root->right, curlvl+1);
     }
 
 public:
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
-        vector<vector<int>> x;
-        zigzagTraverse(root, 0);
-        
-       // for (auto X: mp) cout << X.first << ' '<< X.second << endl;
-        cout << endl;
-        for (int X: store) cout << X << ' ';
-        cout << endl;
-        int cnt = 0;
-        int mp_sz = mp.size();
-        int n = store.size();
+        traverse(root, 0);
         vector<vector<int>> ans;
-        for (int i = 0, ii = 0; i < n; i++, ii++) {
-            int upto = mp[ii];
+        int curlvl = 0;
+
+        for (auto X: lvl) {
+            if (X.empty()) break;
             vector<int> tmp;
-            for (int j = i; j < i+upto; j++) {
-                tmp.push_back(store[j]);
+            for (auto Y: X) {
+                tmp.push_back(Y);
             }
-            if (ii%2) reverse(tmp.begin(), tmp.end());
+            if (curlvl%2) {
+                reverse(tmp.begin(), tmp.end());
+            }
             ans.push_back(tmp);
-            cout << i << ' '<< i+upto<<":" << endl;
-            for (int X: tmp) cout<<"~" << X << ' ';
-            cout << endl;
-            i = i+upto-1;
-            //cout << i << endl;
+            curlvl++;
         }
-        
         return ans;
     }
 };
