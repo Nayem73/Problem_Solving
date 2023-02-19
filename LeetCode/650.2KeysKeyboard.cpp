@@ -49,18 +49,24 @@ fast_io;
 
 	for (int i = 1; i <= n; i++) {
 		if (i+ i > n) break;
-		// if (dp[i+i] < dp[i]+2) continue;
 		dp[i+i] = min(dp[i+i], dp[i] + 2);
-		// dp[i+ i-1] = min(dp[i+i-1], dp[i] + 2);
+		int cnt = dp[i] + 2;
 
 		for (int j = i+i+i; j <= n; j += i) {
-			dp[j] = min(dp[j], dp[j-i] + 1);
+			//dp[j] = min(dp[j], dp[j-i] + 1);
+			dp[j] = min(dp[j], ++cnt);
+			//49 er jonno 7 kore kore gele 14 pabo but i = 6 ei 42 er man
+      //update hoy 12 hoy jasse so  dp[j-i] korle 49 e updated man
+      //jog hoitese.. to avoid this I use the crude way = ++cnt
+      //Alhamdulillah
 		}
 	}
 
-	for (int i = 1; i <= n; i++) {
-		rje()<<rji(i)<<rji(dp[i]);
-	}
+	rje()<<rji(dp[42]);
+
+	// for (int i = 1; i <= n; i++) {
+	// 	rje()<<rji(i)<<rji(dp[i]);
+	// }
 }
 
 
