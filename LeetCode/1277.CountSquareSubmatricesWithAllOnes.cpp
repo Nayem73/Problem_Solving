@@ -42,5 +42,36 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	
+	vector<vector<int>> mat {
+		// {0,1,1,1},
+		// {1,1,1,1},
+		// {0,1,1,1}
+		{1,0,1},
+		{1,1,0},
+		{1,1,0}
+	};
+
+	int ans = 0;
+
+	int n = mat.size(), m = mat[0].size();
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+	// int i = 1, j = 2;
+			for (int sz = 0; sz <= max(i,j); sz++) {
+					bool flg = true;
+						for (int k = i; k >= i-sz; k--) {
+							if (k < 0) {flg = false; break;}
+							for (int l = j; l >= j-sz; l--) {
+								if (l < 0) {flg = false; break;}
+								if (!mat[k][l]) flg = false;
+							}
+						}
+
+						if (flg) ans++;
+
+			}
+		}
+	}
+
+	rje()<<rji(ans);
 }
