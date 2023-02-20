@@ -19,3 +19,9 @@ public:
         return lo;
     }
 };
+//essence of binary search:
+//[1,3,5,6]
+//8
+//for the above input, lo = 4, hi = 3
+//why cz if target is greater than the last(largest) element in array then keep going lo!
+//so the ans would be lo, not hi in this problem.
