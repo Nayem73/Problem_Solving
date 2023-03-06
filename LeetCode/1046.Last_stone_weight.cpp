@@ -1,7 +1,7 @@
 class Solution {
 public:
     int lastStoneWeight(vector<int>& stones) {
-        set<int, greater<int>> st;
+        multiset<int, greater<int>> st;
         for (int X: stones) {
             st.insert(X);
         }
