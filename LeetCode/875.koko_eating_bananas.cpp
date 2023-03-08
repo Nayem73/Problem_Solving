@@ -53,7 +53,7 @@ fast_io;
 	//SUBHANALLAH//
 //-------------------------------
 	vector<int> piles {30,11,23,4,20}; int h = 6;
-	long long lo = 0, hi = 1e13L;
+	long long lo = 1, hi = 1e13L;
 	long long got = 1;
 	while (lo <= hi) {
 		long long mid = (lo+hi)/2;
