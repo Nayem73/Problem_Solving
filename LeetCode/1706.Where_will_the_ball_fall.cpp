@@ -31,7 +31,7 @@ sim dor(const c&) { ris; }
 #define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
-bool flg = false;
+int flg = -1;
 
 void dfs(int curx, int cury, int row, int col, vector<vector<int>>& grid) {
 	//boundary check
@@ -53,7 +53,8 @@ void dfs(int curx, int cury, int row, int col, vector<vector<int>>& grid) {
 	if (grid[curx][cury] == 1) {
 		curx += 1; cury += 1;
 		if (curx == row) {
-			flg = true;
+			// flg = true;
+			flg = cury;
 			return;
 		}
 		if (curx < row && cury < col) {
@@ -63,7 +64,8 @@ void dfs(int curx, int cury, int row, int col, vector<vector<int>>& grid) {
 	else {
 		curx += 1; cury -= 1;
 		if (curx == row) {
-			flg = true;
+			// flg = true;
+			flg = cury;
 			return;
 		}
 		if (curx < row && cury >= 0) {
@@ -82,15 +84,22 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<vector<int>> grid {
-		{1,1,1,-1,-1},
-		{1,1,1,-1,-1},
-		{-1,-1,-1,1,1},
-		{1,1,1,1,-1},
-		{-1,-1,-1,-1,-1}
+	// vector<vector<int>> grid {
+	// 	{1,1,1,-1,-1},
+	// 	{1,1,1,-1,-1},
+	// 	{-1,-1,-1,1,1},
+	// 	{1,1,1,1,-1},
+	// 	{-1,-1,-1,-1,-1}
+	// };
+		vector<vector<int>> grid {
+			{1,1,1,1,1,1},
+			{-1,-1,-1,-1,-1,-1},
+			{1,1,1,1,1,1},
+			{-1,-1,-1,-1,-1,-1}
 	};
 
+
 	int row = grid.size(), col = grid[0].size();
-	dfs(0,1, row, col, grid);
+	dfs(0,4, row, col, grid);
 	rje()<<rji(flg);
 }
