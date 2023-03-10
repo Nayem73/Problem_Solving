@@ -42,9 +42,9 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int n = 8, m = 7;
+	int n = 5, m = 3;
 	vector<vector<int>> matrix(n, vector<int> (m));
-	int cnt = 0;
+	int cnt = 1;
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
 			matrix[i][j] = ++cnt;
