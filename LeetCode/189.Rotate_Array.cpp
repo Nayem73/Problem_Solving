@@ -1,23 +1,21 @@
 class Solution {
+    void reverse(int lo, int hi, vector<int>& nums) {
+        while (lo < hi) {
+            swap(nums[lo], nums[hi]);
+            lo++; hi--;
+        }
+    }
 public:
     void rotate(vector<int>& nums, int k) {
+        
         int n = nums.size();
-        int cnt = 0;
-        int indx = 0;
-        int val = nums[0];
-        while (cnt < n) {
-            indx = (indx + k) % n;
-            if (cnt==1) {
-                cout << indx<<' ' << ' '<<val << endl;
-            }
-            
-            int val2 = nums[indx];
-            nums[indx] = val;
-            val = val2;
-           // if (cnt==2) break;
-            cnt++;
-        }
-
-        //return nums;
+        k = k%n;
+        //if (k == 0) return;
+        
+        reverse(0, n-1, nums);
+        
+        reverse(0, k-1, nums);
+        
+        reverse(k, n-1, nums);
     }
 };
