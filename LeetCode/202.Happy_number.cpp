@@ -42,7 +42,7 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int n = 2123456789;
+	int n = 7;
 	//int cnt = 20;
 	map<long long, int> mp;
 	mp[n]++;
@@ -53,6 +53,7 @@ fast_io;
 			sum += (X-'0') * (X-'0');
 		}
 		n = sum;
+		rje()<< rji(n);
 		if (n == 1) {
 			cerr << "true\n";
 			break;
@@ -62,7 +63,6 @@ fast_io;
 			break;
 		}
 		mp[n]++;
-		rje()<< rji(n);
 		//n--;
 	}
 }
