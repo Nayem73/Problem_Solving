@@ -45,7 +45,7 @@ void dfs(int x, int y, vector<vector<int>> &grid, int n, int m) {
 		int tox = x + dirx[i];
 		int toy = y + diry[i];
 
-		if (tox-1 < 0 || toy-1 < 0 || tox+1 >= n || toy+1 >= m) continue;
+		if (tox < 0 || toy < 0 || tox >= n || toy >= m) continue;
 		if (vis[tox][toy]) continue;
 		if (grid[tox][toy] == 1) continue;
 		vis[tox][toy] = true;
