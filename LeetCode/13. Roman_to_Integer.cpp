@@ -58,6 +58,7 @@ fast_io;
 		if (mp[s[i]] > mp[s[i-1]]) {
 			ans += mp[s[i]] - mp[s[i-1]];
 			i++;
+			if (i == n-1) ans += mp[s[i]];
 		}
 		else {
 			ans += mp[s[i-1]];
