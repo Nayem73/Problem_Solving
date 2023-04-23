@@ -66,5 +66,7 @@ fast_io;
 		}
 	}
 
+	if (n == 1) ans = mp[s[0]];
+
 	cerr<< ans;
 }
