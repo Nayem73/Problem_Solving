@@ -42,58 +42,30 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	// vector<int> arr{3,5,-4, 8,11,1,-1,6};
-	vector<int> arr{2222222,2222222};
-	int target = 4444444;
+	vector<int> start{1,1};
+	vector<int> target{4,5};
 
-  if (target < 0) {
-      target *= -1;
-      for (int i = 0; i < (int)arr.size(); i++) {
-          arr[i] *= -1;
-      }
-  }
+	vector<pair<int,int>> vp;
+	vp.push_back({1,1});
+	vp.push_back({4,5});
 
-	// vector<int> pos(100);
-	// vector<int> neg(100);
-	map<int,int> pos;
-	map<int,int> neg;
+	vector<vector<int>> specialRoads{
+		{1,2,3,3,2},
+		{3,4,4,5,1}
+	};
 
-	for (int x: arr) {
-		if (x < 0) neg[-x]++;
-		else pos[x]++;
+	for (auto X: specialRoads) {
+		// for (int i = 0; i < 5; i++) {
+		// 	vp
+		// }
+		vp.push_back({X[0], X[1]});
 	}
 
-	vector<pair<int,int>> ans;
-	for (int x: arr) {
-		if (x >= 0) {
-			int got = target-x;
-			if (got >= 0 && pos[got]) {
-				if ((got==x && pos[got]>=2) || (got!=x && pos[x] && pos[got])) {
-					ans.push_back({x,got});
-					pos[x]--; pos[got]--;
-				}
+	sort(vp.begin(), vp.end());
+	rje()<<rji(vp);
 
-			}
-			else if (got < 0 && neg[-got]) {
-				if ((got==x && neg[-got]>=2) || (got!=x && pos[x] && neg[-got])) {
-					ans.push_back({x, got});
-					pos[x]--; neg[-got]--;
-				}
-			}
-		}
-		else {
-			int got = target+(-x);
-			if (pos[got]) ans.push_back({x, got});
-		}
+	for (int i = 0; i < (int)vp.size(); i++) {
+		if ()
 	}
 
-	rje()<< rji(ans);
 }
-
-// 10-9 = 1 lage
-// 10-13 = -3 lage
-
-// x = -9
-// x = 13
-// 10+9 = 19 lage
-// 10+13 = 23 lage
