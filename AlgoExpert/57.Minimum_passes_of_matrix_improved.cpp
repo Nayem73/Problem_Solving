@@ -65,13 +65,15 @@ fast_io;
 		return 0;
 	}
 
+	vector<vector<bool>> vis(n, vector<bool> (m));
+
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
 			if (matrix[i][j] > 0) {
-				if (i-1 >= 0 && matrix[i-1][j] < 0) positions.push_back({i-1, j}), matrix[i-1][j] *= -1, negs--;
-				if (i+1 < n && matrix[i+1][j] < 0) positions.push_back({i+1, j}), matrix[i+1][j] *= -1, negs--;
-				if (j-1 >= 0 && matrix[i][j-1] < 0) positions.push_back({i, j-1}), matrix[i][j-1] *= -1, negs--;
-				if (j+1 < m && matrix[i][j+1] < 0) positions.push_back({i, j+1}), matrix[i][j+1] *= -1, negs--;
+				if (i-1 >= 0 && matrix[i-1][j] < 0 && !vis[i-1][j]) positions.push_back({i-1, j}), negs--, vis[i-1][j] = true;
+				if (i+1 < n && matrix[i+1][j] < 0 && !vis[i+1][j]) positions.push_back({i+1, j}), negs--, vis[i+1][j] = true;
+				if (j-1 >= 0 && matrix[i][j-1] < 0 && !vis[i][j-1]) positions.push_back({i, j-1}), negs--, vis[i][j-1] = true;
+				if (j+1 < m && matrix[i][j+1] < 0 && !vis[i][j+1]) positions.push_back({i, j+1}), negs--, vis[i][j+1] = true;
 			}
 		}
 	}
@@ -85,13 +87,17 @@ fast_io;
 	while (true) {
 		vector<pair<int, int>> tmp;
 		turn++;
+		rje()<<rji(negs) rji(positions);
 		for (auto x: positions) {
 			int i = x.first, j = x.second;
+			matrix[i][j] *= -1; // this was done for the first part. I could not *= -1 in the first part.
 				if (i-1 >= 0 && matrix[i-1][j] < 0) tmp.push_back({i-1, j}), matrix[i-1][j] *= -1, negs--;
 				if (i+1 < n && matrix[i+1][j] < 0) tmp.push_back({i+1, j}), matrix[i+1][j] *= -1, negs--;
 				if (j-1 >= 0 && matrix[i][j-1] < 0) tmp.push_back({i, j-1}), matrix[i][j-1] *= -1, negs--;
 				if (j+1 < m && matrix[i][j+1] < 0) tmp.push_back({i, j+1}), matrix[i][j+1] *= -1, negs--;
 		}
+		positions = tmp;
+		// rje()<<
 		if (negs == 0) {
 			rje()<<rji(turn);
 			return 0;
