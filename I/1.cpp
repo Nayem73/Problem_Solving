@@ -1,71 +1,76 @@
-//BISMILLAHIR-RAHMANIR-RAHIM//
+#include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
-#define sim template < class c
-#define ris return * this
-#define dor > rje & operator <<
-#define eni(x) sim > typename \
-  enable_if<sizeof dud<c>(0) x 1, rje&>::type operator<<(c i) {
-sim > struct rge { c b, e; };
-sim > rge<c> range(c i, c j) { return rge<c>{i, j}; }
-sim > auto dud(c* x) -> decltype(cerr << *x, 0);
-sim > char dud(...);
-struct rje {
-#ifdef LOCALM
-~rje() { cerr << endl; }
-eni(!=) cerr << boolalpha << i; ris; }
-eni(==) ris << range(begin(i), end(i)); }
-sim, class b dor(pair < b, c > d) {
-  ris << "(" << d.first << ", " << d.second << ")";
+#include <vector>
+#include <random>
+
+// Function to evaluate the fitness of a solution
+int evaluateSolution(const std::vector<int>& solution) {
+    // In this example, the fitness is the sum of all elements in the solution
+    int fitness = 0;
+    for (int element : solution) {
+        fitness += element;
+    }
+    return fitness;
 }
-sim dor(rge<c> d) {
-  *this << "[";
-  for (auto it = d.b; it != d.e; ++it)
-    *this << ", " + 2 * (it == d.b) << *it;
-  ris << "]";
+
+    mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+// Function to generate a random neighbor solution
+std::vector<int> generateNeighbor(const std::vector<int>& solution) {
+    // std::random_device rd;
+    // std::mt19937 gen(rd());
+    // std::uniform_int_distribution<> rng(-1, 1);
+
+    std::vector<int> neighbor = solution;
+    int index = rng() % solution.size();
+    int tmp = rng();
+    if (tmp % 2 == 0) tmp = 1;
+    else tmp = -1;
+    neighbor[index] += tmp;
+
+    return neighbor;
 }
-#else
-sim dor(const c&) { ris; }
-#endif
-};
-#define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
-#define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
-#define endl '\n'
+
+// Function to perform the Hill Climbing algorithm
+std::vector<int> hillClimbing(const std::vector<int>& initialSolution) {
+    std::vector<int> currentSolution = initialSolution;
+    int currentFitness = evaluateSolution(currentSolution);
+    // std::cout << currentFitness << endl;
+
+    while (true) {
+        std::vector<int> neighborSolution = generateNeighbor(currentSolution);
+        int neighborFitness = evaluateSolution(neighborSolution);
+        for (int X: neighborSolution) cout << X << ' ';
+        cout << endl;
+        cout << neighborFitness<< ' '<<currentFitness << endl;
+
+        if (neighborFitness > currentFitness) {
+            currentSolution = neighborSolution;
+            currentFitness = neighborFitness;
+        } else {
+            break;
+        }
+    }
+
+    return currentSolution;
+}
 
 int main() {
-//ALHAMDULILLAHI-RABBIL-ALAMIN//
-#ifdef LOCALM
-freopen("in1", "r", stdin);
-freopen("out1", "w", stdout);
-#endif
-fast_io;
-//-------------------------------	
-	//SUBHANALLAH//
-//-------------------------------
-	vector<int> start{1,1};
-	vector<int> target{4,5};
+    // Example usage of the Hill Climbing algorithm
+    std::vector<int> initialSolution = {1, 2, 3, 4, 5};
+    std::vector<int> finalSolution = hillClimbing(initialSolution);
 
-	vector<pair<int,int>> vp;
-	vp.push_back({1,1});
-	vp.push_back({4,5});
+    cout << "Initial Solution: ";
+    for (int element : initialSolution) {
+        std::cout << element << " ";
+    }
+    std::cout << std::endl;
 
-	vector<vector<int>> specialRoads{
-		{1,2,3,3,2},
-		{3,4,4,5,1}
-	};
+    std::cout << "Final Solution: ";
+    for (int element : finalSolution) {
+        std::cout << element << " ";
+    }
+    std::cout << std::endl;
 
-	for (auto X: specialRoads) {
-		// for (int i = 0; i < 5; i++) {
-		// 	vp
-		// }
-		vp.push_back({X[0], X[1]});
-	}
-
-	sort(vp.begin(), vp.end());
-	rje()<<rji(vp);
-
-	for (int i = 0; i < (int)vp.size(); i++) {
-		if ()
-	}
-
+    return 0;
 }
