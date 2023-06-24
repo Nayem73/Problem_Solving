@@ -32,6 +32,8 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
+const int mod = 1e9 + 7;
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -42,5 +44,10 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	
+	vector<int> nums{2,3,6};
+	int n = nums.size();
+
+	for (int i = 0; i < n; i++) {
+		for ()
+	}
 }

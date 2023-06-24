@@ -43,25 +43,58 @@ fast_io;
 	//SUBHANALLAH//
 //-------------------------------
 	// vector<int> nums{3,6,9,12};
-	vector<int> nums{3,4,7,10};
+	// vector<int> nums{3,4,7,10};
+	vector<int> nums{83,20,17,43,52,78,68,45};
 	int n = nums.size();
+	const int biggest_dif = 83;
 	
-	map<int, int> mp;
+	vector<vector<int>> dp(n, vector<int> (biggest_dif, 1));
+	vector<vector<int>> dp_neg(n, vector<int> (biggest_dif, 1));
 
 	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < biggest_dif; j++) {
+				if (i) {
+					dp[i][j] = max(dp[i][j], dp[i-1][j]);
+					dp_neg[i][j] = max(dp_neg[i][j], dp_neg[i-1][j]);
+				}
+		}
+
 		for (int j = i+1; j < n; j++) {
-			mp[nums[j] - nums[i]]++;
+			int dif = nums[j] - nums[i];
+			if (dif >= 0) {
+				// dp[j][dif] += dp[i][dif];
+				dp[j][dif] = max(dp[j][dif], dp[i][dif] + 1);
+			}
+			else {
+				dif *= -1;
+				// dp_neg[j][dif] += dp_neg[i][dif];
+				dp_neg[j][dif] = max(dp_neg[j][dif], dp_neg[i][dif] + 1);
+			}
+		}
+
+
+	}
+
+	// rje()<<rji(dp);
+	int mx = 2;
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < biggest_dif; j++) {
+			rje()<< i << ' '<<j << rji(dp[i][j]) rji(dp_neg[i][j]);
+			mx = max({mx, dp[i][j], dp_neg[i][j]});
 		}
 	}
 
-	int mx = 2;
-	for (auto X: mp) {
-		mx = max(X.second, mx);
-		rje()<<rji(X);
-	}
-	cerr << mx + 1;
+	rje()<<rji(mx);
+
 }
 
 // 3 4 7 10
 //   1 4 7
 //     3 3
+
+
+// 4 7 11 10
+//   3    6
+//   1   3
+//        -1
