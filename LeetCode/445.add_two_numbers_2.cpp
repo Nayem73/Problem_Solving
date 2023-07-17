@@ -12,6 +12,12 @@ class Solution {
     vector<int> v;
     vector<int> v2;
     
+    ListNode* createNode(int value) {
+        ListNode* newNode = new ListNode();
+        newNode->val = value;
+        newNode->next = nullptr;
+        return newNode;
+    }
     
     void traverse(ListNode* l1, ListNode* l2, int carry) {
         //cout << l1->next->val << endl;
@@ -43,27 +49,41 @@ public:
             }
             out[i] = got;
         }
+        if (carry) out.push_back(carry);
+        
         cout << endl << endl;
+        reverse(out.begin(), out.end());
         for (int X: out) cout << X << ' ' << endl;
         
-        reverse(out.begin(), out.end());
-        
-        ListNode* cur = new ListNode();
-        
-        int zero = true;
+        int indx = ((int)out.size()) - 1;
         for (int i = 0; i < (int)out.size(); i++) {
-            if (!out[i] && zero) continue;
+            if (!out[i]) continue;
             else {
-                zero = false;
+                indx = i;
+                break;
+            }
+        }
+        
+        
+        ListNode* head = new ListNode();
+        head->val = out[indx];
+        if (indx == ((int)out.size()) - 1) return head;
+        head->next = new ListNode();
+        ListNode* cur = head->next;
+
+        for (int i = indx+1; i < (int)out.size(); i++) {   
                 cur->val = out[i];
+                
+                if (i==((int)out.size()) - 1) break;
                 cur->next = new ListNode();
-                cur->next->val = out[i];
                // cout << "^^ "<< cur->next->val << endl;
                 cur = cur->next;
                 
-            }
+                
+                //ListNode* newNode = createNode(out[i]);
+                //cur->next = 
         }
         //cout << cur->next->val << endl;
-        return cur;
+        return head;
     }
 };
