@@ -50,24 +50,40 @@ fast_io;
   while (t--) {
 
 
-    int n;
-    cin >> n;
+int n;
+cin >> n;
 
-    vector<int> s(n);
-    for (int i = 0; i < n; i++) cin >> s[i];
+vector<int> s(n);
+for (int i = 0; i < n; i++) cin >> s[i];
 
-    int max_element = n;
-    vector<int> mp(max_element + 1, 0);
+int max_element = n;
+vector<int> mp(max_element + 1, 0);
 
-    for (int i = 0; i < n; i++) {
-        int x = s[i];
-        for (int j = x; j <= max_element; j += x) {
+for (int i = 0; i < n; i++) {
+    int x = s[i];
+    unordered_set<int> seen;
+    for (int j = x; j <= max_element; j += x) {
+        if (seen.find(j) == seen.end()) {
             mp[j]++;
+            seen.insert(j);
         }
     }
+}
 
-    int ans = 0;
-    for (int X: mp) ans = max(ans, X);
-    cout << ans << endl;
+int ans = 0;
+for (int X: mp) ans = max(ans, X);
+cout << ans << endl;
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

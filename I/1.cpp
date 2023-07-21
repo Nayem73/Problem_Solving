@@ -44,28 +44,23 @@ fast_io;
 //-------------------------------
     int t; cin >> t; while (t--) {
         int n; cin >> n;
-        vector<int> s(n), p(2e5+7);
+        vector<int> s(n);
+        int cnt_1 = 0;
         for (int i = 0; i < n; i++) {
             cin >> s[i];
-            if (s[i] <= 2e5) p[s[i]]++;
-        };
+            if (s[i] == 1) cnt_1++;
+        }
 
         vector<int> mp(300000);
+        for (int i = 1; i <= n; i++) {
+            mp[i] = cnt_1;
+        }
         for (int i = 0; i < n; i++) {
             int x = s[i];
-            // for (int j = x; j <= n; j += x) {
-            //     mp[j]++;
-            // }
-            if (x == 1) {
-                for (int j = 1; j <= n; j++) mp[j]++;
-                continue;
-            }
-
-            int upto = n/x;
-            int last = upto*x;
-            for (int j = last; j >= x; j -= x) {
-                if (p[j]) {mp[j]++; break;}
-
+            if (x > 2e5) continue;
+            if (x == 1) continue;
+            for (int j = x; j <= n; j += x) {
+                mp[j]++;
             }
         }
 
