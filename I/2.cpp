@@ -31,6 +31,10 @@ sim dor(const c&) { ris; }
 #define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
+   int gcd(int a, int b) {
+    return b == 0 ? a : gcd(b, a % b);
+}
+
 
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
@@ -42,27 +46,28 @@ fast_io;
 //-------------------------------  
   //SUBHANALLAH//
 //-------------------------------
-  vector<int> nums {7,6,4,-1,1,2};
-  int target = 16; int n = nums.size();
+  int t; cin >> t;
+  while (t--) {
 
-  vector<pair<int,int>> store[55555];
 
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j < i; j++) { //all index/numbers before i
-      store[nums[j] + nums[i]].push_back({nums[j], nums[i]});
+    int n;
+    cin >> n;
+
+    vector<int> s(n);
+    for (int i = 0; i < n; i++) cin >> s[i];
+
+    int max_element = n;
+    vector<int> mp(max_element + 1, 0);
+
+    for (int i = 0; i < n; i++) {
+        int x = s[i];
+        for (int j = x; j <= max_element; j += x) {
+            mp[j]++;
+        }
     }
 
-
-    for (int k = i+2; k < n; k++) {
-      int need = target - (nums[i+1]+nums[k]);
-      if (need >= 0 && store[need].size()) {
-        rje()<<rji(store[need]) << " X " << nums[i+1] <<" "<<nums[k]; 
-                                      //store[need] e jotogulo pair thakbe prottek er shathe
-                                            //nums[i+1], nums[k] hobe ekekta answer.
-      }
+    int ans = 0;
+    for (int X: mp) ans = max(ans, X);
+    cout << ans << endl;
     }
-  }
-
-  // rje()<<rji(store[3]);
-  
 }

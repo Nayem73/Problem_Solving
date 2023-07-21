@@ -42,34 +42,6 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int m, a;
-	m =5, a = 1;
-
-	int tracker = 0;
-	int used = 0;
-	while (true) {
-		if (m<= 0) break;
-		tracker++;
-		if (tracker == 5 && a > 0) {
-			m++;
-			a--;
-			tracker = 0;
-		}
-		m--;
-		used += 10;
-
-		rje()<<rji(m)rji(a)rji(tracker)rji(used);
-
-	}
+	int n; cin >> n;
+	cerr << n;
 }
-
-// 6 =>
-// 5 - 2
-// 2
-
-// 13
-// 5 - 1 (9)
-
-
-
-

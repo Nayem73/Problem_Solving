@@ -42,20 +42,14 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<int> asteroids{4,5,3,-1,7,-3};
-	set<int> pos, neg;
+	vector<int> asteroids{4,5,3,-1,-7,-3};
+	set<pair<int,int>> s;
 	int n = asteroids.size();
-	multiset<int> s;
-	s.insert(3);
-	s.insert(5);
+	for (int i = 1; i < n; i++) {
+		if (s[i-1] < 0 && s[i] > 0) s.insert({i-1, i});
+		else if (s[i-1] > 0 && s[i] < 0) s.insert({i-1, i});
+	}
 
-	s.insert(3);
-	s.insert(1);
-
-	auto it = s.begin();
-	it+=2;
-	s.erase(it);
-	rje()<<rji(s);
-
+	while ()
 
 }
