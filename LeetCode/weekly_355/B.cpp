@@ -33,6 +33,13 @@ sim dor(const c&) { ris; }
 #define endl '\n'
 
 vector<int> to(100007, -1);
+int ans = 0;
+
+void dfs(int cur, int total) {
+	if (to[cur] == -1) return;
+
+	dfs(to[cur], total)
+}
 
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
@@ -52,7 +59,9 @@ fast_io;
 
 	to.resize(n);
 	rje()<<to;
+	int st = 0;
 	while (true) {
-
+		dfs(st);
+		break;
 	}
 }
