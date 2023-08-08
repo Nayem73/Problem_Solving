@@ -32,45 +32,6 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-void main_fnc() {
-  //cout << "ok\n";
-}
-
-int maximize_number(int x) {
-    std::string x_str = std::to_string(x);
-    int n = x_str.length();
-    std::vector<int> new_digits(n);
-
-    for (int i = n - 1; i >= 0; --i) {
-        if (new_digits[i] >= 5) {
-            new_digits[i] = 0;  // Round down to 0 (after adding 1)
-            if (i > 0) {
-                new_digits[i - 1] += 1;  // Carry over to the previous digit
-            }
-        }
-
-        if (new_digits[i] == 10) {
-            int j = i;
-            while (j >= 0 && new_digits[j] == 9) {
-                new_digits[j] = 0;
-                --j;
-            }
-            if (j >= 0) {
-                new_digits[j] += 1;
-            }
-
-            break;  // No need to continue checking to the left
-        }
-    }
-
-    int result = 0;
-    for (int digit : new_digits) {
-        result = result * 10 + digit;
-    }
-    return result;
-}
-
-
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -78,58 +39,32 @@ freopen("in1", "r", stdin);
 freopen("out1", "w", stdout);
 #endif
 fast_io;
-//-------------------------------  
-  //SUBHANALLAH//
+//-------------------------------	
+	//SUBHANALLAH//
 //-------------------------------
-  int t; cin >> t; while (t--) {
-string x;
-        cin >> x;
-
-        int k = -1; // Position of the first digit that is greater than or equal to 5
-
-        for (int i = 0; i < x.size(); ++i) {
-            if (x[i] >= '5') {
-                k = i;
-                break;
-            }
-        }
-
-        if (k == -1) {
-            cout << x << endl;
-        } else {
-            for (int i = k; i < x.size(); ++i) {
-                if (x[i] >= '5') {
-                    k = i;
-                }
-            }
-
-            for (int i = 0; i <= k; ++i) {
-                if (i == k && x[i] == '9') {
-                    while (i >= 0 && x[i] == '9') {
-                        x[i] = '0';
-                        i--;
-                    }
-                    if (i >= 0) {
-                        x[i]++;
-                    } else {
-                        x = "1" + x;
-                    }
-                } else if (x[i] >= '5') {
-                    x[i] = '0';
-                    if (i == k) {
-                        if (i + 1 < x.size()) {
-                            x[i + 1]++;
-                        } else {
-                            x += '1';
-                        }
-                    } else {
-                        x[i + 1]++;
-                    }
-                }
-            }
-
-            cout << x << endl;
-        }
-
-  }
-}
+	int t; cin >> t; while (t--) {
+		string s; cin >> s;
+		int n = s.size();
+		bool need = false;
+		for (int i = 0; i < n; i++) {
+			if (s[i] >= '5') {
+				for (int j = i; j < n; j++) {
+					s[j] = '0';
+				}
+				while (i--) {
+					if (s[i] != 9) {s[i]++; break;}
+					else {
+						s[i] = '0';
+						if (i-1 < 0) {
+								
+						}
+						else s[i-1] = '1'
+					}
+				}
+			}
+		}
+		for(int i = n-1; i >= 0; i--) {
+			if (s[i])
+		}
+	}
+}	
