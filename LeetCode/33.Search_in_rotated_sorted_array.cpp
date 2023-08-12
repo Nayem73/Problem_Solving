@@ -42,7 +42,7 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<int> nums{4,5,6,7,0,1,2}; int target = 0;
+	vector<int> nums{1,0,1,1,1}; int target = 0;
 	// vector<int> nums{4,5,1}; int target = 0;
 
 	int n = nums.size();
