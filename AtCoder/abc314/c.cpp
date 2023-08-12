@@ -57,22 +57,20 @@ fast_io;
 	sort(rs.begin(), rs.end());
 	rje()<<rji(rs);
 	vector<pair<int, pair<int,char>>> cp_rs = rs;
-	// for (int i = 0; i < n; i++) {
-	// 	int to = (i + 1) % indx[rs[i].first];
-	// 	cp_rs[to].second.second = rs[i].second.second;
-	// 	rje()<<rji(to) rji(cp_rs);
-	// }
 
-	cp_rs[0].second.second = rs[indx[rs[0].first]-1].second.second;
-	for (int i = 1; i < n; i++) {
-		if (rs[i].first == rs[i-1].first) {
-			cp_rs[i].second.second = rs[i-1].second.second;
-		} else {
-			cp_rs[i].second.second = rs[i+indx[rs[i].first]-1].second.second;
+	// cp_rs[0].second.second = rs[indx[rs[0].first]-1].second.second;
+	int st_indx = 0;
+	for (int i = 0; i < n; i++) {
+		if (i && (rs[i].first != rs[i-1].first)) {
+			st_indx = i;
 		}
+		int to = (i+1)%(st_indx+indx[rs[i].first]);
+		if (to == 0) to = st_indx;
+		cp_rs[to].second.second = rs[i].second.second;
+		rje()<<rji(st_indx) rji(to) rji(cp_rs);
 	}
 
-	rje()<<rji(cp_rs);
+	// rje()<<rji(cp_rs);
 
 
 	for (int i = 0; i < n; i++) {
@@ -80,5 +78,6 @@ fast_io;
 	}
 
 	rje()<<rji(s);
+	cout << s << endl;
 
 }
