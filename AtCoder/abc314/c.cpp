@@ -42,45 +42,43 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int n; cin >> n;
-	string s;
-	cin >> s;
+	int n, k; cin>>n>>k;
+	string s; cin>>s;
 
-	int q;
-	cin >> q;
-	
-	vector<pair<int,pair<int,char>>> store(q);
-	int gotIndxFor3or4 = -1;
-	for (int i = 0; i < q; i++) {
-		int t, in; char c;
-		cin >>t>>in>>c;
-		store[i] = {t, {in-1, c}};
-		if (t == 2 || t == 3) {
-			gotIndxFor3or4 = i;
+	vector<int> v(n);
+	vector<int> indx(n);
+	vector<pair<int, pair<int,char>>> rs(n);
+	for (int i = 0; i < n; i++) {
+		cin >> v[i];
+		indx[v[i]]++;
+		rs[i] = {v[i], {i, s[i]}};
+	}
+
+	sort(rs.begin(), rs.end());
+	rje()<<rji(rs);
+	vector<pair<int, pair<int,char>>> cp_rs = rs;
+	// for (int i = 0; i < n; i++) {
+	// 	int to = (i + 1) % indx[rs[i].first];
+	// 	cp_rs[to].second.second = rs[i].second.second;
+	// 	rje()<<rji(to) rji(cp_rs);
+	// }
+
+	cp_rs[0].second.second = rs[indx[rs[0].first]-1].second.second;
+	for (int i = 1; i < n; i++) {
+		if (rs[i].first == rs[i-1].first) {
+			cp_rs[i].second.second = rs[i-1].second.second;
+		} else {
+			cp_rs[i].second.second = rs[i+indx[rs[i].first]-1].second.second;
 		}
 	}
 
-	for (int i = 0; i < q; i++) {
-		if (store[i].first == 1) {
-			s[store[i].second.first] = store[i].second.second;
-		}
+	rje()<<rji(cp_rs);
 
-		if (i == gotIndxFor3or4) {
-			if (store[gotIndxFor3or4].first == 2) {
-				for (int ii = 0; ii < n; ii++) {
-					if (s[ii] >= 'A' && s[ii] <= 'Z') {
-						s[ii] = s[ii] + 32;
-					}
-				}
-			} else {
-				for (int ii = 0; ii < n; ii++) {
-					if (s[ii] >= 'a' && s[ii] <= 'z') {
-						s[ii] = s[ii] - 32;
-					}
-				}
-			}
-		}
+
+	for (int i = 0; i < n; i++) {
+		s[cp_rs[i].second.first] = cp_rs[i].second.second;
 	}
 
-	cout << s << endl;
+	rje()<<rji(s);
+
 }
