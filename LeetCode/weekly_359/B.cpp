@@ -47,13 +47,31 @@ fast_io;
 	for (int i = 1; i <= n; i++) {
 		v[i] = i;
 	}
+	int indx = n;
 
-	for (int i = 1; i <= n; i++) {
-		if (k-i >= 0 && store[k-i]) {
-			for (int j = i; j <= n; j++) {
-				v[j] = j
+	while (true) {
+		bool flg = true;
+		for (int i = 1; i <= n; i++) {
+			for (int j = i+1; j <= n; j++) {
+				if (i+j == k) {
+					flg = false; break;
+				}
+			}
+			if (!flg) {
+				break;
 			}
 		}
-		store[i] = true;
+		if (!flg) {
+			if (indx == 1) indx = n;
+			v[indx]++;
+			indx--;
+		}
+		else break;
+		rje()<<rji(indx)rji(v);
 	}
+	int sum = 0;
+	for (int i = 1; i <= n; i++) {
+		sum += i;
+	}
+	cerr << sum << endl;
 }

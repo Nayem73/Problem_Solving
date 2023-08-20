@@ -42,18 +42,6 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int n = 5, k = 4;
-	vector<int> v(n+1);
-	for (int i = 1; i <= n; i++) {
-		v[i] = i;
-	}
-
-	for (int i = 1; i <= n; i++) {
-		if (k-i >= 0 && store[k-i]) {
-			for (int j = i; j <= n; j++) {
-				v[j] = j
-			}
-		}
-		store[i] = true;
-	}
+	int x = 5;
+	cerr << x;
 }

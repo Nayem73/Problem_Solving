@@ -39,21 +39,20 @@ freopen("in1", "r", stdin);
 freopen("out1", "w", stdout);
 #endif
 fast_io;
-//-------------------------------	
-	//SUBHANALLAH//
+//-------------------------------    
+    //SUBHANALLAH//
 //-------------------------------
-	int n = 5, k = 4;
-	vector<int> v(n+1);
-	for (int i = 1; i <= n; i++) {
-		v[i] = i;
-	}
+    int n = 3, k = 5;
+    map<int,int> mp;
+    int sum = 0;
+    int i = 1;
+    while (n--) {
+        // if (mp[i]) i++;
+        while (mp[i]) i++;
+        sum += i;
+        mp[k-i]++;
+        i++;
+    }
 
-	for (int i = 1; i <= n; i++) {
-		if (k-i >= 0 && store[k-i]) {
-			for (int j = i; j <= n; j++) {
-				v[j] = j
-			}
-		}
-		store[i] = true;
-	}
+    cerr<< sum;
 }

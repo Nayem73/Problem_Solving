@@ -42,18 +42,40 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int n = 5, k = 4;
-	vector<int> v(n+1);
-	for (int i = 1; i <= n; i++) {
-		v[i] = i;
+	// vector<int> v{1,6,7,3,6,9,1,6,2,1,8,4,1};
+	vector<int> v{1,3,2,3,1,3};
+	int k = 3;
+	int n = v.size();
+	vector<int> occ(1003);
+	vector<int> adj[10001];
+	set<int> st;
+
+	for (int i = 0; i < n; i++) {
+		occ[v[i]]++;
+		adj[v[i]].push_back(i);
+		st.insert(v[i]);
 	}
 
-	for (int i = 1; i <= n; i++) {
-		if (k-i >= 0 && store[k-i]) {
-			for (int j = i; j <= n; j++) {
-				v[j] = j
+int ans = 1;
+
+	for (int i : st) {
+		// if (!adj[i].size()) continue;
+		sort(adj[i].begin(), adj[i].end());
+		rje()<<rji(adj[i]);
+		int cnt = 1;
+		for (int j = 1; j < (int)adj[i].size(); j++) {
+			if (adj[i][j] - (adj[i][j-1]+1) > k) {
+				cnt = 1;
+			}
+			else {
+				cnt++;
+				ans = max(ans, cnt);
 			}
 		}
-		store[i] = true;
 	}
+
+	cerr << ans << endl;
+
+	//1-2   2-2    3-3
+
 }
