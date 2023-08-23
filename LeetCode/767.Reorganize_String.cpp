@@ -32,6 +32,22 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
+map<char, int> mp;
+
+/*
+if i do it like this it does not work
+bool cmp(char c1, char c2) {
+	if (mp[c1] >= mp[c2]) return true;
+	return false;
+}
+*/
+
+bool cmp(char c1, char c2) {
+    if (mp[c1] > mp[c2]) return true;
+    if (mp[c1] < mp[c2]) return false;
+    return c1 < c2; // If frequencies are equal, sort lexicographically.
+}
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -42,22 +58,11 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string s = "aaab";
-	string out;
-	map<char, int> mp;
-	for (char X: s) mp[X]++;
-
-	while (true) {
-		int cnt = 0;
-		for (auto X: mp) {
-			if (mp[X.first] > 0) {
-				out += X.first;
-				mp[X.first]--;
-			}
-			cnt += mp[X.first];
-		}
-		if (cnt == 0) break;
+	string s = "vvdvdpovodl";
+	for (int i = 0; i < (int)s.size(); i++) {
+		mp[s[i]]++;
 	}
+	sort(s.begin(), s.end(), cmp);
 
-	rje()<<rji(out);
+	rje()<<rji(s);
 }
