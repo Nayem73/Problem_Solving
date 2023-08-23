@@ -59,10 +59,40 @@ fast_io;
 	//SUBHANALLAH//
 //-------------------------------
 	string s = "vvdvdpovodl";
-	for (int i = 0; i < (int)s.size(); i++) {
+	int n = s.size();
+	for (int i = 0; i < n; i++) {
 		mp[s[i]]++;
 	}
 	sort(s.begin(), s.end(), cmp);
 
 	rje()<<rji(s);
+
+	string out;
+	while (true) {
+		int i = 0;
+		cerr <<s[i]<< endl;
+		out += s[i];
+		int indxj = -1;
+		for (int j = i+1; j < n; j++) {
+			if (s[i] == s[j]) continue;
+
+			indxj = j;
+			out += s[j];
+			break;
+		}
+		if (indxj < 0) break;
+		string tmp = s;
+		s.clear();
+		for (int q = 0; q < n; q++) {
+			if (q == i || q == indxj) continue;
+			s += tmp[q];
+		}
+
+		sort(s.begin(), s.end(), cmp);
+		rje()<<rji(s);
+		n = s.size();
+
+	}
+
+	rje()<<rji(out);
 }
