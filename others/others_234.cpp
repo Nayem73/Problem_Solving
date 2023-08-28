@@ -22,9 +22,9 @@ output: {"status":"VALIDATED","tran_date":"2023-08-28 19:12:10","tran_id":"TRANS
 	card_issuer_country_code=BD, 
 	store_id=aifar64ea1f7a8c3ec, 
 	verify_sign=59c612504bacdcb9bd488f94ab059e14, 
-	verify_key=amount,
-	bank_tran_id,/
-	base_fair,card_brand,card_issuer,card_issuer_country,card_issuer_country_code,card_no,card_type,currency,currency_amount,currency_rate,currency_type,risk_level,risk_title,status,store_amount,store_id,tran_date,tran_id,val_id,value_a,value_b,value_c,value_d, verify_sign_sha2=165f3b83754d876f3c33978656cbea344ecfe683aaa920b54686ef8b03dde540, currency_type=BDT, currency_amount=500.00, currency_rate=1.0000, base_fair=0.00, value_a=ref00, value_b=ref00, value_c=ref00, value_d=ref00, risk_level=0, risk_title=Safe}
+	verify_key=amount,/
+	verify_sign_sha2=165f3b83754d876f3c33978656cbea344ecfe683aaa920b54686ef8b03dde540, 
+	currency_type=BDT, currency_amount=500.00, currency_rate=1.0000, base_fair=0.00, value_a=ref00, value_b=ref00, value_c=ref00, value_d=ref00, risk_level=0, risk_title=Safe}
 
 
 
