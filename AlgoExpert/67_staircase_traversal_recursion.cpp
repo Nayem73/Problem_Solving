@@ -52,8 +52,5 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int height = 5;
-	int maxSteps = 2;
-	int ans = rec(0, 0, height, maxSteps);
-	rje()<<rji(ans);
+
 }
