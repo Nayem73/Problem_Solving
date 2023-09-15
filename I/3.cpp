@@ -16,7 +16,7 @@ struct rje {
 eni(!=) cerr << boolalpha << i; ris; }
 eni(==) ris << range(begin(i), end(i)); }
 sim, class b dor(pair < b, c > d) {
-  ris << "(" << d.first << ", " << d.second << ")";
+  ris << "(" << d.first << ", " << d.second << ")"; //
 }
 sim dor(rge<c> d) {
   *this << "[";
@@ -28,7 +28,7 @@ sim dor(rge<c> d) {
 sim dor(const c&) { ris; }
 #endif
 };
-#define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
+#define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "//
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
