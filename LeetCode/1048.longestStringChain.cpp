@@ -94,11 +94,6 @@ fast_io;
 	sort(words.begin(), words.end(), cmp);
 	rje()<<words;
 
-	// for (int i = 0; i < n; i++) {
-	// 	string s = words[i];
-
-	// }
-
 	int got = rec(words, 0, 0, 1);
 	cerr << got<< endl;
 }
