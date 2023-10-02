@@ -1,6 +1,6 @@
 # AI-Farming
 
-Welcome to the AI-Farming project, a collaborative effort by [Hemel Akash](https://github.com/HSAkash/) and [Nayem Mehedi](https://github.com/Nayem73/). Our mission is to bridge the gap between agriculture and technology using artificial intelligence.
+Welcome to [AI-Farming](https://aifarming.tech/), a collaborative effort by [Hemel Akash](https://github.com/HSAkash/) and [Nayem Mehedi](https://github.com/Nayem73/). Our mission is to bridge the gap between agriculture and technology using artificial intelligence.
 Visit our website [AI-Farming](https://aifarming.tech/)
 
 ## AI-Farming AI Models and Accuracy
