@@ -1,7 +1,7 @@
 # AI-Farming
 
-Welcome to the AI-Farming project, a collaborative effort by [Nayem Mehedi](https://github.com/Nayem73/) and [Hemel Akash](https://github.com/HSAkash/). Our mission is to bridge the gap between agriculture and technology using artificial intelligence.
-Certainly! Here are the corrected sentences in technical terms:
+Welcome to the AI-Farming project, a collaborative effort by [Hemel Akash](https://github.com/HSAkash/) and [Nayem Mehedi](https://github.com/Nayem73/). Our mission is to bridge the gap between agriculture and technology using artificial intelligence.
+Visit our website [AI-Farming](https://aifarming.tech/)
 
 ## AI-Farming AI Models and Accuracy
 
@@ -10,8 +10,6 @@ Certainly! Here are the corrected sentences in technical terms:
 - During **development phase**, the five AI models achieved an accuracy rate of **99%**.
 
 - In the current **real-world deployment** phase, these models exhibit an average accuracy of **98.5%**.
-
-Visit our website [AI-Farming](https://aifarming.tech/)
 
 ## Disease Detection
 
