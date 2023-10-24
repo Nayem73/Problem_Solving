@@ -43,10 +43,15 @@ sim dor(const c&) { ris; }
 // }
 
 bool isPowerOfFour(int n) {
-	while (n % 4 == 0) n/=4;
-
-	return (n==1);
-
+    if (n <= 0) {
+        return false;  // 0 and negative numbers are not powers of 4
+    }
+    
+    while (n % 4 == 0) {
+        n /= 4;
+    }
+    
+    return n == 1;
 }
 
 int main() {
