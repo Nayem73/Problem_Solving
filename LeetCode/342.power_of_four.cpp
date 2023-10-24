@@ -32,6 +32,23 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
+//log4n = log10(n)/log10(4)
+
+// bool isPowerOfFour(long long n) {
+// 	if (n==1 || n==4) return true;
+// 	int LOG4n = log10(n)/log10(4);
+// 	rje()<<rji(LOG4n);
+// 	if ((int)pow(4, LOG4n) == int(n)) return true;
+// 	return false;
+// }
+
+bool isPowerOfFour(int n) {
+	while (n % 4 == 0) n/=4;
+
+	return (n==1);
+
+}
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -42,5 +59,7 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	
+	int n = 64;
+	if (isPowerOfFour(n)) cerr << "true\n";
+	else cerr << "false\n";
 }
