@@ -43,29 +43,5 @@ fast_io;
 	//SUBHANALLAH//
 //-------------------------------
 	int n = 5, k = 3;
-	vector<int> v[n];
-	v[0].push_back(0);
-	for (int cur = 1; cur < n; cur++) {
-		for (int i = 0; i < (int)v[cur-1].size(); i++) {
-			if (v[cur-1][i] == 0) {
-				v[cur].push_back(0);
-			 	v[cur].push_back(1);
-			 } else {
-				v[cur].push_back(1);
-				v[cur].push_back(0);
-			 }
-		}
-	}
-
-	cerr << v[n-1][k-1] << endl;
-	// for (int i = 0 ; i <=)
+	//the pattern is for 0 > 2 bad, 1 bad, 2 bad, 1 bad, 2 bad, <<reverse.
 }
-0->01
-1->10
-
-   0
-   01
-  01 10
-01 10 10 01
-01 10 10 01
-(5-1)*2*2 ta = 16 ta.
