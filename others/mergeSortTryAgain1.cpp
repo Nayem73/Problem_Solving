@@ -43,6 +43,8 @@ void merge(int lo, int hi) {
 	int indx1 = lo, indx2 = mid+1;
 	int indx = lo;
 
+	rje()<<rji(indx1) rji(mid) rji(indx2) rji(hi);
+
 	while (indx1 <= mid && indx2 <= hi) {
 		if (ara[indx1] <= ara[indx2]) {
 			ara[indx] = ara[indx1];
@@ -53,6 +55,7 @@ void merge(int lo, int hi) {
 			indx2++;
 			indx++;
 		}
+		rje()<<rji(ara);
 
 		while (indx1 <= mid) {
 			ara[indx] = ara[indx1];
@@ -64,6 +67,8 @@ void merge(int lo, int hi) {
 			indx2++;
 			indx++;
 		}
+		rje()<<rji(ara);
+		rje();
 	}
 }
 
