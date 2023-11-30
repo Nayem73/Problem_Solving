@@ -40,36 +40,43 @@ void merge(int lo, int hi) {
 	merge(lo, mid);
 	merge(mid+1, hi);
 
-	int indx1 = lo, indx2 = mid+1;
+	vector<int> ara1;
+	vector<int> ara2;
+	for (int i = lo; i <= mid; i++) ara1.push_back(ara[i]);
+	for (int i = mid+1; i <= hi; i++) ara2.push_back(ara[i]);
+
+	int indx1 = 0, indx2 = 0;
 	int indx = lo;
+	int n1 = ara1.size(), n2 = ara2.size();
 
 	rje()<<rji(indx1) rji(mid) rji(indx2) rji(hi);
+	rje()<<rji(ara1) rji(ara2);
 
-	while (indx1 <= mid && indx2 <= hi) {
-		if (ara[indx1] <= ara[indx2]) {
-			ara[indx] = ara[indx1];
+	while (indx1 < n1 && indx2 < n2) {
+		if (ara1[indx1] <= ara2[indx2]) {
+			ara[indx] = ara1[indx1];
 			indx1++;
 			indx++;
 		} else {
-			ara[indx] = ara[indx2];
+			ara[indx] = ara2[indx2];
 			indx2++;
 			indx++;
 		}
 		rje()<<rji(ara);
-
-		while (indx1 <= mid) {
-			ara[indx] = ara[indx1];
-			indx1++;
-			indx++;
-		}
-		while (indx2 <= hi) {
-			ara[indx] = ara[indx2];
-			indx2++;
-			indx++;
-		}
-		rje()<<rji(ara);
-		rje();
 	}
+
+	while (indx1 < n1) {
+		ara[indx] = ara1[indx1];
+		indx1++;
+		indx++;
+	}
+	while (indx2 < n2) {
+		ara[indx] = ara2[indx2];
+		indx2++;
+		indx++;
+	}
+	rje()<<rji(ara);
+	rje();
 }
 
 int main() {
