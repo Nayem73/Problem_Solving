@@ -78,8 +78,8 @@ fast_io;
 	//SUBHANALLAH//
 //-------------------------------
 	
-	int n = ara.size();
 	rje()<<rji(ara);
+	int n = ara.size();
 	merge(0, n-1);
 
 	rje()<<rji(ara);
