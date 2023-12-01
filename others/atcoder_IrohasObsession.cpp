@@ -43,9 +43,9 @@ bool chk(int n, vector<int>&d) {
 	return true;
 }
 
-int rec(int original_n, int n, vector<int> &d) {
-	cerr << n << endl;
-	if (chk(n, d) && n >= original_n) return n;
+int rec(int n, vector<int> &d) {
+	//cerr << n << endl;
+	if (chk(n, d))	return n;
 	for (int i = 0; i < 10; i++) {
 		bool flg = true;
 		for (int X: d) {
@@ -55,8 +55,7 @@ int rec(int original_n, int n, vector<int> &d) {
 			}
 		}
 		if (!flg) continue;
-		if (n==0 && i==0) continue;
-		return rec(original_n, n*10 + i, d);
+		return rec(n+1, d);
 	}
 }
 
@@ -76,6 +75,6 @@ fast_io;
 	for (int &X: d) cin >> X;
 
 	sort(d.begin(), d.end());
-	int ans = rec(n, 0, d);
+	int ans = rec(n, d);
 	cout << ans << endl;
 }
