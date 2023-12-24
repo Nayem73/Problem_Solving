@@ -42,8 +42,15 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string s = """I am ok.
-	Are you okeay?""";
+	string s = "1111";
+	int n = s.size();
 
-	cout << s;
+	vector<vector<int>> dp(n, vector<int> (2));
+
+	for (int i = 0; i < n; i++) {
+		dp[i][0] = (i?dp[i-1][1]:0) + (s[i]=='1');
+		dp[i][1] = (i?dp[i-1][0]:0) + (s[i]=='0');
+	}
+
+	cout << min(dp[n-1][0], dp[n-1][1]);
 }
