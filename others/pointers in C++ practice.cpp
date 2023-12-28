@@ -32,6 +32,18 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
+struct Node {
+	int val;
+	Node* next;
+};
+
+Node* create_node(int val) {
+	Node* new_node = new Node();
+	new_node->val = val;
+	new_node->next = NULL;
+	return new_node;
+}
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -42,11 +54,38 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-		vector<int> nums{4,1,2,2,2,1};
+	Node *n1, *n2, *head, *n3;
 
-		int Xor = 0;
-        for (int i = 0; i < (int)nums.size(); i++) {
-            Xor = Xor ^ nums[i];
-            cout << nums[i] << ' '<< Xor << endl;
-        }
+	head = create_node(10);
+	n1 = create_node(20);
+	n2 = create_node(30);
+	n3 = create_node(40);
+
+	head->next = n1;
+	n1->next = n2;
+	n2->next = n3;
+
+	Node* curNode = head;
+	Node* prevNode = NULL;
+	
+	while (curNode != NULL) {
+		Node* tmpNode = curNode->next;
+		if (tmpNode == NULL) head = curNode;
+
+		curNode->next = prevNode;
+		prevNode = curNode;
+		curNode = tmpNode;
+	}
+
+	curNode = head;
+	// return 0;
+	while (curNode != NULL) {
+		cout << curNode->val << ' ';
+		curNode = curNode->next;
+	}
+
+
 }
+
+// 10->20->30->40
+
