@@ -37,6 +37,29 @@ struct ListNode {
 	ListNode *next;
 };
 
+ListNode *createNode(int val) {
+	ListNode *newNode = new ListNode();
+	newNode->val = val;
+	newNode->next = NULL;
+
+	return newNode;
+}
+
+ListNode* fnc() {
+		ListNode *headA, *headB, *headA1;
+	headA = new ListNode();
+	headA->val = 5;
+
+	headA1 = new ListNode();
+	headA1->val = 4;
+
+	headA->next = headA1;
+
+	ListNode *headA2 = createNode(3);
+	headA1->next = headA2;
+
+	return headA;
+}
 
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
@@ -50,13 +73,17 @@ fast_io;
 //-------------------------------
 	
 	ListNode *headA, *headB, *headA1;
-	headA = new ListNode();
-	headA->val = 5;
+	// headA = new ListNode();
+	// headA->val = 5;
 
-	headA1 = new ListNode();
-	headA1->val = 4;
+	// headA1 = new ListNode();
+	// headA1->val = 4;
 
-	headA->next = headA1;
+	// headA->next = headA1;
+
+	// ListNode *headA2 = createNode(3);
+	// headA1->next = headA2;
+	headA= fnc();
 
 	ListNode *curNode = headA;
 	while (curNode != NULL) {
