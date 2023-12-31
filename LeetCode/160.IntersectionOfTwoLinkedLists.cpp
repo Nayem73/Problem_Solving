@@ -45,8 +45,9 @@ ListNode *createNode(int val) {
 	return newNode;
 }
 
+ListNode *headA, *headB, *headA1;
+
 ListNode* fnc() {
-		ListNode *headA, *headB, *headA1;
 	headA = new ListNode();
 	headA->val = 5;
 
@@ -72,7 +73,7 @@ fast_io;
 	//SUBHANALLAH//
 //-------------------------------
 	
-	ListNode *headA, *headB, *headA1;
+	// ListNode *headA, *headB, *headA1;
 	// headA = new ListNode();
 	// headA->val = 5;
 
