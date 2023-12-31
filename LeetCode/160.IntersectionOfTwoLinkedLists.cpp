@@ -35,32 +35,33 @@ sim dor(const c&) { ris; }
 struct ListNode {
 	int val;
 	ListNode *next;
+	ListNode(int X) : val(X), next(NULL) {}
 };
 
-ListNode *createNode(int val) {
-	ListNode *newNode = new ListNode();
-	newNode->val = val;
-	newNode->next = NULL;
+// ListNode *createNode(int val) {
+// 	ListNode *newNode = new ListNode();
+// 	newNode->val = val;
+// 	newNode->next = NULL;
 
-	return newNode;
-}
+// 	return newNode;
+// }
 
-ListNode *headA, *headB, *headA1;
+// ListNode *headA, *headB, *headA1;
 
-ListNode* fnc() {
-	headA = new ListNode();
-	headA->val = 5;
+// ListNode* fnc() {
+// 	headA = new ListNode();
+// 	headA->val = 5;
 
-	headA1 = new ListNode();
-	headA1->val = 4;
+// 	headA1 = new ListNode();
+// 	headA1->val = 4;
 
-	headA->next = headA1;
+// 	headA->next = headA1;
 
-	ListNode *headA2 = createNode(3);
-	headA1->next = headA2;
+// 	ListNode *headA2 = createNode(3);
+// 	headA1->next = headA2;
 
-	return headA;
-}
+// 	return headA;
+// }
 
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
@@ -82,19 +83,38 @@ fast_io;
 
 	// headA->next = headA1;
 
-	// ListNode *headA2 = createNode(3);
-	// headA1->next = headA2;
-	headA= fnc();
+	// // ListNode *headA2 = createNode(3);
+	// // headA1->next = headA2;
+	// // headA= fnc();
+
+	// ListNode *curNode = headA;
+	// while (curNode != NULL) {
+	// 	cout << curNode->val << endl;
+	// 	curNode = curNode->next;
+	// }
+
+	// vector<ListNode*> v;
+	// v.push_back(headA);
+	// v.push_back(headA1);
+	// cout << v[1]->val << endl;
+
+	// map<ListNode*, int> mp;
+	// mp.insert({headA, headA->val});
+
+	// auto X = mp.find(headA);
+	// cout << X->second;
+
+	ListNode *headA, *headA1;
+	headA = new ListNode(5);
+	headA1 = new ListNode(4);
+	ListNode *headA2 = new ListNode(3);
+
+	headA->next = headA1;
+	headA1->next = headA2;
 
 	ListNode *curNode = headA;
 	while (curNode != NULL) {
 		cout << curNode->val << endl;
 		curNode = curNode->next;
 	}
-
-	vector<ListNode*> v;
-	v.push_back(headA);
-	v.push_back(headA1);
-	cout << v[1]->val << endl;
-
 }
