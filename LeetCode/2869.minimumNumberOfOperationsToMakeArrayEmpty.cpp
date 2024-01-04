@@ -45,32 +45,18 @@ fast_io;
 	// vector<int> nums {2,3,3,2,2,4,2,3,4};
 	vector<int> nums {2,1,2,2,3,3};
 	
-	int y = -1;
-	int sum = nums.size();
+	map<int, int> mp;
+    for (int X: nums) {
+        mp[X]++;
+    }
+    
+    int cnt = 0;
+    for (auto X: mp) {
+    	if (X.second == 1) return -1;
 
-	for (int x = 0; x <= sum; x+=2) {
-		
-		if ((sum-2*x) % 3 == 0) {
-			y = max(y, (sum-2*x) / 3);
-			rje()<<rji(x);
-		}
-	}
+    	cnt += ceil(X.second/3.0);
+    }
 
-	int x = sum - y*3;
-	x = x/2;
-	cout << x + y << endl;
+    return cnt;
 }
-
-// 13
-// 5*2 + 3
-
-// 12
-// 1
-
-// sum = 2x + 3y
-// (sum-2x) / 3 = y
-
-
-// (sum - 10) / 3
-// (19-10) /3 = 9/3 = 3 so y = 3
 
