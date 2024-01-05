@@ -42,7 +42,7 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string s = "babad";
+	string s = "abdka";
 	int n = s.size();
 	vector<vector<int>> dp(n, vector<int> (n));
 	vector<vector<int>> pr(n, vector<int> (n));
@@ -57,7 +57,7 @@ fast_io;
 				}
 			}
 
-			else if (s[i] == s[j]) dp[i][j] = max(dp[i][j], dp[i+1][j-1] + 2);
+			else if (s[i] == s[j] && dp[i+1][j-1]) dp[i][j] = max(dp[i][j], dp[i+1][j-1] + 2);
 		}
 	}
 
@@ -77,5 +77,8 @@ fast_io;
 	for (int i = pi.first; i <= pi.second; i++) {
 		out += s[i];
 	}
-	cout << out;
+	cout << ans << endl;
+	cout << out << endl;
 }
+
+//"aaca bdk acaa"
