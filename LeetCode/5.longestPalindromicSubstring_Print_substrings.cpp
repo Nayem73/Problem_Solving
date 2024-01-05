@@ -42,7 +42,7 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string s = "cbbd";
+	string s = "babad";
 	int n = s.size();
 	vector<vector<int>> dp(n, vector<int> (n));
 	vector<vector<int>> pr(n, vector<int> (n));
@@ -62,11 +62,20 @@ fast_io;
 	}
 
 	int ans = 0;
+	pair<int,int> pi;
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
-			ans = max(ans, dp[i][j]);
+			if (dp[i][j] > ans) {
+				ans = dp[i][j];
+				pi = {i, j};
+			}
 		}
 	}
 
-	cout << ans << endl;
+
+	string out;
+	for (int i = pi.first; i <= pi.second; i++) {
+		out += s[i];
+	}
+	cout << out;
 }
