@@ -42,7 +42,31 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string s = "439911188888883";
-	long long num = stoll(s);
-	cout << num << endl;
+	string s = "pwwkew";
+	int n = s.size();
+
+	vector<bool> freq(130);
+
+	int cnt = 0;
+	int ans = 1;
+	int curPos = 0;
+	for (int i = 0; i < n; i++) {
+		if (!freq[s[i]]) {
+			cnt++;
+			freq[s[i]] = true;
+			cout << "- "<< i << endl;
+		} else {
+			ans = max(ans, i-curPos);
+			rje()<<rji(curPos) rji(i) rji(i-curPos);
+			while (curPos != i) {
+				freq[s[i]] = false;
+				curPos++;
+			}
+			rje()<<rji(curPos);
+		}
+	}
+	// rje()<<rji(curPos);
+	// ans = max(ans, (n-1) - curPos);
+
+	cout << ans << endl;
 }

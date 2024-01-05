@@ -42,7 +42,14 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string s = "439911188888883";
-	long long num = stoll(s);
-	cout << num << endl;
+	vector<int> nums {1,2,3,4,5,6,7};
+	int k = 3;
+
+	int len = nums.size();
+        for (int i = 0, j = len-k-1; i < len-k; i++, j--) {
+            swap(nums[i], nums[j]);
+            cout << i<<' '<< j << endl;
+        }
+        
+        for (int x : nums) cout << x << ' ';
 }

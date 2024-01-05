@@ -42,7 +42,30 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string s = "439911188888883";
-	long long num = stoll(s);
-	cout << num << endl;
+	string s = "cbbd";
+	int n = s.size();
+	vector<vector<int>> dp(n, vector<int> (n));
+
+	for (int len = 0; len < n; len++) {
+		for (int i = 0; i+len<n ; i++) {
+			int j = i+len;
+			if (len==0) dp[i][j] = 1;
+			else if (len==1) {
+				if (s[i]==s[j]) {
+					dp[i][j] = 2;
+				}
+			}
+
+			else if (s[i] == s[j]) dp[i][j] = max(dp[i][j], dp[i+1][j-1] + 2);
+		}
+	}
+
+	int ans = 0;
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			ans = max(ans, dp[i][j]);
+		}
+	}
+
+	cout << ans << endl;
 }
