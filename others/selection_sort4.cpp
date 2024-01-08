@@ -32,10 +32,6 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-bool cmp(pair<int,int> a, pair<int,int> b) {
-	return a.second > b.second;
-}
-
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -46,18 +42,18 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<pair<int,int>> store;
-	store.push_back({2,1});
-	store.push_back({22,11});
-	store.push_back({19,12});
-	store.push_back({13,122});
-	store.push_back({211,-10});
-	store.push_back({4,0});
-	store.push_back({-4,9});
+	vector<int> v{5,0,-4,3,-9,3,0,1,0,3,9};
+	int n = v.size();
 
-	sort(store.begin(), store.end(), cmp);
-
-	for (auto X: store) {
-		cout << X.first << ' '<< X.second << endl;
+	for (int i = 0; i < n; i++) {
+		int curSmallestIndx = i;
+		for (int j = i+1; j < n; j++) {
+			if (v[j] < v[curSmallestIndx]) {
+				curSmallestIndx = j;
+			}
+		}
+		swap(v[i], v[curSmallestIndx]);
 	}
+
+	rje()<<rji(v);
 }
