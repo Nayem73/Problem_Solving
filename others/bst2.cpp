@@ -32,6 +32,50 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
+struct Node {
+	int val;
+	Node* parent;
+	Node* left;
+	Node* right;
+	Node(int X) : val(X), parent(NULL), left(NULL), right(NULL) {}
+};
+
+void traverse(Node* curNode) {
+	if (curNode == NULL) return;
+
+	traverse(curNode->left);
+	cout << curNode->val << ' ';
+	traverse(curNode->right);
+}	
+
+Node* create_bst(Node* root, Node* node) {
+	if (root == NULL) {
+		root = node;
+		return root;
+	}
+
+	Node* parentNode = NULL;
+	Node* curNode = root;
+	while (curNode != NULL) {
+		if (node->val < curNode->val) {
+			parentNode = curNode;
+			curNode = curNode->left;
+		} else {
+			parentNode = curNode;
+			curNode = curNode->right;
+		}
+	}
+
+	if (node->val < parentNode->val) {
+		parentNode->left = node;
+		node->parent = parentNode;
+	} else {
+		parentNode->right = node;
+		node->parent = parentNode;
+	}
+	return root;
+}
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -42,34 +86,20 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int n, m; cin >> n >> m;
-	vector<vector<int>> arr1(n, vector<int>(m));
+	
+	vector<int> in{10,17,5,3,12,7,19,1,4};
+	int n = in.size();
+
+	Node *root = NULL;
 
 	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < m; j++) {
-			cout << arr1[i][j] << ' ';
-		}
-		cout << endl;
+		Node *node = new Node(in[i]);
+		root = create_bst(root, node);
 	}
-	cout << endl << endl;
 
-	vector<int> arr2[10];
-	arr2[3].push_back(100);
-	arr2[3].push_back(101);
-	arr2[3].push_back(102);
+	Node *node = new Node(13);
+	root = create_bst(root, node);
 
-	arr2[7].push_back(700);
-	arr2[7].push_back(701);
-	arr2[7].push_back(702);
-	arr2[7].push_back(703);
-	arr2[7].push_back(704);
+	traverse(root);
 
-	for (int i = 0; i < 10; i++) {
-		if (!arr2[i].size()) continue;
-		cout << i << ": ";
-		for (int X: arr2[i]) {
-			cout << X << ' ';
-		}
-		cout << endl;
-	}
 }
