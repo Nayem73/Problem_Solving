@@ -68,29 +68,65 @@ Node* createBST(Node* root, Node* node) {
 	}
 	if (node->val < parentNode->val) {
 		parentNode->left = node;
+		node->par = parentNode; //forgot to add this that's why node was not getting deleted when i was 
+						//doing operations like node->par = something.
 	} else {
 		parentNode->right = node;
+		node->par = parentNode;
 	}
 	return root;
 }
 
-Node* bstTransplant(Node* root, Node* curNode, Node* newNode) {
-	if (curNode == curNode->par->left) {
+Node* findNode(Node* root, int val) {
+	Node* curNode = root;
+	while (curNode != NULL) {
+		if (val == curNode->val) {
+			return curNode;
+		}
+		if (val < curNode->val) {
+			curNode = curNode->left;
+		} else {
+			curNode = curNode->right;
+		}
+	}
+	return root;
+}
+
+Node* BSTNodeTransplant(Node* root, Node* curNode, Node* newNode) {
+	if (curNode == root) {
+		root = newNode;
+		return root;
+	} else if (curNode == curNode->par->left) {
 		curNode->par->left = newNode;
 	} else {
+	cerr << "curNode->par->right = " << curNode->par->right << endl;
 		curNode->par->right = newNode;
 	}
-
 	return root;
 }
 
 Node* deleteNode(Node* root, Node* node) {
-	Node* smallestNode = node->right;
-	while(smallestNode != NULL) {
-		smallestNode = smallestNode->left;
-	}
+	if (node->left == NULL) {
+		root = BSTNodeTransplant(root, node, node->right);
+	} else if (node->right == NULL) {
+		root = BSTNodeTransplant(root, node, node->left);
+	} else {
+		Node* minNode = node->right;
+		while (minNode->left != NULL) {
+			minNode = minNode->left;
+		}
 
-	root = bstTransplant(root, smallestNode, smallestNode->right);
+		if (minNode->par != node) {
+		cerr << minNode->val << endl;
+		cerr << minNode->right->val << endl;
+			root = BSTNodeTransplant(root, minNode, minNode->right);
+			minNode->right = node->right;
+		}
+
+		root = BSTNodeTransplant(root, node, minNode);
+		minNode->left = node->left;
+	}
+	free(node);
 	return root;
 }
 
@@ -106,7 +142,7 @@ fast_io;
 //-------------------------------
 	Node* root = NULL;
 
-	vector<int> inputNodes{10,17,5,7,19,12,3,13,4,1};
+	vector<int> inputNodes{10,5,17,3,7,12,19,1,4,13};
 	int n = inputNodes.size();
 
 	for (int i = 0; i < n; i++) {
@@ -115,9 +151,15 @@ fast_io;
 	}
 
 	inorderTraverse(root);
-	cout << endl;
+	cout<<endl;
 
-	root = deleteNode(root, root);
-
-	// inorderTraverse(root);
+	int valOfNodeToDelete = 10;
+	Node* node = findNode(root, valOfNodeToDelete);
+	if (node != NULL && node->val == valOfNodeToDelete) {
+		root = deleteNode(root, node);
+		cout << "deleted!" << endl;
+		inorderTraverse(root);
+	} else {
+		cout << "node with value "<< valOfNodeToDelete << " not found!\n";
+	}
 }
