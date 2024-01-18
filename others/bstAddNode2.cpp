@@ -32,6 +32,39 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
+Node* BSTAddNode(Node* root, Node* node) {
+	if (root == NULL) {
+		root = node;
+		return root;
+	}
+
+	Node *parentNode = NULL;
+	Node *curNode = root;
+	while (curNode != NULL) {
+		if (node->val < curNode->val) {
+			parentNode = curNode;
+			curNode = curNode->left;
+		} else {
+			parentNode = curNode;
+			curNode = curNode->right;
+		}
+	}
+
+	if (node->val < parentNode->val) {
+		parentNode->left = node;
+	} else {
+		parentNode->right = node;
+	}
+}
+
+struct Node {
+	int val
+	Node* par;
+	Node* left;
+	Node* right;
+	Node(int X) : val(X), par(NULL), left(NULL), right(NULL) {}
+};
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -42,11 +75,7 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int num = 10;
-	int *ptr1 = &num;
-	int *ptr2 = ptr1;
-	(*ptr1)++;
-	(*ptr2) += 5;
-	int result = num;
-	cout << result--;
+	vector<int> in{4,2,6,3,5,1,9};
+	int n =in.size();
+	Node *node
 }

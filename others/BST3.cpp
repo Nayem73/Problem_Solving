@@ -32,6 +32,49 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
+struct Node {
+	int val;
+	Node* left;
+	Node* right;
+	Node(int X): val(X), left(NULL), right(NULL) {}
+};
+
+void inOrderTraverse(Node* curNode) {
+	if (curNode == NULL) return;
+
+	inOrderTraverse(curNode->left);
+	cout<<curNode->val<<' ';
+	inOrderTraverse(curNode->right);
+}
+
+Node* addNodeToHeap(Node* root, Node* node) {
+	if (root == NULL) {
+		root = node;
+		return root;
+	}
+
+	Node* curNode = root;
+	Node* parentNode = NULL;
+
+	while (curNode != NULL) {
+		if (node->val < curNode->val) {
+			parentNode = curNode;
+			curNode = curNode->left;
+		} else {
+			parentNode = curNode;
+			curNode = curNode->right;
+		}
+	}
+
+	if (node->val < parentNode->val) {
+		parentNode->left = node;
+	} else {
+		parentNode->right = node;
+	}
+
+	return root;
+}
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -42,11 +85,15 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int num = 10;
-	int *ptr1 = &num;
-	int *ptr2 = ptr1;
-	(*ptr1)++;
-	(*ptr2) += 5;
-	int result = num;
-	cout << result--;
+	vector<int> in{12,7,1,3,10,17,19,2,5};
+	int n = in.size();
+
+	Node* root = NULL;
+
+	for (int i = 0; i < n; i++) {
+		Node* node = new Node(in[i]);
+		root = addNodeToHeap(root, node);
+	}
+
+	inOrderTraverse(root);
 }
