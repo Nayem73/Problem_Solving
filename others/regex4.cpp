@@ -42,13 +42,43 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string a = "Mr. Karim";
-	string b = "Mrs. Kina";
-	string c = "Mr Nice";
-	string d = "321.555.4321";
+	string s1 = "Mr Karim Mia";
+	string s2 = "Mr. Tin";
+	string s3 = "Mrs. Rina";
+	string s4 = "Ms. Lu";
+	string s5 = "Mrkdjkfjdkfj kdjfijfkjf";
+	string s6 = "Mr T";
+	string s7 = "Mr. t";
+	string s8 = "Rina";
+	string s9 = "R";
+	string s10 = "r";
 
-	regex pattern("[A-Za-z]{3}\\.?\\s[a-zA-Z]+");
-	bool isMatch = regex_match(c, pattern);
-	cout << isMatch << endl;
-	rje()<<rji(isMatch);
+	string s11 = "CoreyMSchafer@gmail.com";
+	string s12 = "Corey.schafer@university.edu";
+	string s13 = "Corey-321-schafer@my-work.net";
+
+
+	regex pattern("(Mr|Mr.|Mrs|Mrs.|Ms.|Ms)\\s[A-Z][a-z]+(\\s[A-Z][a-z]+)?");
+	bool isMatch = regex_match(s2, pattern);
+	cerr<<isMatch << endl;
+
+	vector<string> store;
+	store.push_back(s1);
+	store.push_back(s2);
+	store.push_back(s3);
+	store.push_back(s4);
+	store.push_back(s5);
+	store.push_back(s6);
+	store.push_back(s7);
+	store.push_back(s8);
+	store.push_back(s9);
+	store.push_back(s10);
+	store.push_back(s11);
+	store.push_back(s12);
+	store.push_back(s13);
+	for (string s : store) {
+		isMatch = regex_match(s, pattern);
+		rje()<<rji(s) rji(isMatch);
+	}
+
 }

@@ -32,6 +32,10 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
+void quickSort(vector<int>& store, int lo, int hi) {
+	
+}
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -42,13 +46,8 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string a = "Mr. Karim";
-	string b = "Mrs. Kina";
-	string c = "Mr Nice";
-	string d = "321.555.4321";
+	vector<int> store{4,1,-1,4,92,4,0,1,4};
+	int n = store.size();
 
-	regex pattern("[A-Za-z]{3}\\.?\\s[a-zA-Z]+");
-	bool isMatch = regex_match(c, pattern);
-	cout << isMatch << endl;
-	rje()<<rji(isMatch);
+	quickSort(store, 0, n-1);
 }

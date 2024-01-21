@@ -42,6 +42,11 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int x = 1002%10000;
-	cout << x;	
+	// int x = 1002410;
+	// string s = stoi(x);
+	// cout << s << endl;
+
+	string s = "100.2410";
+	double x = stod(s);
+	cout<<x;
 }

@@ -48,7 +48,31 @@ fast_io;
 	string d = "Gha-13-123";
 
 	regex pattern("[A-Z]{1}(a|ha)-\\d{2,3}-\\d{3}");
-	bool isMatch = regex_match(c, pattern);
+	bool isMatch = regex_match(a, pattern);
 	cout << isMatch << endl;
 	rje()<<rji(isMatch);
 }
+
+/*
+here, is both regex same?
+
+regex pattern("[A-Z]{1}(a|ha)-\\d{2,3}-\\d{3}");
+regex pattern("[A-Z](a|ha)-\\d{2,3}-\\d{3}");
+
+Yes, both regular expressions are functionally the same.
+
+In regular expressions, `[A-Z]{1}` and `[A-Z]` both match exactly one uppercase letter. The `{1}` in the first pattern is redundant because, by default, a character set or a character class matches exactly one occurrence.
+
+So, both of these regular expressions will match a string that starts with an uppercase letter, followed by either "a" or "ha", a hyphen, two to three digits, another hyphen, and finally three digits.
+
+Here's a breakdown of the regular expression:
+
+- `[A-Z]` or `[A-Z]{1}`: Matches exactly one uppercase letter.
+- `(a|ha)`: Matches either "a" or "ha".
+- `-`: Matches the hyphen character.
+- `\\d{2,3}`: Matches a sequence of 2 to 3 digits.
+- `-`: Matches the hyphen character.
+- `\\d{3}`: Matches a sequence of 3 digits.
+
+I hope this helps! Let me know if you have any other questions. 😊
+*/

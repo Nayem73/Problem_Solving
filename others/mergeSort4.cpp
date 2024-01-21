@@ -32,6 +32,46 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
+void mergeSort(vector<int>& v, int lo, int hi) {
+	if (lo == hi) return;
+	int mid = (lo+hi)/2;
+	mergeSort(v, lo, mid);
+	mergeSort(v, mid+1, hi);
+
+	vector<int> firstPart, secondPart;
+	for (int i = lo; i <= mid; i++) firstPart.push_back(v[i]);
+	for (int i = mid+1; i <= hi; i++) secondPart.push_back(v[i]);
+	rje()<<rji(v) rji(firstPart) rji(secondPart);
+
+	int indx = lo;
+	int firstPartSize = firstPart.size(), secondPartSize = secondPart.size();
+	int firstPartIndx = 0, secondPartIndx = 0;
+	while (firstPartIndx < firstPartSize && secondPartIndx < secondPartSize) {
+		if (firstPart[firstPartIndx] > secondPart[secondPartIndx]) {
+			v[indx] = firstPart[firstPartIndx];
+			indx++;
+			firstPartIndx++;
+		} else {
+			v[indx] = secondPart[secondPartIndx];
+			indx++;
+			secondPartIndx++;
+		}
+	}
+
+	while (firstPartIndx < firstPartSize) {
+		v[indx] = firstPart[firstPartIndx];
+		indx++;
+		firstPartIndx++;
+	}
+	while (secondPartIndx < secondPartSize) {
+		v[indx] = secondPart[secondPartIndx];
+		indx++;
+		secondPartIndx++;
+	}
+
+	rje()<<rji(v); rje();
+}
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -42,13 +82,10 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string a = "Mr. Karim";
-	string b = "Mrs. Kina";
-	string c = "Mr Nice";
-	string d = "321.555.4321";
+	vector<int> v{3,2,1,6,3,2,3,-1,3,9};
+	int n = v.size();
 
-	regex pattern("[A-Za-z]{3}\\.?\\s[a-zA-Z]+");
-	bool isMatch = regex_match(c, pattern);
-	cout << isMatch << endl;
-	rje()<<rji(isMatch);
+	mergeSort(v, 0, n-1);
+
+	rje()<<rji(v);
 }

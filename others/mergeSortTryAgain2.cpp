@@ -32,7 +32,9 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-vector<int> v{4,1,3,-4,2,-9,8,1,0,1,2};
+// vector<int> v{4,1,3,-4,2,-9,8,1,0,1,2};
+	vector<int> v{3,2,1,6,3,2,3,-1,3,9};
+
 
 void mergeSort(int lo, int hi) {
 	if (lo == hi) return;

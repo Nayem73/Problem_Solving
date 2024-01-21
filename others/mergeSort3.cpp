@@ -36,7 +36,7 @@ void merge(vector<int> &v, int lo, int hi) {
 	if (lo == hi) return;
 
 	int mid = (lo+hi)/2;
-	merge(v, 0, mid);
+	merge(v, lo, mid);
 	merge(v, mid+1, hi);
 
 	vector<int> leftHalf, rightHalf;
