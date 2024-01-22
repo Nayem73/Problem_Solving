@@ -32,27 +32,6 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-int partition(vector<int>& store, int lo, int hi) {
-	int i = lo;
-	int pivot = hi;
-	for (int indx = lo; indx < hi; indx++) {
-		if (store[indx] < store[pivot]) {
-			swap(store[indx], store[i]);
-			i++;
-		}
-	}
-
-	swap(store[i], store[pivot]);
-	return i;
-}
-
-void quickSort(vector<int>& store, int lo, int hi) {
-	if (lo >= hi) return;
-	int pivot = partition(store, lo, hi);
-	quickSort(store, lo, pivot-1);
-	quickSort(store, pivot+1, hi);
-}
-
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -63,9 +42,21 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<int> store{4,1,-1,4,92,4,0,1,4};
-	int n = store.size();
+	int n, target; cin >> n >> target;
+	vector<int> coins(n);
+	for (int &X: coins) cin >> X;
+	
+	vector<int> dp(1000003);
+	dp[0] = 1;
+	const int mod = 1e9+7;
 
-	quickSort(store, 0, n-1);
-	rje()<<rji(store);
+
+	for (int j = 1; j <= target; j++) {
+		for (int i = 0; i < n; i++) {
+			if (j-coins[i] >= 0)
+				dp[j] = (dp[j]+dp[j-coins[i]]) % mod;
+		}
+	}
+
+	cout << dp[target] << endl;
 }

@@ -42,8 +42,8 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string s1 = "Mr Karim Mia";
-	string s2 = "Mr. Tin";
+	string s1 = "who.is?Mores? ok.";
+	string s2 = "\\";
 	string s3 = "Mrs. Rina";
 	string s4 = "Ms. Lu";
 	string s5 = "Mrkdjkfjdkfj kdjfijfkjf";
@@ -57,8 +57,10 @@ fast_io;
 	string s12 = "Corey.schafer@university.edu";
 	string s13 = "Corey-321-schafer@my-work.net";
 
-
-	regex pattern("(Mr|Mr.|Mrs|Mrs.|Ms.|Ms)\\s[A-Z][a-z]+(\\s[A-Z][a-z]+)?");
+	cerr<<s2<<endl;
+	regex pattern("(Mr|Mr.|Mrs|Mrs.|Ms.|Ms)\\s[A - Z][a-z]+(\\s[A-Z][a-z]+)?");
+	// regex pattern("who\\..+");
+	// regex pattern("\\S+");
 	bool isMatch = regex_match(s2, pattern);
 	cerr<<isMatch << endl;
 

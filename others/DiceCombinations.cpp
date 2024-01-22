@@ -32,27 +32,6 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-int partition(vector<int>& store, int lo, int hi) {
-	int i = lo;
-	int pivot = hi;
-	for (int indx = lo; indx < hi; indx++) {
-		if (store[indx] < store[pivot]) {
-			swap(store[indx], store[i]);
-			i++;
-		}
-	}
-
-	swap(store[i], store[pivot]);
-	return i;
-}
-
-void quickSort(vector<int>& store, int lo, int hi) {
-	if (lo >= hi) return;
-	int pivot = partition(store, lo, hi);
-	quickSort(store, lo, pivot-1);
-	quickSort(store, pivot+1, hi);
-}
-
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -63,9 +42,17 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<int> store{4,1,-1,4,92,4,0,1,4};
-	int n = store.size();
+	int limit; cin >>limit;
 
-	quickSort(store, 0, n-1);
-	rje()<<rji(store);
+	vector<int> dp(limit+1);
+	dp[0] = 1;
+
+	for (int i = 1; i <= 6; i++) {
+		for (int j = 1; j <= limit; j++) {
+			if (j-i < 0) continue;
+			dp[j] += dp[j-i];
+		}
+	}	
+
+	cout << dp[limit];
 }
