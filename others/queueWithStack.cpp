@@ -42,26 +42,21 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<int> adj[5];
-	int n; cin >> n;
+	//ekta stack reverse kore dilei queue pawa jay.
+	stack<int> st1;
+	st1.push(1);
+	st1.push(2);
+	st1.push(3);
+	st1.push(4);
 
-	for (int i = 0; i < n; i++) {
-		int u, v;
-		cin >> u >> v;
-		adj[u].push_back(v);
+	stack<int> st2;
+	while (!st1.empty()) {
+		st2.push(st1.top());
+		st1.pop();
 	}
 
-	int st = 0;
-	queue<int> q;
-	q.push(st);
-
-	// vector<bool> vis(n);
-
-	while (!q.empty()) {
-		int curNode = q.front();
-		q.pop();
-		for (int i = 0; i < (int)adj[curNode].size(); i++) {
-			
-		}
+	while (!st2.empty()) {
+		cerr << st2.top() << endl;
+		st2.pop();
 	}
 }
