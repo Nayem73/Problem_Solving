@@ -42,17 +42,18 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string s = "hello world    not    there ,  ,for";
-	int n = s.size();
+	vector<int> store{4,1,-1,4,92,4,0,1,4};
+	int n = store.size();
 
-	stringstream ss(s);
+	for (int i = 0; i < n; i++) {
+		int lowest_indx = i;
+		for (int j = i+1; j < n; j++) {
+			if (store[j] < store[lowest_indx]) {
+				lowest_indx = j;
+			}
+		}
+		swap(store[i], store[lowest_indx]);
+	}	
 
-	string tmpS;
-	int cnt = 0;
-	while (ss >> tmpS) {
-		cnt++;
-		rje()<<rji(tmpS);
-	}
-	cerr << tmpS << endl;
-	cerr << cnt << endl;
+	rje()<<rji(store);
 }

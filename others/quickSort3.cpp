@@ -32,6 +32,21 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
+void getPivot(vector<int>& store, int lo, int hi) {
+	int curIndx = lo;
+	for (int i = lo; i < hi; i++) {
+		if (store[i] < store[hi]) {
+			swap(store[i], )
+		}
+	}
+}
+
+void quickSort(vector<int>& store, int lo, int hi) {
+	int pivot = getPivot(store, lo, hi);
+	quickSort(store, lo, pivot-1);
+	quickSort(store, pivot+1, hi);
+}
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -42,17 +57,8 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string s = "hello world    not    there ,  ,for";
-	int n = s.size();
+	vector<int> store{4,1,4,2,0,3,-3,0,9};
+	int n = store.size();
 
-	stringstream ss(s);
-
-	string tmpS;
-	int cnt = 0;
-	while (ss >> tmpS) {
-		cnt++;
-		rje()<<rji(tmpS);
-	}
-	cerr << tmpS << endl;
-	cerr << cnt << endl;
+	quickSort(store, 0, n-1);
 }
