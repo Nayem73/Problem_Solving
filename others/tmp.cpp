@@ -42,26 +42,13 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<int> adj[5];
-	int n; cin >> n;
+	vector<int> v{5, 9, 1, 4, 9, 0, 1, 2, 9, 6 , 6, 5, 0};
+	sort(v.begin(), v.end());
+	// v.resize(unique(v.begin(), v.end()) - v.begin());
 
-	for (int i = 0; i < n; i++) {
-		int u, v;
-		cin >> u >> v;
-		adj[u].push_back(v);
-	}
+	v.resize(unique(v.begin(), v.end()) - v.begin());
 
-	int st = 0;
-	queue<int> q;
-	q.push(st);
+	rje()<<rji(v);
 
-	// vector<bool> vis(n);
 
-	while (!q.empty()) {
-		int curNode = q.front();
-		q.pop();
-		for (int i = 0; i < (int)adj[curNode].size(); i++) {
-			
-		}
-	}
 }

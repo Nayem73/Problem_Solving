@@ -32,25 +32,20 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-int partition(vector<int>& store, int lo, int hi) {
-	int curIndx = lo;
-	for (int i = lo; i < hi; i++) {
-		if (store[i] < store[hi]) {
-			swap(store[i], store[curIndx]);
-			curIndx++;
-		}
+const int mod = 1000003;
+
+vector<long long> fact(1000003);
+
+long long bigmod(long long a, long long b) {
+	if (b == 0) return 1;
+	long long x = bigmod(a, b/2);
+	x = (x*x) % mod;
+	if (b%2) {
+		x = (x*a) % mod;
 	}
-
-	swap(store[curIndx], store[hi]);
-	return curIndx;
+	return x;
 }
 
-void quickSort(vector<int>& store, int lo, int hi) {
-	if (lo >= hi) return;
-	int pivot = partition(store, lo, hi);
-	quickSort(store, lo, pivot-1);
-	quickSort(store, pivot+1, hi);
-}
 
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
@@ -62,9 +57,19 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<int> store{4,1,4,2,0,3,-3,0,9};
-	int n = store.size();
-	rje()<<rji(store);
-	quickSort(store, 0, n-1);
-	rje()<<rji(store);
+	
+	fact[0] = 1;
+	for (int i = 1; i <= 1000000; i++) {
+		fact[i] = (fact[i-1] * i) % mod;
+	}
+
+	int t, tc = 0; cin>>t;
+	
+	while (t--) {
+		int n, r; cin >> n>>r;
+		long long up = fact[n];
+		long long down = (fact[r] * (long long)fact[n-r]) % mod;
+		long long nCr = (up * bigmod(down, mod-2))%mod;
+		cout << "Case "<<++tc<<": "<< nCr << endl;
+	}
 }

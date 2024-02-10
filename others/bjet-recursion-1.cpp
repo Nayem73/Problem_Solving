@@ -32,24 +32,25 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-int partition(vector<int>& store, int lo, int hi) {
-	int curIndx = lo;
-	for (int i = lo; i < hi; i++) {
-		if (store[i] < store[hi]) {
-			swap(store[i], store[curIndx]);
-			curIndx++;
-		}
+void rec(string s, int indxS, string& new_s) {
+	if (indxS >= (int)s.length()) return;
+
+	if (s[indxS] >= 'A' && s[indxS] <= 'Z') {
+		s[indxS] += 32;
 	}
 
-	swap(store[curIndx], store[hi]);
-	return curIndx;
-}
+	if (s[indxS] == 'a' || s[indxS] == 'e' || s[indxS] == 'i' || s[indxS] == 'o' || s[indxS] == 'u' || 
+			(s[indxS] >= '0' && s[indxS] <= '9')) {
+		//nothing.
+	} else {
+		if (s[indxS] >= 'a' && s[indxS] <= 'z') {
+			s[indxS] -= 32;
+		}
+		new_s += "*";
+		new_s += s[indxS];
+	}
 
-void quickSort(vector<int>& store, int lo, int hi) {
-	if (lo >= hi) return;
-	int pivot = partition(store, lo, hi);
-	quickSort(store, lo, pivot-1);
-	quickSort(store, pivot+1, hi);
+	rec(s, indxS+1, new_s);
 }
 
 int main() {
@@ -62,9 +63,11 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<int> store{4,1,4,2,0,3,-3,0,9};
-	int n = store.size();
-	rje()<<rji(store);
-	quickSort(store, 0, n-1);
-	rje()<<rji(store);
+	// string s = "kAeb9EC3dfO";
+	string s = "1A2bcDnajMkW";
+	string new_s;
+
+	rec(s, 0, new_s);
+	cout << new_s << endl;
+	cerr << new_s << endl;
 }

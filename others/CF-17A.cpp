@@ -32,24 +32,19 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-int partition(vector<int>& store, int lo, int hi) {
-	int curIndx = lo;
-	for (int i = lo; i < hi; i++) {
-		if (store[i] < store[hi]) {
-			swap(store[i], store[curIndx]);
-			curIndx++;
-		}
-	}
 
-	swap(store[curIndx], store[hi]);
-	return curIndx;
+int gcd(int a, int b) {
+	if (a%b==0) return b;
+	return gcd(b, a%b);
 }
 
-void quickSort(vector<int>& store, int lo, int hi) {
-	if (lo >= hi) return;
-	int pivot = partition(store, lo, hi);
-	quickSort(store, lo, pivot-1);
-	quickSort(store, pivot+1, hi);
+int mod = 1e9 + 7;
+long long bigmod(int a, int b) {
+	if (b==0) return 1%mod;
+	long long x = bigmod(a, b/2);
+	x = (x*x) % mod;
+	if (b%2) x = (x*a) % mod;
+	return x;
 }
 
 int main() {
@@ -62,9 +57,39 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<int> store{4,1,4,2,0,3,-3,0,9};
-	int n = store.size();
-	rje()<<rji(store);
-	quickSort(store, 0, n-1);
-	rje()<<rji(store);
+	
+	// 	vector<int> st{7,3,5,3,6,2,9,8}; int n = st.size();
+	// vector<int> ans(n);
+	// vector<int> tmp;
+	// for (int i = 0; i < n; i++) {
+	// 	int x = st[i];
+	// 	auto it = lower_bound(tmp.begin(), tmp.end(), x);
+	// 	if (it == tmp.end()) {
+	// 		ans[i] = tmp.size();
+	// 		tmp.push_back(x);
+	// 	}
+	// 	else {
+	// 		*it = x;
+	// 		ans[i] = distance(tmp.begin(), it);
+	// 	}
+	// }
+ 
+	// cerr << tmp.size() <<endl;
+	// for (int i = 0; i < n; i++) {
+	// 	cerr << st[i] << ": "<< ans[i] << endl;
+	// }
+
+	priority_queue<int> pq;
+	pq.push(56);
+	pq.push(1);
+	pq.push(23);
+
+	while (!pq.empty()) {
+		cout << pq.top() << ' ';
+		pq.pop();
+	}
+
+
+
+	
 }

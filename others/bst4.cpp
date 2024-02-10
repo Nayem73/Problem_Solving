@@ -32,24 +32,48 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-int partition(vector<int>& store, int lo, int hi) {
-	int curIndx = lo;
-	for (int i = lo; i < hi; i++) {
-		if (store[i] < store[hi]) {
-			swap(store[i], store[curIndx]);
-			curIndx++;
+struct Node {
+	int val;
+	Node* left;
+	Node* right;
+	Node* par;
+	Node(int X) : val(X), left(NULL), right(NULL), par(NULL) {}
+};
+
+void inOrderTraverse(Node* curNode) {
+	// cout << "inOrderTraverse: ";
+	if (curNode == NULL) return;
+	inOrderTraverse(curNode->left);
+	cout << curNode->val << " ";
+	inOrderTraverse(curNode->right);
+}
+
+Node* bst(Node* root, Node* node) {
+	if (root == NULL) {
+		root = node;
+		return root;
+	}
+
+	Node* curNode = root;
+	Node* parNode = NULL;
+
+	while (curNode != NULL) {
+		parNode = curNode;
+		if (curNode->val > node->val) {
+			curNode = curNode->left;
+		} else {
+			curNode = curNode->right;
 		}
 	}
 
-	swap(store[curIndx], store[hi]);
-	return curIndx;
-}
-
-void quickSort(vector<int>& store, int lo, int hi) {
-	if (lo >= hi) return;
-	int pivot = partition(store, lo, hi);
-	quickSort(store, lo, pivot-1);
-	quickSort(store, pivot+1, hi);
+	if (parNode->val > node->val) {
+		parNode->left = node;
+		node->par = parNode;
+	} else {
+		parNode->right = node;
+		node->par = parNode;
+	}
+	return root;
 }
 
 int main() {
@@ -62,9 +86,15 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<int> store{4,1,4,2,0,3,-3,0,9};
+	vector<int> store{4,5,1,10,11,9,0,3,2};
 	int n = store.size();
-	rje()<<rji(store);
-	quickSort(store, 0, n-1);
-	rje()<<rji(store);
+
+	Node* root = NULL;
+
+	for (int i = 0; i < n; i++) {
+		Node* node = new Node(store[i]);
+		root = bst(root, node);
+	}
+
+	inOrderTraverse(root);
 }
