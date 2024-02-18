@@ -32,6 +32,50 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
+struct Node {
+	int val;
+	Node* left;
+	Node* right;
+	Node* par;
+	Node(int X) : val(X), left(NULL), right(NULL), par(NULL) {}
+};
+
+void inorderTraverse(Node* curNode) {
+	if (curNode == NULL) return;
+	inorderTraverse(curNode->left);
+	cout << curNode->val << " ";
+	inorderTraverse(curNode->right);
+}
+
+Node* createBST(Node* root, Node* node) {
+	if (root == NULL) {
+		root = node;
+		return root;
+	}
+
+	Node* curNode = root;
+	Node* parNode = NULL;
+
+	while (curNode != NULL) {
+		parNode = curNode;
+		if (node->val < curNode->val) {
+			curNode = curNode->left;
+		} else {
+			curNode = curNode->right;
+		}
+	}
+
+	if (node->val < parNode->val) {
+		parNode->left = node;
+		node->par = parNode;
+	} else {
+		parNode->right = node;
+		node->par = parNode;
+	}
+
+	return root;
+}
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -42,9 +86,15 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int *ptr;
-	int got = 45;
-	ptr = &got;
-	cout << *ptr << endl;
-	cout << ptr << endl;	
+	vector<int> store{3,1,9,39,18,0,1,93,9};
+	int n = store.size();
+
+	Node* root = NULL;
+
+	for (int X : store) {
+		Node* node = new Node(X);
+		root = createBST(root, node);
+	}
+
+	inorderTraverse(root);
 }

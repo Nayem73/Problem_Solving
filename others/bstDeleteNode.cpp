@@ -97,9 +97,11 @@ Node* BSTNodeTransplant(Node* root, Node* curNode, Node* newNode) {
 		root = newNode;
 		return root;
 	} else if (curNode == curNode->par->left) {
+		newNode->par = curNode->par;
 		curNode->par->left = newNode;
 	} else {
 	cerr << "curNode->par->right = " << curNode->par->right << endl;
+		newNode->par = curNode->par;
 		curNode->par->right = newNode;
 	}
 	return root;

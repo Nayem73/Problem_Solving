@@ -42,9 +42,11 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int *ptr;
-	int got = 45;
-	ptr = &got;
-	cout << *ptr << endl;
-	cout << ptr << endl;	
+	string s1 = "who.are@gmail.com";
+	string s1 = "whoare@gmailcom";
+	string s1 = "who-are@gmail.com";
+	string s1 = "who.are@gmail.comwho";
+
+	regex rg = regex_pattern(s1, "[a-zA-Z0-9-._]+@[a-zA-Z0-9-]+\\.[a-zA-Z]+");
+
 }
