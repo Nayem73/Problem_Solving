@@ -76,6 +76,44 @@ Node* createBST(Node* root, Node* node) {
 	return root;
 }
 
+Node* BSTTransplant(Node* root, Node* curNode, Node* newNode) {
+	if (curNode == root) {
+		root = newNode;
+		return root;
+	} else if (curNode->par->left == curNode) {
+		curNode->par->left = newNode;
+		newNode->par = curNode->par;
+	} else {
+		curNode->par->right = newNode;
+		newNode->par = curNode->par;
+	}
+	return root;
+}
+
+Node* BSTDeleteNode(Node* root, Node* node) {
+	if (node->left == NULL) {
+		root = BSTTransplant(root, node, node->right);
+	} else if (node->right == NULL) {
+		root = BSTTransplant(root, node, node->left);
+	} else {
+		Node* smallestNode = node->right;
+		Node* curNode = node->right;
+		while (curNode != NULL) {
+			smallestNode = curNode;
+			curNode = curNode->left;
+		}
+
+		if (smallestNode->par != node) {
+			root = BSTTransplant(root, smallestNode, smallestNode->right);
+			smallestNode->right = node->right;
+		}
+		root = BSTTransplant(root, node, smallestNode);
+		smallestNode->left = node->left;
+	}
+	free(node);
+	return root;
+}
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM

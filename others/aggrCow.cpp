@@ -32,6 +32,22 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
+bool bs(vector<int>& barn, int mid, int c) {
+
+	int n = barn.size();
+	int curCow = 1;
+	int curBarn = 0;
+
+	for (int i = 1; i < n; i++) {
+		if (barn[i] - barn[curBarn] >= mid) {
+			curCow++;
+			curBarn = i;			
+		}
+	}
+	if (curCow >= c) return true;
+	return false;
+}
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -42,9 +58,26 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<int> v {3,5,2,2};
-	v.resize(0);
-	free(v);
+	int t; cin >> t;
+	while (t--) {
+		int n, c;
+		cin >> n >> c;
+		vector<int> barn(n);
+		for (int &X: barn) cin >> X;
+		sort(barn.begin(), barn.end());
 
+		long long lo = 0, hi = 1e9;
+		long long got = 0;
+		while (lo <= hi) {
+			long long mid = (lo + hi) / 2;
+			if (bs(barn, mid, c)) {
+				got = mid;
+				lo = mid+1;
+			} else {
+				hi = mid - 1;
+			}
+		}
 
+		cout << got << endl;
+	}
 }
