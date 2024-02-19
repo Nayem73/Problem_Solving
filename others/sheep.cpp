@@ -32,8 +32,26 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-void dfs(vector<int>& adj[]) {
-	return;
+vector<int> dirx{1, -1, 0, 0};
+vector<int> diry{0, 0, 1, -1};
+const int limit = 250;
+int k = 0, v = 0;
+
+vector<vector<bool>> vis(limit+1, vector<bool> (limit+1));
+
+void dfs(int curx, int cury, int n, int m, vector<string>& grid) {
+	vis[curx][cury] = true;
+	if (grid[curx][cury] == 'k') k++;
+	if (grid[curx][cury] == 'v') v++;
+
+	for (int i = 0; i < 4; i++) {
+		int tox = curx + dirx[i];
+		int toy = cury + diry[i];
+		if (tox < 0 || toy < 0 || tox >= n || toy >= m) continue;
+		if (vis[tox][toy]) continue;
+		if (grid[tox][toy] == '#') continue;
+		dfs(tox, toy, n, m, grid);
+	}
 }
 
 int main() {
@@ -46,10 +64,27 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	const int n = 4;
-	vector<int> adj[n];
+	int n, m; cin>>n>>m;
+	vector<string> grid(n);
+	for (int i = 0; i < n; i++) {
+		string s;
+		cin >> s;
+		grid[i] = s;
+	}
 
-	dfs(adj);
-
-
+	int totalK = 0, totalV = 0;
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (!vis[i][j] && grid[i][j] != '#') {
+				dfs(i, j, n, m, grid);
+				//rje()<<i<<' '<<j<<": "<<rji(k)rji(v);
+				if (v >= k) k = 0;
+				else v = 0;
+				totalK += k;
+				totalV += v;
+				k = 0; v = 0;
+			}
+		}
+	}
+	cout << totalK << ' '<< totalV << endl;
 }

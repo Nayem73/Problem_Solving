@@ -31,9 +31,18 @@ sim dor(const c&) { ris; }
 #define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
+const int limit = 1000;
+vector<int> adj[limit+1];
+vector<int> visitCount(limit+1);
+vector<bool> vis(limit+1);
 
-void dfs(vector<int>& adj[]) {
-	return;
+void dfs(int curNode) {
+	visitCount[curNode]++;
+	vis[curNode] = true;
+	for (int X: adj[curNode]) {
+		if (vis[X]) continue;
+		dfs(X);
+	}
 }
 
 int main() {
@@ -46,10 +55,30 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	const int n = 4;
-	vector<int> adj[n];
+	int t, tc = 0; cin >> t;
+	while (t--) {
+		int k, n, m;
+		cin>>k>>n>>m;
+		vector<int> person(k);
+		for (int &X: person) cin >> X;
 
-	dfs(adj);
+		for (int i = 0; i < m; i++) {
+			int u, v; cin>>u>>v;
+			adj[u].push_back(v);
+		}
 
+		for (int i = 0; i < k; i++) {
+			dfs(person[i]);
+			for (int j = 0; j <= limit; j++) vis[j] = false;
+		}
 
+		int ans = 0;
+		for (int i = 0; i <= limit; i++) {
+			if (visitCount[i] == k) ans++;
+		}
+ 
+		cout<< "Case "<<++tc<<": " << ans << endl;
+
+		for (int i = 0; i <= limit; i++) visitCount[i] = 0, adj[i].clear();
+	}
 }

@@ -31,9 +31,26 @@ sim dor(const c&) { ris; }
 #define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
+const int limit = 2000;
+vector<int> adj[limit+1];
+vector<int> vis(limit+1);
+bool isSuspicious = false;
 
-void dfs(vector<int>& adj[]) {
-	return;
+void dfs(int curNode, int parNode, int parColor) {
+	if (vis[curNode]) return;
+	if (isSuspicious) return;
+	int curColor = 1;
+	if (parColor == 1) curColor = 2;
+	vis[curNode] = curColor;
+
+	for (int X : adj[curNode]) {
+		if (X == parNode) continue;
+		if (vis[X] == curColor) {
+			isSuspicious = true;
+			return;
+		}
+		dfs(X, curNode, curColor);
+	}
 }
 
 int main() {
@@ -46,10 +63,27 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	const int n = 4;
-	vector<int> adj[n];
+	int t, tc=0; cin>>t;
+	while (t--) {
+		int n, m; cin>>n>>m;
+		for (int i = 0; i < m; i++) {
+			int u, v; cin >> u >> v;
+			adj[u].push_back(v);
+			adj[v].push_back(u);
+		}
 
-	dfs(adj);
+		for (int i = 1; i <= n; i++) {
+			dfs(i, -1, 1);
+			for (int j = 1; j <= limit; j++) vis[j] = false;
+		}
 
-
+		cout<< "Scenario #"<<++tc<< ":\n";
+		if (isSuspicious) {
+			cout << "Suspicious bugs found!" << endl;
+		} else {
+			cout << "No suspicious bugs found!" << endl;
+		}
+		isSuspicious = false;
+		for (int i = 0; i <= limit; i++) adj[i].clear(), vis[i] = false;
+	}
 }

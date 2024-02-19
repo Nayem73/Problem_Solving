@@ -31,9 +31,22 @@ sim dor(const c&) { ris; }
 #define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
+const int limit = 1e5;
+int n, ok;
+vector<int> cats;
+vector<int> adj[limit+1];
+int ans = 0;
 
-void dfs(vector<int>& adj[]) {
-	return;
+void dfs(int curNode, int curCats) {
+	if (curCats + cats[curNode] > ok) return;
+	if (cats[curNode] == 0) curCats = 0;
+	
+	if (adj[curNode].size() == 0) ans++;
+	//cerr << curNode << ": "<< adj[curNode].size() << endl;
+
+	for (int X: adj[curNode]) {
+		dfs(X, curCats + cats[curNode]);
+	}
 }
 
 int main() {
@@ -46,10 +59,18 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	const int n = 4;
-	vector<int> adj[n];
+	cin >> n >> ok;
+	cats.resize(n+1);
+	for (int i = 1; i <= n; i++) {
+		int tmp; cin >> tmp;
+		cats[i] = tmp;
+	}
 
-	dfs(adj);
+	for (int i = 1; i < n; i++) {
+		int u, v; cin >> u >> v;
+		adj[u].push_back(v);
+	}
 
-
+	dfs(1, 0);
+	cout << ans << endl;
 }
