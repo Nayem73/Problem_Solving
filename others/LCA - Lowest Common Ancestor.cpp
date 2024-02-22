@@ -32,28 +32,28 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 const int limit = 9;
-int n, m;
-int LCANode1 = 5, LCANode2 = 4;
 vector<int> adj[limit+1];
 vector<bool> vis(limit+1);
+vector<int> nodeAncestors;
 
-vector<int> node1Ancestors;
-vector<int> node2Ancestors;
-
-void dfs(int curNode, bool isFoundNode1, bool isFoundNode2) {
-	isFoundNode1 = isFoundNode1 || (curNode == LCANode1);
-	isFoundNode2 = isFoundNode2 || (curNode == LCANode2);
+bool dfs(int curNode, int targetNode) {
+	if (curNode == targetNode) {
+		nodeAncestors.push_back(curNode);
+		return true;
+	}
+	if (int(adj[curNode].size()) == 0) return false;
 
 	vis[curNode] = true;
+	bool IsFoundNode = false;
 	for (int to : adj[curNode]) {
 		if (vis[to]) continue;
-		dfs(to, isFoundNode1, isFoundNode2);
+		IsFoundNode = IsFoundNode || dfs(to, targetNode);
 	}
 
-	// rje()<<rji(curNode) rji(isFoundNode1);
+	if (IsFoundNode) nodeAncestors.push_back(curNode);
 
-	if (isFoundNode1) node1Ancestors.push_back(curNode);
-	if (isFoundNode2) node2Ancestors.push_back(curNode);
+	// rje()<<rji(curNode) rji(IsFoundNode);
+	return IsFoundNode;
 }
 
 int main() {
@@ -66,15 +66,38 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
+	int n, m;
 	cin >> n >> m;
 	for (int i = 0; i < m; i++) {
 		int u, v; cin>>u>>v;
 		adj[u].push_back(v);
 	}
 
-	dfs(3, false, false);
+	int targetNode1 = 5, targetNode2 = 4;
 
-	rje()<<rji(node1Ancestors);
-	rje()<<rji(node2Ancestors);
+	bool tmp = dfs(3, targetNode1);
+	set<int> st;
+	for (int X : nodeAncestors) {
+		st.insert(X);
+	}
+	rje()<<rji(nodeAncestors);
+	nodeAncestors.clear();
+	for (int i = 0; i <= limit; i++) vis[i] = false;
+
+	tmp = dfs(3, targetNode2);
+	rje()<<rji(nodeAncestors);
+
+	int ans;
+	for (int X : nodeAncestors) {
+		if (st.find(X) != st.end()) {
+			ans = X;
+			break;
+		}
+	}
+
+	cout << ans << endl;
+
+
+
 
 }
