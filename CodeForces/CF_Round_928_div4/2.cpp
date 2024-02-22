@@ -31,25 +31,44 @@ sim dor(const c&) { ris; }
 #define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
-const int limit = 1e5;
-int n, ok;
-vector<int> cats;
-vector<int> adj[limit+1];
-vector<bool> vis(limit+1);
-int ans = 0;
 
-void dfs(int curNode, int curCats) {
-	if (curCats + cats[curNode] > ok) return;
-	if (cats[curNode] == 0) curCats = 0;
-	
-	if (adj[curNode].size() == 0) ans++;
-	vis[curNode] = true;
-	cerr << curNode << ": "<< adj[curNode].size() << endl;
-
-	for (int X: adj[curNode]) {
-		if (vis[X]) continue;
-		dfs(X, curCats + cats[curNode]);
+int getRow(int x, int y, int n, vector<string>& grid) {
+	int danDik = x;
+	int danDikCnt = 0;
+	for (int j = y; j < n; j++) {
+		if (grid[x][j] != '1') {
+			break;
+		}
+		danDikCnt++;
+		danDik = j;
 	}
+	int cnt = 0;
+	if (danDikCnt+x-1 >= n) return false;
+	rje()<<rji(danDikCnt);
+	rje()<<rji(danDikCnt+x-1);
+
+	int totalCnt = 0;
+
+	for (int i = x; i <= danDikCnt+x-1; i++) {
+		cnt = 0;
+		for (int j = y; j <= danDik; j++) {
+			// cout << j << ' ';
+			if (grid[i][j] == '1') cnt++;
+		}
+		// cout << endl;
+		if (cnt != danDikCnt) return false;
+		totalCnt += cnt;
+	}
+
+	int curCnt = 0;
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (grid[i][j] == '1') curCnt++;
+		}
+	}
+	if (curCnt != totalCnt) return false;
+
+	return true;
 }
 
 int main() {
@@ -62,19 +81,27 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	cin >> n >> ok;
-	cats.resize(n+1);
-	for (int i = 1; i <= n; i++) {
-		int tmp; cin >> tmp;
-		cats[i] = tmp;
+	int t; cin >> t; while (t--) {
+		int n; cin >> n;
+		vector<string> grid(n);
+		for (int i = 0; i < n; i++) {
+			cin >> grid[i];
+		}
+
+		bool flg = true;
+		bool gotit = false;
+		for (int i = 0; i < n; i++) {
+			if (gotit) break;
+			for (int j = 0; j < n; j++) {
+				if (grid[i][j] == '1') {
+					flg = getRow(i, j, n, grid);
+					gotit = true;
+					break;
+				}
+			}
+		}
+		if (flg) cout << "SQUARE\n";
+		else cout << "TRIANGLE\n";
 	}
 
-	for (int i = 1; i < n; i++) {
-		int u, v; cin >> u >> v;
-		adj[u].push_back(v);
-		adj[v].push_back(u);
-	}
-
-	dfs(1, 0);
-	cout << ans << endl;
 }

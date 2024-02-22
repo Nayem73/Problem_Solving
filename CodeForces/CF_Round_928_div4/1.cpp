@@ -31,26 +31,6 @@ sim dor(const c&) { ris; }
 #define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
-const int limit = 1e5;
-int n, ok;
-vector<int> cats;
-vector<int> adj[limit+1];
-vector<bool> vis(limit+1);
-int ans = 0;
-
-void dfs(int curNode, int curCats) {
-	if (curCats + cats[curNode] > ok) return;
-	if (cats[curNode] == 0) curCats = 0;
-	
-	if (adj[curNode].size() == 0) ans++;
-	vis[curNode] = true;
-	cerr << curNode << ": "<< adj[curNode].size() << endl;
-
-	for (int X: adj[curNode]) {
-		if (vis[X]) continue;
-		dfs(X, curCats + cats[curNode]);
-	}
-}
 
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
@@ -62,19 +42,15 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	cin >> n >> ok;
-	cats.resize(n+1);
-	for (int i = 1; i <= n; i++) {
-		int tmp; cin >> tmp;
-		cats[i] = tmp;
+	int t; cin >> t; while (t--) {
+		string s; cin >> s;
+		vector<int> count(200);
+		for (int i = 0; i < (int)s.size(); i++) {
+			count[s[i]]++;
+
+		}
+		if (count['A'] > count['B']) cout << 'A' << endl;
+		else cout << 'B' << endl;
 	}
 
-	for (int i = 1; i < n; i++) {
-		int u, v; cin >> u >> v;
-		adj[u].push_back(v);
-		adj[v].push_back(u);
-	}
-
-	dfs(1, 0);
-	cout << ans << endl;
 }

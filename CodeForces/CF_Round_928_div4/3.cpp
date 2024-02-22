@@ -31,25 +31,25 @@ sim dor(const c&) { ris; }
 #define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
-const int limit = 1e5;
-int n, ok;
-vector<int> cats;
-vector<int> adj[limit+1];
-vector<bool> vis(limit+1);
-int ans = 0;
 
-void dfs(int curNode, int curCats) {
-	if (curCats + cats[curNode] > ok) return;
-	if (cats[curNode] == 0) curCats = 0;
+const int limit = 2e5;
+vector<long long> store(2e5);
+vector<long long> pref(2e5);
+
+int digitSum(int num) {
+    int sum = 0;
+    while (num > 0) {
+        sum += num % 10;
+        num /= 10;
+    }
+    return sum;
+}
+
+void callMain() {
+	long long N; cin >> N;
+	cout << pref[N] << endl;
+
 	
-	if (adj[curNode].size() == 0) ans++;
-	vis[curNode] = true;
-	cerr << curNode << ": "<< adj[curNode].size() << endl;
-
-	for (int X: adj[curNode]) {
-		if (vis[X]) continue;
-		dfs(X, curCats + cats[curNode]);
-	}
 }
 
 int main() {
@@ -62,19 +62,16 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	cin >> n >> ok;
-	cats.resize(n+1);
-	for (int i = 1; i <= n; i++) {
-		int tmp; cin >> tmp;
-		cats[i] = tmp;
+	for (int i = 1; i <= limit; i++) {
+		store[i] = digitSum(i);
 	}
 
-	for (int i = 1; i < n; i++) {
-		int u, v; cin >> u >> v;
-		adj[u].push_back(v);
-		adj[v].push_back(u);
+	for (int i = 1; i <= limit; i++) {
+		pref[i] = pref[i-1] + store[i];
 	}
 
-	dfs(1, 0);
-	cout << ans << endl;
+	long long t; cin >> t; while (t--) {
+		callMain();
+	}
+
 }

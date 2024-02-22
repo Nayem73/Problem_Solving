@@ -47,6 +47,6 @@ fast_io;
 	string s1 = "who-are@gmail.com";
 	string s1 = "who.are@gmail.comwho";
 
-	regex rg = regex_pattern(s1, "[a-zA-Z0-9-._]+@[a-zA-Z0-9-]+\\.[a-zA-Z]+");
+	regex pattern("[a-zA-Z.-_]*")
 
 }
