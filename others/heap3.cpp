@@ -32,6 +32,18 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
+void maxHeapify(vector<int>& heap, int i) {
+	int n = heap.size();
+	int maxIndx = i;
+	if (i*2 < n && heap[i*2] > heap[i]) maxIndx = i*2;
+	if (i*2+1 < n && heap[i*2+1] > heap[maxIndx]) maxIndx = i*2+1;
+
+	if (maxIndx != i) {
+		swap(heap[maxIndx], heap[i]);
+		maxHeapify(heap, maxIndx);
+	}
+}
+
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -42,14 +54,12 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<int> v{4,5,1,0,-4,4,0,3,4,2,9};
-	int n = v.size();
+	vector<int> heap {-1000000, 3,-1,9,291,9,19,9,0,9,19,91,9};
+	int n = heap.size();
 
-	for (int i = 0; i < n; i++) {
-		for (int j = i+1; j < n; j++) {
-			if (v[j] < v[i]) {
-				swap(v[j], v[i]);
-			}
-		}
+	for (int i = n/2; i >= 1; i--) {
+		maxHeapify(heap, i);
 	}
+
+	rje()<<rji(heap);
 }
