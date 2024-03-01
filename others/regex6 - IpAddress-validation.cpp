@@ -42,11 +42,38 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	string s1 = "who.are@gmail.com";
-	string s1 = "whoare@gmailcom";
-	string s1 = "who-are@gmail.com";
-	string s1 = "who.are@gmail.comwho";
+	//IPv4
+	string s1 = "192.168.1.1";
+	string s2 = "192.168.1.0";
 
-	regex pattern("[a-zA-Z.-_]*")
+	string s3 = "192.168.01.1";
+	string s4 = "192.168.1.00";
+	string s5 = "192.168@1.1";
+
+	//IPv6
+	string s6 = "2001:0db8:85a3:0000:0000:8a2e:0370:7334";
+	string s7 = "2001:db8:85a3:0:0:8A2E:0370:7334";
+
+	string s8 = "2001:0db8:85a3::8A2E:037j:7334";
+	string s9 = "02001:0db8:85a3:0000:0000:8a2e:0370:7334";
+	
+
+	regex pattern("([1-9][0-9]?|1[0-9]{2}|2[0-4][0-9]|25[0-5]|0)\\.([1-9][0-9]?|1[0-9]{2}|2[0-4][0-9]|25[0-5]|0)\\.([1-9][0-9]?|1[0-9]{2}|2[0-4][0-9]|25[0-5]|0)\\.([1-9][0-9]?|1[0-9]{2}|2[0-4][0-9]|25[0-5]|0)");
+	
+	vector<string> store{s1,s2,s3,s4,s5};
+	for (int i = 0; i < (int)store.size(); i++) {
+		bool isMatch = regex_match(store[i], pattern);
+		cerr << store[i] << " ----- "<< isMatch<< endl;
+	}
+
+
+	cerr << "\nNow IPv6 checking\n\n";
+
+	regex patternIPv6("[0-9a-fA-F]{1,4}:[0-9a-fA-F]{1,4}:[0-9a-fA-F]{1,4}:[0-9a-fA-F]{1,4}:[0-9a-fA-F]{1,4}:[0-9a-fA-F]{1,4}:[0-9a-fA-F]{1,4}:[0-9a-fA-F]{1,4}");
+	vector<string> store2{s6,s7,s8,s9};
+	for (int i = 0; i < (int)store2.size(); i++) {
+		bool isMatch = regex_match(store2[i], patternIPv6);
+		cerr << store2[i] << " ----- "<< isMatch<< endl;
+	}
 
 }
