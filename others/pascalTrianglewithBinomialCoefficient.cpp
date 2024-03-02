@@ -32,8 +32,9 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-void getReverseString(string s, int curIndx) {
-
+int binomialCoeff(int n, int r) {
+	if (r == 0 || r == n) return 1;
+	return binomialCoeff(n-1, r-1) + binomialCoeff(n-1, r);
 }
 
 int main() {
@@ -43,9 +44,14 @@ freopen("in1", "r", stdin);
 freopen("out1", "w", stdout);
 #endif
 fast_io;
-//-------------------------------  
-  //SUBHANALLAH//
+//-------------------------------	
+	//SUBHANALLAH//
 //-------------------------------
-  string s = "abcde";
-  cout << s << << center << endl;
+	int line = 10;
+	for (int i = 0; i < line; i++) {
+		for (int j = 0; j <= i; j++) {
+			cout << binomialCoeff(i, j) << " ";
+		}
+		cout << endl;
+	}
 }
