@@ -32,8 +32,10 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-void getReverseString(string s, int curIndx) {
-
+void reverseString(string &s, int lo, int hi) {
+  if (lo >= hi) return;
+  swap(s[lo], s[hi]);
+  reverseString(s, lo+1, hi-1);
 }
 
 int main() {
@@ -43,9 +45,14 @@ freopen("in1", "r", stdin);
 freopen("out1", "w", stdout);
 #endif
 fast_io;
-//-------------------------------  
+//------------------------------- 
   //SUBHANALLAH//
 //-------------------------------
-  string s = "abcde";
-  cout << s << << center << endl;
+  string s = "hello";
+  int n = s.size();
+  reverseString(s, 0, n-1);
+
+  cerr << s <<endl;
 }
+
+ 
