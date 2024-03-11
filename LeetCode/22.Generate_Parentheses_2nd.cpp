@@ -32,10 +32,30 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-void reverseString(string &s, int lo, int hi) {
-  if (lo >= hi) return;
-  swap(s[lo], s[hi]);
-  return reverseString(s, lo+1, hi-1);
+vector<string> validParenthesis;
+
+bool isValid(string s) {
+	stack<char> stack;
+	for (int i = 0; i < (int)s.length(); i++) {
+		if (s[i] == '(') stack.push(s[i]);
+		else {
+			if (stack.top() != '(') return false;
+			stack.pop();
+		}
+	}
+
+	if (stack.empty()) return true;
+	return false;
+}
+
+void getAllPossibleParenthesis(string s, int n, int opening, int closing) {
+    if (opening > n || closing > opening) return;
+    if (s.size() == n+n && isValid(s)) {
+    	validParenthesis.push_back(s);
+    	return;
+    }
+    getAllPossibleParenthesis(s + "(", n, opening+1, closing);
+    getAllPossibleParenthesis(s + ")", n, opening, closing+1);
 }
 
 int main() {
@@ -45,12 +65,11 @@ freopen("in1", "r", stdin);
 freopen("out1", "w", stdout);
 #endif
 fast_io;
-//------------------------------- 
-  //SUBHANALLAH//
+//-------------------------------	
+	//SUBHANALLAH//
 //-------------------------------
-  int f = -1;
-  if (f) cerr << "0\n";
-  else cerr << "contains\n";
-}
+	int n = 3;
+	getAllPossibleParenthesis("", n, 0, 0);
+	rje()<<rji(validParenthesis);
 
- 
+}

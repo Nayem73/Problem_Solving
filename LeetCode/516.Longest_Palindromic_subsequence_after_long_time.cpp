@@ -32,12 +32,6 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-void reverseString(string &s, int lo, int hi) {
-  if (lo >= hi) return;
-  swap(s[lo], s[hi]);
-  return reverseString(s, lo+1, hi-1);
-}
-
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
 #ifdef LOCALM
@@ -45,12 +39,23 @@ freopen("in1", "r", stdin);
 freopen("out1", "w", stdout);
 #endif
 fast_io;
-//------------------------------- 
-  //SUBHANALLAH//
+//-------------------------------	
+	//SUBHANALLAH//
 //-------------------------------
-  int f = -1;
-  if (f) cerr << "0\n";
-  else cerr << "contains\n";
-}
+	string s = "bbbab";
+	int n = s.size();
 
- 
+	for (int len = 0; len < n; len++) {
+		for (int i = 0; i+len < n; len++) {
+			int j = i+len;
+			if (len == 0) dp[i][j] = 1;
+			else if (len == 1) {
+				if (s[i] == s[j]) dp[i][j] = 2;
+				else dp[i][j] = 1;
+			}
+			else if (s[i] == s[j]) {
+				dp[i][j] = dp[i+1][j-1]
+			}
+		}
+	}
+}
