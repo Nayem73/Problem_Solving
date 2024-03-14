@@ -32,10 +32,9 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-void reverseString(string &s, int lo, int hi) {
-  if (lo >= hi) return;
-  swap(s[lo], s[hi]);
-  return reverseString(s, lo+1, hi-1);
+long long nCr(int n, int r) {
+	if (r == 0 || r == n) return 1;
+	return nCr(n-1, r-1) + nCr(n-1, r);
 }
 
 int main() {
@@ -45,10 +44,11 @@ freopen("in1", "r", stdin);
 freopen("out1", "w", stdout);
 #endif
 fast_io;
-//------------------------------- 
-  //SUBHANALLAH//
+//-------------------------------	
+	//SUBHANALLAH//
 //-------------------------------
-  
-}
+	int n = 51;
+	int r = 42;
 
- 
+	cerr << nCr(n, r);
+}
