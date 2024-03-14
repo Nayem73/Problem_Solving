@@ -62,8 +62,8 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<int> candidates{10,1,2,7,6,1,5};
-	int target = 8;
+	vector<int> candidates{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+	int target = 27;
 
 	getCombinations(candidates, target, 0, 0, {});
     vector<vector<int>> ret;
