@@ -32,10 +32,24 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-void reverseString(string &s, int lo, int hi) {
-  if (lo >= hi) return;
-  swap(s[lo], s[hi]);
-  return reverseString(s, lo+1, hi-1);
+set<vector<int>> ans;
+void getCombinations(vector<int>& candidates, int target, int curIndex, int curTarget, vector<int> curCandidates) {
+    if (curTarget > target) return;
+    rje()<<rji(curIndex) rji(curCandidates);
+
+    if (curTarget == target) {
+        sort(curCandidates.begin(), curCandidates.end());
+        ans.insert(curCandidates);
+        return;
+    }
+    
+    for (int i = curIndex; i < (int)candidates.size(); i++) {
+        curCandidates.push_back(candidates[i]);
+        // cerr << "``````````````````````````````````` "<< curIndex+1 << endl;
+        getCombinations(candidates, target, i+1, curTarget+candidates[i], curCandidates);
+        curCandidates.pop_back();
+        cerr<<endl;
+    }
 }
 
 int main() {
@@ -45,25 +59,16 @@ freopen("in1", "r", stdin);
 freopen("out1", "w", stdout);
 #endif
 fast_io;
-//------------------------------- 
-  //SUBHANALLAH//
+//-------------------------------	
+	//SUBHANALLAH//
 //-------------------------------
-  int target = 9;
-  vector<int> candidates{2,3,5};
+	vector<int> candidates{10,1,2,7,6,1,5};
+	int target = 8;
 
-  vector<int> dp(target+1);
-  dp[0] = 1;
-  
-      for (int limit = 0; limit <= target; limit++) {
-  for (int i = 0; i < (int)candidates.size(); i++) {
-          int x = candidates[i];
-          
-          if (limit-x < 0) continue;
-          dp[limit] += dp[limit - x];
-      }
-  }
-
-  rje()<<rji(dp);
+	getCombinations(candidates, target, 0, 0, {});
+    vector<vector<int>> ret;
+    for (vector<int> curVector : ans) {
+        ret.push_back(curVector);
+    }
+    rje()<<rji(ret);
 }
-
- 
