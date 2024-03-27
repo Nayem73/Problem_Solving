@@ -63,7 +63,7 @@ fast_io;
 	for (int i = n/2; i >= 1; i--) {
 		maxHeapify(heap, i, n);
 	}
-	//rje()<<rji(heap);
+	rje()<<rji(heap);
 
 	for (int i = n-1; i > 1; i--) {
 		swap(heap[i], heap[1]);
@@ -74,6 +74,6 @@ fast_io;
 		//rje();
 	}
 
-	//rje()<<rji(heap);
+	rje()<<rji(heap);
 
 }

@@ -32,11 +32,7 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-void reverseString(string &s, int lo, int hi) {
-  if (lo >= hi) return;
-  swap(s[lo], s[hi]);
-  return reverseString(s, lo+1, hi-1);
-}
+vector<int> *adj;
 
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
@@ -48,22 +44,16 @@ fast_io;
 //------------------------------- 
   //SUBHANALLAH//
 //-------------------------------
-  int target = 9;
-  vector<int> candidates{2,3,5};
+  int nodes; cin >> nodes;
+  adj = new vector<int>[nodes+1];
 
-  vector<int> dp(target+1);
-  dp[0] = 1;
-  
-      for (int limit = 0; limit <= target; limit++) {
-  for (int i = 0; i < (int)candidates.size(); i++) {
-          int x = candidates[i];
-          
-          if (limit-x < 0) continue;
-          dp[limit] += dp[limit - x];
-      }
+  for (int i = 0; i < n-1; i++) {
+    int u, v; cin >> u >> v;
+    adj[u].push_back(v);
+    adj[v].push_back(u);
   }
 
-  rje()<<rji(dp);
+  
 }
 
  
