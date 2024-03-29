@@ -31,7 +31,12 @@ sim dor(const c&) { ris; }
 #define rji(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
+const int inf = 2e9;
 
+int findMinNumber(vector<int>& A, int curIndex) {
+	if (curIndex >= (int)A.size()) return inf;
+	return min(findMinNumber(A, curIndex+1), A[curIndex]);
+}
 
 int main() {
 //ALHAMDULILLAHI-RABBIL-ALAMIN//
@@ -40,38 +45,9 @@ freopen("in1", "r", stdin);
 freopen("out1", "w", stdout);
 #endif
 fast_io;
-//------------------------------- 
-  //SUBHANALLAH//
+//-------------------------------	
+	//SUBHANALLAH//
 //-------------------------------
-  int node = 6;
-  int grid[node][node] = {
-    {0, 3, 1, 6, 0, 0},
-    {3, 0, 5, 0, 3, 0},
-    {1, 5, 0, 5, 6, 4},
-    {6, 0, 5, 0, 0, 2},
-    {0, 3, 6, 0, 0, 6},
-    {0, 0, 4, 2, 6, 0}
-  };
-
-  vector<bool>vis(node);
-  int edge = 0;
-  while (edge < node-1) {
-    int minDist = 2e9;
-    int r = 0, c = 0;
-    for (int i = 0; i < n; i++) {
-      if (vis[i]) {
-        for (int j = 0; j < n; j++) {
-          if (grid[i][j] < minDist) {
-            minDist = grid[i][j];
-            r = i, c = j;
-          }
-        }
-      }
-    }
-    cout <<
-    vis[c] =true;
-    edge++;
-  }
+	vector<int> A{1, 4, 3, -5, -4, 8, 6};
+	cerr << findMinNumber(A, 0);
 }
-
- 
