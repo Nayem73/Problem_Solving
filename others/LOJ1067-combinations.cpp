@@ -32,25 +32,15 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-int subsetPairNotDivisibleByK(vector<int> arr, int N, int K) {
-    vector<int> f(K);
+const int nax = 1e6;
+const int mod = 1000003;
 
-    // Compute the frequency of remainders
-    for (int i = 0; i < N; i++) {
-        f[arr[i] % K]++;
-    }
-
-    // Handle special cases for remainder 0 and K/2
-    if (K % 2 == 0) {
-        f[K/2] = min(f[K/2], 1);
-    }
-
-    int res = min(f[0], 1);
-    for (int i = 1; i <= K/2; i++) {
-        res += max(f[i], f[K-i]);
-    }
-
-    return res;
+long long bigmod(long long a, long long b) {
+	if (b==0) return 1;
+	long long x = bigmod(a, b/2);
+	x = (x*x) % mod;
+	if (b%2) x = (x*a) % mod;
+	return x;
 }
 
 int main() {
@@ -60,12 +50,22 @@ freopen("in1", "r", stdin);
 freopen("out1", "w", stdout);
 #endif
 fast_io;
-//-------------------------------  
-  //SUBHANALLAH//
+//-------------------------------	
+	//SUBHANALLAH//
 //-------------------------------
-    vector<int> arr = {1,2,3,4,5,6,7,8,9};
-    int N = arr.size();
-    int target = 4;
+	vector<int> fact(nax+1);
+    fact[0] = 1;
+    for (int i = 1; i <= nax; i++) {
+        fact[i] = (fact[i-1] * (long long)i) % mod;
+    }
+    
+    int t, tc = 0; cin >> t;
+	while (t--) {
+		int n, r; cin >> n >> r;
+		int up = fact[n];
+		int down = (fact[r] * (long long) fact[n-r]) % mod;
 
-    cerr << subsetPairNotDivisibleByK(arr, N, target) << endl;
+		int ans = ((long long)up * bigmod(down, mod-2)) % mod;
+		cout << "Case "<<++tc<<": "<< ans << endl;
+	}
 }
