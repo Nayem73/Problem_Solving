@@ -32,15 +32,18 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-const int nax = 1e6;
-const int mod = 1000003;
+const int nax = 2000;
+vector<bool> primes(nax+1);
+vector<int> store;
 
-long long bigmod(long long a, long long b) {
-	if (b==0) return 1;
-	long long x = bigmod(a, b/2);
-	x = (x*x) % mod;
-	if (b%2) x = (x*a) % mod;
-	return x;
+void sieve(int n) {
+	for (int i = 2; i <= n; i++) {
+		if (primes[i]) continue;
+		store.push_back(i);
+		for (int j = i+i; j <= n; j+=i) {
+			primes[j] = true;
+		}
+	}
 }
 
 int main() {
@@ -53,21 +56,23 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int t; cin >> t;
-	while (t--) {
-		vector<int> fact(nax+1);
-		fact[0] = 1;
-		for (int i = 1; i <= nax; i++) {
-			fact[i] = (fact[i-1] * (long long)i) % mod;
+	sieve(nax+2);
+
+	int	n, k;
+	cin>>n>>k;
+
+	for (int i = 0; i < 30; i++) cerr << store[i] << " ";
+
+	int cnt = 0;
+	for (int i = 1; i < min((int)store.size(), n); i++) {
+		if (store[i]+store[i-1]+1 <= n && !primes[store[i] + store[i-1] + 1]) {
+			cnt++;
 		}
+	}
 
-		int n, r; cin >> n >> r;
-		int up = fact[n];
-		int down = (fact[r] * (long long) fact[n-1]) % mod;
-
-		int ans = ((long long)up * bigmod(down, mod-2)) % mod;
-		cerr << ans << endl;
-		cout << 2 << endl;
+	if (cnt >= k) {
+		cout << "YES\n";
+	} else {
+		cout << "NO\n";
 	}
 }
-

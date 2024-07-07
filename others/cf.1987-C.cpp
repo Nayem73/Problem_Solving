@@ -32,15 +32,17 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-const int nax = 1e6;
-const int mod = 1000003;
-
-long long bigmod(long long a, long long b) {
-	if (b==0) return 1;
-	long long x = bigmod(a, b/2);
-	x = (x*x) % mod;
-	if (b%2) x = (x*a) % mod;
-	return x;
+int calculate_seconds(vector<int>& heights) {
+    int max_height = 0;
+    int distinct_plateaus = 0;
+    
+    for (int i = 0; i < heights.size(); ++i) {
+        max_height = max(max_height, heights[i]);
+        if (i < heights.size() - 1 && heights[i] > heights[i + 1]) {
+            distinct_plateaus++;
+        }
+    }
+    return max_height + distinct_plateaus;
 }
 
 int main() {
@@ -53,21 +55,29 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	int t; cin >> t;
-	while (t--) {
-		vector<int> fact(nax+1);
-		fact[0] = 1;
-		for (int i = 1; i <= nax; i++) {
-			fact[i] = (fact[i-1] * (long long)i) % mod;
+	int t; cin >> t; while (t--) {
+		int n; cin >> n;
+		vector<int> v(n);
+		for (int &X: v) cin >> X;
+
+		int time = 0;
+		while (true) {
+			++time;
+			for (int i = 0; i < n; i++) {
+				if (i+1 < n && v[i] > v[i+1]) {
+					v[i] = max(0, v[i]-1);
+				}
+				if (i == n-1) {
+					v[i] = max(0, v[i]-1);
+				}
+			}
+
+			bool allZero = true;
+			for (int i = 0; i < n; i++) {
+				if (v[i] > 0) allZero = false;
+			}
+			if (allZero) break;
 		}
-
-		int n, r; cin >> n >> r;
-		int up = fact[n];
-		int down = (fact[r] * (long long) fact[n-1]) % mod;
-
-		int ans = ((long long)up * bigmod(down, mod-2)) % mod;
-		cerr << ans << endl;
-		cout << 2 << endl;
+		cout << time << endl;
 	}
 }
-
