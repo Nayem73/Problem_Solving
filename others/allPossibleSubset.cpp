@@ -42,7 +42,7 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<int> num {0,1,2,3};
+	vector<int> num {1,2,3};
 	vector<vector<int>> allPossible;
 
 	for (int i = 0; i < (int)num.size(); i++) {
