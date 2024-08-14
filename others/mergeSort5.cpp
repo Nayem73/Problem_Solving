@@ -81,7 +81,7 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	vector<int> store{5,4,1,-3,0,9,1,0,2,1,9};
+	vector<int> store{4,1,9,4,2,-9,9,20,91,9};
 	int n = store.size();
 
 	merge(store, 0, n-1);
