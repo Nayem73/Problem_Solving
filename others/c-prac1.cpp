@@ -7,10 +7,12 @@ int main() {
 	int x = 10, y;
 	int *p, *q;
 
-	p = &x;
-	y = *p;//10
-	*p = 15;//x=15
-	*q = 20;
+	p = &x;//*p = 10
+	q = &y;//*q = garbage value
+
+	y = *p;//y = 10
+	*p = 15;//x = 15
+	*q = 20;//y = 20
 
 	printf("x = %d\n", x);
 	printf("y = %d\n", y);
