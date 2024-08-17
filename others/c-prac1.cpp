@@ -4,16 +4,17 @@ int main() {
 	freopen("in1", "r", stdin);
 	freopen("out1", "w", stdout);
 
-	int x = 10;
-	
-	int *ptr;
-	ptr = &x;
+	int x = 10, y;
+	int *p, *q;
 
-	*ptr += 3;
+	p = &x;
+	y = *p;//10
+	*p = 15;//x=15
+	*q = 20;
 
-	printf("%d\n", x);
+	printf("x = %d\n", x);
+	printf("y = %d\n", y);
 
-	x = 5;
-
-	printf("%d\n", x);
+	printf("*p = %d\n", *p);
+	printf("*q = %d\n", *q);
 }
