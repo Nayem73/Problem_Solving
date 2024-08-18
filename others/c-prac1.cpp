@@ -4,24 +4,11 @@ int main() {
 	freopen("in1", "r", stdin);
 	freopen("out1", "w", stdout);
 
-	
-	int yt[] = {4,38,2};
-
-	// for (int i = 0; i < n; i++) {
-	// 	scanf("%d", &yt[i]);
-	// }
-
-	// for (int i = 0; i < 3; i++) {
-	// 	printf("%d\n", yt[i]);
-	// }
-
-	int *p = yt;
-	printf("%d\n", p[2]);
 
 
+	//int *p = {33, 44, 55}; //This does not work for array
 
-	// char s[] = "Bangla";
+	char *p = "Bangla";
+	printf("%s\n", p);
 
-	// printf("%s\n", s);
-	// printf("%p\n", s); //&s also works
 }
