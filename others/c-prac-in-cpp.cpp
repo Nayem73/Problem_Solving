@@ -42,8 +42,5 @@ fast_io;
 //-------------------------------	
 	//SUBHANALLAH//
 //-------------------------------
-	char ch1 = 'A', ch2 = 'B';
-	int n1 = 100, n2 = 100000;
-
-	cout << "address of ch2: "<< &ch2 << endl;
+	char *p = "Bangla";
 }
