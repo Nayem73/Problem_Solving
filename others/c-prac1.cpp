@@ -4,19 +4,21 @@ int main() {
 	freopen("in1", "r", stdin);
 	freopen("out1", "w", stdout);
 
-	int x = 10, y;
-	int *p, *q;
+	
+	// int yt[] = {4,38,2};
 
-	p = &x;//*p = 10
-	q = &y;//*q = garbage value
+	// // for (int i = 0; i < n; i++) {
+	// // 	scanf("%d", &yt[i]);
+	// // }
 
-	y = *p;//y = 10
-	*p = 15;//x = 15
-	*q = 20;//y = 20
+	// for (int i = 0; i < 3; i++) {
+	// 	printf("%d\n", yt[i]);
+	// }
 
-	printf("x = %d\n", x);
-	printf("y = %d\n", y);
 
-	printf("*p = %d\n", *p);
-	printf("*q = %d\n", *q);
+
+	char s[] = "Bangla";
+
+	printf("%s\n", s);
+	printf("%p\n", s); //&s also works
 }
