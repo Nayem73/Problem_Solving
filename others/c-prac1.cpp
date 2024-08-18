@@ -8,7 +8,16 @@ int main() {
 
 	//int *p = {33, 44, 55}; //This does not work for array
 
-	char *p = "Bangla";
-	printf("%s\n", p);
+	char c = 'A';
+	char *p = &c;
+	char **q = &p;
 
+	printf("%p\n", &p);
+	printf("%p\n", &c);
+	
+	printf("%c\n", *p);
+
+	
+	printf("%p\n", q);
+	printf("%c\n", **q);
 }
