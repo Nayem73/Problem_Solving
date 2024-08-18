@@ -6,18 +6,15 @@ int main() {
 
 
 
-	//int *p = {33, 44, 55}; //This does not work for array
-
 	char c = 'A';
-	char *p = &c;
-	char **q = &p;
+	char *p, **q;
 
-	printf("%p\n", &p);
-	printf("%p\n", &c);
-	
+	p = &c; //*p = 'A'  ......... p = memory of c
+	q = &p; //**q = 'A' ......... q = memory of p = memory of c
+
+	**q = 'B'; //*p = 'B' ...... c = 'B'
+
+	printf("%c\n", c);
 	printf("%c\n", *p);
-
-	
-	printf("%p\n", q);
 	printf("%c\n", **q);
 }
