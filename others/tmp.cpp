@@ -32,25 +32,12 @@ sim dor(const c&) { ris; }
 #define fast_io {ios_base::sync_with_stdio(0); cin.tie(0);}
 #define endl '\n'
 
-int subsetPairNotDivisibleByK(vector<int> arr, int N, int K) {
-    vector<int> f(K);
-
-    // Compute the frequency of remainders
-    for (int i = 0; i < N; i++) {
-        f[arr[i] % K]++;
+long long fnc(string& num, int st, int n) {
+    long long p = 1;
+    for (int i = st; i < st + n; ++i) {
+        p *= (num[i] - '0');
     }
-
-    // Handle special cases for remainder 0 and K/2
-    if (K % 2 == 0) {
-        f[K/2] = min(f[K/2], 1);
-    }
-
-    int res = min(f[0], 1);
-    for (int i = 1; i <= K/2; i++) {
-        res += max(f[i], f[K-i]);
-    }
-
-    return res;
+    return p;
 }
 
 int main() {
@@ -63,9 +50,36 @@ fast_io;
 //-------------------------------  
   //SUBHANALLAH//
 //-------------------------------
-    vector<int> arr = {1,2,3,4,5,6,7,8,9};
-    int N = arr.size();
-    int target = 4;
+    int t; cin >> t; 
+    int tc2 = 0;
+    for (int tc = 1; tc <= t; tc++) {
+        int n, k;
+        string num;
 
-    cerr << subsetPairNotDivisibleByK(arr, N, target) << endl;
+        cin >> n >> k;
+        cin >> num;
+
+        long long maxP = 0;
+        long long minP = LLONG_MAX;
+
+        for (int i = 0; i <= k - n; ++i) {
+            long long p = fnc(num, i, n);
+
+            if (p != 0) {
+                maxP = max(maxP, p);
+                minP = min(minP, p);
+            }
+        }
+
+        if (maxP <= 0) maxP = 1;
+        if (minP == LLONG_MAX || minP <= 0) minP = 1;
+
+        if (tc == t) {
+            cout << "Case "<< ++tc2 <<":" << endl;
+            cout << maxP << endl << minP;
+        } else {
+          cout << "Case "<< ++tc2 <<":" << endl;
+          cout << maxP << endl << minP << endl << endl;
+        }
+    }
 }

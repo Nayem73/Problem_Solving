@@ -137,3 +137,12 @@ having sum(world.population) >= 500000000
 
 
 create database world;
+use world;
+create table student(
+	id int,
+	name varchar(20),
+	dept varchar(20),
+	primary key(id)
+);
+
+insert into student values(1, "alex", "cse");
